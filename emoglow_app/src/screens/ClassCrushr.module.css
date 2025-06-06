@@ -1,4 +1,40 @@
-.classCrushrSection {}
-.classCrushrHeader {}
-.classCrushrContent {}
-.classCrushrFooter {}
+.classCrushrSection {
+  min-height: 75vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(110deg,#ede9fd 0%, #e3f2fd 100%);
+  padding: 3vw 2vw;
+}
+.classCrushrHeader {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--accent, #8558fd);
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.01em;
+  margin-top: 0.7rem;
+}
+.classCrushrContent {
+  background: rgba(255,255,255,0.17);
+  border-radius: 17px;
+  box-shadow: var(--shadow-med, 0 8px 32px rgba(40,64,120,0.12));
+  padding: 24px 18px;
+  margin-bottom: 2.1rem;
+  max-width: 420px;
+  width: 100%;
+  color: #43425a;
+}
+.classCrushrFooter {
+  text-align: center;
+  color: #877fff;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 600px) {
+  .classCrushrContent { padding: 14px 3vw; }
+  .classCrushrHeader { font-size: 1.02rem;}
+}
