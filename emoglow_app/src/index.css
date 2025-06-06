@@ -1,10 +1,170 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Global CSS Reset, base styling, and theme variables for MindMelt AI app */
 
-/* Base resets and coding styles */
-* {
+/* Apple-like CSS resets */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth font rendering & base typography */
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 16px;
+  background: var(--base-dark, #00008b);
+  color: var(--text-color, #fff);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Hide scrollbars (Apple style) */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--base-light, #00ffff) var(--base-dark, #00008b);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 600;
+  margin-top: 0;
+  letter-spacing: -0.008em;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:focus, a:hover {
+  text-decoration: underline;
+}
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+/* Focus ring for accessibility */
+:focus-visible {
+  outline: 2px solid var(--base-light, #00ffff);
+  outline-offset: 2px;
+}
+
+/* Utility for visually hidden (for a11y) */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Reusable, Apple-style container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Theme color variables (overridable in light/dark) */
+:root {
+  --base-light: #00ffff;
+  --base-dark: #00008b;
+  --primary: #e3f2fd;
+  --secondary: #ffffff;
+  --accent: #ff9800;
+  --kavia-orange: #E87A41;
+  --kavia-dark: #1A1A1A;
+  --text-color: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-darker: rgba(0,0,0,.17);
+}
+
+/* Dark mode theme switch */
+body.dark,
+:root.dark,
+html.dark {
+  --base-dark: #0a1121;
+  --base-light: #8ff2ff;
+  --text-color: #fff;
+  --text-secondary: #b0b9c6;
+  --accent: #ff9800;
+}
+
+/* Light mode theme switch (default) */
+body.light,
+:root.light,
+html.light {
+  --base-dark: #f9fbff;
+  --base-light: #00cfff;
+  --text-color: #222c33;
+  --text-secondary: #6f7b8a;
+  --accent: #ff9800;
+}
+
+/* Typography styles */
+.title {
+  font-size: 3.1rem;
+  font-weight: 600;
+  line-height: 1.17;
+  letter-spacing: -0.04em;
+  margin: 0 0 12px 0;
+}
+.subtitle {
+  color: var(--base-light);
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+.description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 16px;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Responsive spacing (Apple-like) */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 2vw;
+  }
+  .title { font-size: 2.25rem; }
+}
+
+/* Apple-style fade-in animation for h1, h2, .fade-in */
+@keyframes fadein-slow {
+  0% { opacity: 0; transform: translateY(32px);}
+  70% { opacity: 1;}
+  100% { opacity: 1; transform: translateY(0);}
+}
+.fade-in, h1, h2 {
+  animation: fadein-slow 1.1s cubic-bezier(.4,0,.2,1) both;
+  animation-delay: 0.5s;
 }
 
 body {
