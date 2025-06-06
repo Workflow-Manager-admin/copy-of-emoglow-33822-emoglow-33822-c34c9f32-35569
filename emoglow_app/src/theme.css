@@ -210,21 +210,27 @@ input:focus, textarea:focus, select:focus {
 
 /* === Mood label transition for all screens === */
 .moodEmojiLabel, .mood-label {
-  color: #15181c;
+  color: #111; /* Black by default for maximum contrast */
   font-weight: 500;
   transition: color 0.33s cubic-bezier(.56,.38,0,1.37), background 0.23s cubic-bezier(.6,.5,0,1.38), text-shadow 0.26s;
   cursor: pointer;
 }
 .moodEmojiButton:hover .moodEmojiLabel,
-.mood-label:hover {
+.moodEmojiButton:focus-visible .moodEmojiLabel,
+.mood-label:hover,
+.mood-label:focus-visible {
   color: #fff !important;
   text-shadow: 0 1.5px 10px #2227;
 }
+
+/* For dark mode, update accordingly */
 .dark-mode .moodEmojiLabel, .dark-mode .mood-label {
-  color: #f1f2f7;
+  color: #f3f5fa;
 }
 .dark-mode .moodEmojiButton:hover .moodEmojiLabel,
-.dark-mode .mood-label:hover {
+.dark-mode .moodEmojiButton:focus-visible .moodEmojiLabel,
+.dark-mode .mood-label:hover,
+.dark-mode .mood-label:focus-visible {
   color: #fff !important;
   text-shadow: 0 2px 14px #fff8, 0 1px 3px #0052cf44;
 }
