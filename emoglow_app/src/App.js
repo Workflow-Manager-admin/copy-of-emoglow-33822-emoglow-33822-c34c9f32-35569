@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import "./App.css";
 import "./index.css";
 import navStyles from "./components/NavBar.module.css";
+import NavBar from "./components/NavBar";
 
 // Screens
 import Home from "./screens/Home";
@@ -79,33 +80,7 @@ function ThemeToggle() {
   );
 }
 
-// Polished, modular, animated, responsive Apple-like Navbar with semantic module CSS
-function Navbar() {
-  return (
-    <nav className={navStyles.navbar} role="navigation">
-      <div className={navStyles.navbarContainer}>
-        <div className={navStyles.logo}>
-          <span className={navStyles.logoSymbol}>💧</span>
-          MindMelt AI
-        </div>
-        <div className={navStyles.navLinks}>
-          {navLinks.map((l) => (
-            <Link
-              to={l.to}
-              key={l.to}
-              className={navStyles.navLink}
-              aria-current={window.location.pathname === l.to ? "page" : undefined}
-              tabIndex={0}
-            >
-              {l.label}
-            </Link>
-          ))}
-          <ThemeToggle />
-        </div>
-      </div>
-    </nav>
-  );
-}
+
 
 /**
  * PUBLIC_INTERFACE
