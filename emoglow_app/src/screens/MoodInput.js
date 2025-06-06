@@ -173,10 +173,7 @@ export default function MoodInput() {
           variants={gridVariants}
           initial="hidden"
           animate="visible"
-          className="
-            grid grid-cols-5 gap-3 md:gap-4 mb-3 w-full
-            place-items-center justify-center max-w-md mx-auto focus:outline-none
-          "
+          className={styles.moodEmojiGrid}
           role="radiogroup"
           aria-label="Mood selection"
         >
@@ -184,16 +181,7 @@ export default function MoodInput() {
             <motion.button
               id={`mood-emoji-${i}`}
               key={m.label}
-              className={`
-                rounded-full w-14 h-14 md:w-16 md:h-16 text-2xl md:text-3xl flex flex-col items-center
-                justify-center shadow border-2 outline-none transition-all font-bold
-                focus:ring-2 focus:ring-accent/70 z-10 select-none
-                ${
-                  selectedMood === i
-                    ? "border-accent scale-[1.15] bg-white/10 shadow-xl"
-                    : "border-white/15 hover:scale-110 bg-white/5 opacity-85"
-                }
-              `}
+              className={`${styles.moodEmojiButton} ${selectedMood === i ? styles.selected : ""}`}
               tabIndex={0}
               aria-checked={selectedMood === i}
               aria-label={m.label}
@@ -207,13 +195,7 @@ export default function MoodInput() {
               animate={selectedMood === i ? "selected" : "visible"}
             >
               <span aria-hidden="true">{m.emoji}</span>
-              <span
-                className={`text-xs mt-1 font-medium ${
-                  selectedMood === i
-                    ? "text-accent"
-                    : "text-white/65 dark:text-white/50"
-                }`}
-              >
+              <span className={styles.moodEmojiLabel + (selectedMood === i ? " " + styles.selectedLabel : "")}>
                 {m.label}
               </span>
             </motion.button>
