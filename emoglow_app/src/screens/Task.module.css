@@ -5,10 +5,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg,#232250 0%, #232384 100%);
+  background: var(--task-gradient, linear-gradient(135deg,#232250 0%, #232384 100%));
   transition: background 1.2s;
   position: relative;
   padding: 40px 14px 80px 14px;
+}
+.dark-mode .taskSection {
+  --task-gradient: linear-gradient(135deg, #16182a 0%, #1b2245 100%);
 }
 
 .taskCardArea {

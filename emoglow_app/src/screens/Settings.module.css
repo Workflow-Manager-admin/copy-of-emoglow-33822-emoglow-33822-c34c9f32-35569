@@ -5,8 +5,11 @@
   align-items: center;
   justify-content: center;
   padding: 48px 16px;
-  background: linear-gradient(135deg,#252850 0%, #232384 100%);
+  background: var(--settings-gradient, linear-gradient(135deg,#252850 0%, #232384 100%));
   transition: background 1.2s;
+}
+.dark-mode .settingsSection {
+  --settings-gradient: linear-gradient(135deg,#181b2b 0%, #23253e 100%);
 }
 
 .settingsContainer {
