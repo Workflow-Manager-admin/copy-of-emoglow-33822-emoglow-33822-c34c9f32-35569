@@ -23,6 +23,7 @@ export function ThemeProvider({ children }) {
     if (theme === "dark") {
       document.documentElement.classList.add("dark-mode");
     }
+    // For light, ensure .dark-mode is not present
     localStorage.setItem("theme", theme);
   }, [theme]);
 
