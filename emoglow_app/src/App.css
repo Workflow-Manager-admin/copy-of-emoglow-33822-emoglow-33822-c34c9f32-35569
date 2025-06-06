@@ -1,6 +1,3 @@
-/* All variables moved to theme.css */
-/* Remove duplicate variables and body color. Only keep structural/layout styles! */
-
 body {
   margin: 0;
   font-family: var(--font-family, 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif);
@@ -8,24 +5,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Structure only - colors, backgrounds, and shadows come from CSS variables in theme.css */
+
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-/* .navbar uses only variable backgrounds from theme.css and NavBar.module.css. Remove specific definitions here. */
-
-.logo {
-  font-size: 1.25rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logo-symbol {
-  color: var(--base-light);
 }
 
 .container {
@@ -48,7 +33,7 @@ body {
 }
 
 .subtitle {
-  color: var(--base-light);
+  color: var(--accent);
   font-weight: 500;
   font-size: 1.1rem;
 }
@@ -70,8 +55,8 @@ body {
 }
 
 .btn {
-  background-color: var(--base-light);
-  color: white;
+  background-color: var(--accent);
+  color: var(--text-light);
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
@@ -82,7 +67,7 @@ body {
 }
 
 .btn:hover {
-  background-color: #7691ff;
+  background-color: #005eea;
 }
 
 .btn-large {
