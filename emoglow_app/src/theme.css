@@ -1,46 +1,268 @@
 :root {
-  /* --- Apple-Inspired Branding Palette --- */
-  --primary: rgb(245, 247, 250);
-  --secondary: rgb(255, 255, 255);
-  --accent: rgb(0, 122, 255);
-  --text-dark: #111112;
+  /* --- Minimal, Calm, Modern Palette --- */
+  --primary: #f9fbfd;
+  --secondary: #ffffff;
+  --accent: #007aff; /* true Apple blue for accent */
+  --text-dark: #15181a;
   --text-light: #fff;
-  --text-secondary: #606770;
-  --success: #43e06b;
-  --warning: #ffb300;
+  --text-secondary: #748094;
+  --success: #33c374;
+  --warning: #ffc46c;
   --danger: #ff5252;
 
-  /* --- Typography & Font --- */
+  /* --- Typography --- */
   --font-family: 'Inter', 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Helvetica Neue', Arial, sans-serif;
   --font-weight-normal: 400;
   --font-weight-bold: 600;
-  --font-size-base: 1rem;         /* 16px */
-  --font-size-lg: 1.22rem;
-  --font-size-xl: 2.2rem;
-  --letter-spacing: -0.01em;
-  --line-height: 1.55;
+  --font-size-base: 1.04rem;      /* 16.5px */
+  --font-size-lg: 1.21rem;
+  --font-size-xl: 2.06rem;
+  --letter-spacing: -0.012em;
+  --line-height: 1.6;
 
-  /* --- Spacing --- */
-  --spacing-xs: 0.25rem;      /* 4px */
-  --spacing-sm: 0.5rem;       /* 8px */
-  --spacing-md: 1rem;         /* 16px */
-  --spacing-lg: 1.5rem;       /* 24px */
-  --spacing-xl: 2.75rem;      /* 44px */
+  /* --- Whitespace & Layout --- */
+  --spacing-xs: 0.32rem;
+  --spacing-sm: 0.65rem;
+  --spacing-md: 1.2rem;
+  --spacing-lg: 2.1rem;
+  --spacing-xl: 3.4rem;
 
-  /* --- Border Radius --- */
-  --radius-lg: 12px;
-  --radius-md: 8px;
-  --radius-sm: 4px;
+  /* --- Borders --- */
+  --radius-lg: 19px;
+  --radius-md: 11px;
+  --radius-sm: 5px;
 
-  /* --- Shadows (Apple-like) --- */
-  --shadow-low: 0 2px 8px rgba(0,0,0,0.08), 0 0.5px 1.5px rgba(60,60,80,0.03);
-  --shadow-med: 0 8px 32px rgba(20,32,72,0.13), 0 2px 8px rgba(50,50,70,0.09);
-  --shadow-nav: 0 1.5px 13px 0 rgba(120,120,140,0.07);
+  /* --- Ultra-Light Shadows --- */
+  --shadow-low: 0 1.5px 10px rgba(24,32,48, 0.03);
+  --shadow-med: 0 2.5px 18px 1.5px rgba(60,84,120,0.05);
+  --shadow-nav: 0 1.5px 6px 0 rgba(90,110,145,0.045);
   --shadow-focus: 0 0 0 3px var(--accent);
 
-  /* --- Transitions --- */
+  /* --- Simple Transitions --- */
   --transition-fast: 0.13s cubic-bezier(.4,0,.2,1);
-  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.22s cubic-bezier(0.38, 0, 0.22, 1);
+}
+
+
+html, body {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-dark);
+  background: var(--primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  letter-spacing: var(--letter-spacing);
+}
+
+/* .dark-mode is global for dark theme */
+.dark-mode {
+  --primary: #101219;
+  --secondary: #181a22;
+  --accent: #007aff;
+  --text-dark: #f6f7fb;
+  --text-light: #f4f7ff;
+  --text-secondary: #9da7bc;
+  --shadow-low: 0 2px 8px rgba(0,0,0,0.12), 0 0.5px 1.5px rgba(60,60,80,0.05);
+  background: var(--primary);
+  color: var(--text-dark);
+}
+
+
+/* Typography Improvements */
+html {
+  font-size: 16.5px;
+}
+@media (max-width: 800px) {
+  html { font-size: 15.7px; }
+}
+@media (max-width: 600px) {
+  html { font-size: 14.7px; }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--primary);
+  color: var(--text-dark);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* Cleaner Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  color: inherit;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+  margin-bottom: 0.6em;
+  margin-top: 0;
+  line-height: 1.18;
+  text-rendering: optimizeLegibility;
+}
+h1 { font-size: var(--font-size-xl); margin-top: var(--spacing-lg);}
+h2 { font-size: 1.44rem;}
+h3 { font-size: 1.17rem;}
+h4,h5,h6 { font-size: 1rem;}
+
+/* Wide, gentle paragraphs and links */
+p {
+  color: var(--text-secondary);
+  margin-bottom: 1.2em;
+  margin-top: 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  letter-spacing: inherit;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+/* Soft Modern Forms and Buttons */
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  transition: outline var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: var(--shadow-focus);
+  outline-offset: 3px;
+  z-index: 2;
+}
+button, .btn {
+  background: var(--accent);
+  color: var(--text-light);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  box-shadow: var(--shadow-low);
+  cursor: pointer;
+  font-weight: var(--font-weight-bold);
+  border: none;
+  font-size: 1.01rem;
+  letter-spacing: -0.01em;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+button:hover, .btn:hover {
+  background: #005eea;
+  box-shadow: var(--shadow-med);
+}
+
+/* Inputs, textareas */
+input, textarea, select {
+  border-radius: var(--radius-sm);
+  background: var(--secondary);
+  color: var(--text-dark);
+  border: 1.4px solid #ecedf3;
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: var(--shadow-low);
+  transition: border-color var(--transition);
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent);
+}
+
+/* Simpler Container/Card Design */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  width: 100%;
+}
+.card {
+  background: var(--secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-med);
+  padding: var(--spacing-xl) var(--spacing-lg);
+  transition: box-shadow var(--transition);
+  margin-bottom: var(--spacing-lg);
+}
+.card:hover {
+  box-shadow: 0 5px 24px rgba(36,41,78,.11);
+}
+
+/* === Minimal Glass/Frost: Remove, flatten, or soften === */
+.glass-container {
+  background: var(--secondary, #fff);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2.5px 18px rgba(36,41,78,0.04);
+  border: 1.2px solid #f4f5fa;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: background 0.2s, box-shadow 0.19s;
+}
+.dark-mode .glass-container {
+  background: #191b24;
+  border: 1.2px solid #242543;
+  box-shadow: 0 2.5px 18px #1114280e;
+}
+
+/* === Flat Mood/label transition === */
+.moodEmojiLabel, .mood-label {
+  color: #222; /* Blackish by default for clarity */
+  font-weight: 500;
+  transition: color 0.19s cubic-bezier(.56,.38,0,1.37), text-shadow 0.19s cubic-bezier(.6,.5,0,1.38);
+  cursor: pointer;
+  background: none;
+  text-shadow: none;
+}
+.moodEmojiButton:hover .moodEmojiLabel,
+.moodEmojiButton:focus-visible .moodEmojiLabel,
+.mood-label:hover,
+.mood-label:focus-visible {
+  color: var(--accent);
+  text-shadow: none;
+}
+.dark-mode .moodEmojiLabel, .dark-mode .mood-label {
+  color: #e8eafd;
+}
+.dark-mode .moodEmojiButton:hover .moodEmojiLabel,
+.dark-mode .moodEmojiButton:focus-visible .moodEmojiLabel,
+.dark-mode .mood-label:hover,
+.dark-mode .mood-label:focus-visible {
+  color: #a4beff;
+}
+
+/* Subtle Fade-in for h1/h2/texts (shorter, more modern) */
+@keyframes fadein-slow {
+  0% { opacity: 0; transform: translateY(38px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+.fade-in, h1, h2, .title {
+  animation: fadein-slow 1.07s cubic-bezier(.4,0,.2,1) both;
+  animation-delay: 0.45s;
+}
+
+::-webkit-scrollbar { width: 8px; background: var(--secondary);}
+::-webkit-scrollbar-thumb { border-radius: 8px; background: #e3eaf4;}
+.dark-mode ::-webkit-scrollbar-thumb { background: #252c3a; }
+
+/* Responsive container: more whitespace */
+@media (max-width: 700px) {
+  .container { padding: 0 var(--spacing-sm); }
+  h1 { font-size: 1.47rem; }
+  h2 { font-size: 1.08rem; }
 }
 
 html, body {
