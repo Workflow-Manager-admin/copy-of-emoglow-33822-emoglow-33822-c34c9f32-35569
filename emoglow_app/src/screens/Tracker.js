@@ -281,7 +281,7 @@ export default function Tracker() {
       </motion.div>
 
       {/* Chart Section */}
-      <div className="w-full max-w-2xl bg-black/10 dark:bg-white/5 rounded-xl p-2 md:p-4 mt-2 shadow-2xl backdrop-blur-md relative transition-all"
+      <div className="glass-container w-full max-w-2xl rounded-xl p-2 md:p-4 mt-2 shadow-2xl relative transition-all"
         ref={chartRef}
         style={{
           minHeight: isMobile ? 250 : 360,

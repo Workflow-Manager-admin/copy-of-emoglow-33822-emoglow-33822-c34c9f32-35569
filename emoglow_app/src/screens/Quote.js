@@ -305,11 +305,10 @@ export default function Quote() {
     >
       {/* Inner container, card-style, animate fade+up in */}
       <motion.div
-        className={`w-full max-w-xl mx-auto rounded-xl bg-white/10 dark:bg-black/20 p-6 sm:p-10 shadow-2xl flex flex-col items-center ${contentMinHeight} gap-6`}
+        className={`glass-container w-full max-w-xl mx-auto rounded-xl p-6 sm:p-10 shadow-2xl flex flex-col items-center ${contentMinHeight} gap-6`}
         initial={{ opacity: 0, y: 36 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        style={{backdropFilter: "blur(8px)"}}
       >
         {/* Mood header */}
         <motion.div
@@ -323,10 +322,10 @@ export default function Quote() {
             className="text-3xl md:text-4xl"
             aria-label={lastMood.mood}
           >{lastMood.emoji}</span>
-          <span className="text-lg font-medium capitalize text-white/90 tracking-wide">
+          <span className="text-lg font-medium capitalize mood-label tracking-wide">
             {lastMood.mood}
           </span>
-          <span className="text-xs ml-2 px-2 py-0.5 bg-white/30 dark:bg-black/20 rounded text-accent font-bold uppercase tracking-wide">
+          <span className="text-xs ml-2 px-2 py-0.5 bg-white/30 rounded text-accent font-bold uppercase tracking-wide">
             {currentQuote?.tag || ""}
           </span>
         </motion.div>
