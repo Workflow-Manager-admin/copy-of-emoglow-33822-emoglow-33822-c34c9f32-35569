@@ -295,17 +295,8 @@ export default function MoodInput() {
 
         {/* Submit button */}
         <motion.button
-          className="
-            btn btn-large bg-accent hover:bg-primary
-            w-full max-w-xs mt-6 text-lg font-semibold py-3 px-7 rounded shadow-xl
-            focus:ring-4 focus:ring-accent/30 select-none transition-all
-          "
+          className={styles.moodSubmitButton}
           type="submit"
-          style={{
-            background: "linear-gradient(90deg,#66a6ff 0%, #89f7fe 100%)",
-            color: "#fff",
-            border: "none"
-          }}
           initial={{ opacity: 0, y: 28, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 1.20, duration: 0.68, ease: "easeOut" }}
@@ -315,7 +306,7 @@ export default function MoodInput() {
         </motion.button>
       </motion.form>
       {/* Visually subtle context/footer */}
-      <div className="absolute bottom-4 left-0 w-full text-center text-xs text-white/65 pointer-events-none select-none z-0">
+      <div className={styles.moodFooter}>
         Your check-in is private and stays on this device.
       </div>
     </section>
