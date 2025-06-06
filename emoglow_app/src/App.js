@@ -56,25 +56,69 @@ function ThemeToggle() {
   return (
     <button
       aria-label="Toggle theme"
-      className="bg-gray-200 dark:bg-zinc-800 rounded-full px-2 flex items-center h-8 transition-colors"
-      style={{ minWidth: 56, borderRadius: 9999, border: "1px solid #e5e5e5" }}
+      className="theme-toggle"
+      style={{
+        minWidth: 56,
+        borderRadius: 9999,
+        border: "1px solid #e5e5e5",
+        display: "flex",
+        alignItems: "center",
+        background: "var(--base-dark)",
+        padding: "2px 8px",
+        height: 32,
+        cursor: "pointer",
+        transition: "background 0.1s"
+      }}
       onClick={toggleTheme}
     >
+      {/* Light */}
       <span
-        className={
-          "inline-flex items-center justify-center w-6 h-6 transition-all" +
-          (theme === "light" ? " bg-white rounded-full shadow mr-2 border" : " border border-gray-400 mr-1")
-        }
+        className="theme-toggle-light"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: 24,
+          height: 24,
+          borderRadius: "50%",
+          background: theme === "light" ? "#fff" : "transparent",
+          boxShadow: theme === "light" ? "0 2px 8px #0002" : "none",
+          marginRight: 5,
+          border: theme === "light" ? "2px solid #bbeffd" : "1px solid #bbb",
+          transition: "all .28s cubic-bezier(.4,0,.2,1)"
+        }}
       >
-        <span className="w-3 h-3 inline-block rounded-full bg-yellow-400"></span>
+        <span style={{
+          width: 12,
+          height: 12,
+          display: "inline-block",
+          borderRadius: "50%",
+          background: "#f7d06c"
+        }}></span>
       </span>
+      {/* Dark */}
       <span
-        className={
-          "inline-flex items-center justify-center w-6 h-6 transition-all" +
-          (theme === "dark" ? " border rounded-full ml-2 ring-2 ring-blue-900" : " border-gray-400 ml-2")
-        }
+        className="theme-toggle-dark"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: 24,
+          height: 24,
+          borderRadius: "50%",
+          border: theme === "dark" ? "2px solid #003266" : "1px solid #bbb",
+          background: theme === "dark" ? "#011326" : "transparent",
+          marginLeft: 5,
+          transition: "all .28s cubic-bezier(.4,0,.2,1)"
+        }}
       >
-        <span className="w-3 h-3 inline-block rounded-full bg-zinc-900"></span>
+        <span style={{
+          width: 12,
+          height: 12,
+          display: "inline-block",
+          borderRadius: "50%",
+          background: "#0c2638"
+        }}></span>
       </span>
     </button>
   );
@@ -82,19 +126,33 @@ function ThemeToggle() {
 
 function Navbar() {
   return (
-    <nav className="navbar sticky top-0 z-20" role="navigation">
-      <div className="container flex items-center justify-between w-full">
-        <div className="logo flex items-center gap-2">
+    <nav className="navbar" role="navigation">
+      <div className="container" style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "100%"
+      }}>
+        <div className="logo" style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <span className="logo-symbol">💧</span>
           MindMelt AI
         </div>
-        <div className="flex items-center gap-3">
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           {navLinks.map((l) => (
             <Link
               to={l.to}
               key={l.to}
-              className="btn btn-sm px-3 py-1 font-medium"
-              style={{ background: "none", color: "inherit", boxShadow: "none" }}
+              className="btn btn-nav"
+              style={{
+                background: "none",
+                color: "inherit",
+                fontWeight: 500,
+                fontSize: "1rem",
+                borderRadius: 3,
+                padding: "8px 14px",
+                marginRight: 0,
+                transition: "background .14s"
+              }}
             >
               {l.label}
             </Link>
