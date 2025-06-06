@@ -52,33 +52,7 @@ function AnimatedRoutes() {
   );
 }
 
-// Theme toggle switch - using NavBar.module.css for all classes, no inline style
-function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme();
-  return (
-    <button
-      aria-label="Toggle theme"
-      className={navStyles.themeToggle}
-      onClick={toggleTheme}
-      type="button"
-    >
-      {/* Light */}
-      <span
-        className={`${navStyles.themeToggleLight}${theme === "light" ? ` ${navStyles.selected}` : ""}`}
-        tabIndex={-1}
-      >
-        <span className={navStyles.icon} style={{ background: "#f7d06c" }}></span>
-      </span>
-      {/* Dark */}
-      <span
-        className={`${navStyles.themeToggleDark}${theme === "dark" ? ` ${navStyles.selected}` : ""}`}
-        tabIndex={-1}
-      >
-        <span className={navStyles.icon} style={{ background: "#0c2638" }}></span>
-      </span>
-    </button>
-  );
-}
+
 
 
 

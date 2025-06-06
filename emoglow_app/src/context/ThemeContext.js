@@ -18,8 +18,11 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(initialTheme);
 
   useEffect(() => {
-    document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(theme);
+    // Remove any legacy light/dark classes; add only .dark-mode for dark, remove for light
+    document.documentElement.classList.remove("light", "dark", "dark-mode");
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
     localStorage.setItem("theme", theme);
   }, [theme]);
 
