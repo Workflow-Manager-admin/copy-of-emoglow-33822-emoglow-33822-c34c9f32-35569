@@ -130,3 +130,28 @@
     font-size: 1rem;
   }
 }
+
+/* === Layout containers for top-level App === */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--primary, #f7f9fd);
+  width: 100vw;
+}
+.mainContent {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: none;
+}
+.animatedRoutes {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+  background: none;
+}

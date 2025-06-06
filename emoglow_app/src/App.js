@@ -4,6 +4,7 @@ import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import { AnimatePresence, motion } from "framer-motion";
 import "./App.css";
 import "./index.css";
+import navStyles from "./components/NavBar.module.css";
 
 // Screens
 import Home from "./screens/Home";
@@ -34,8 +35,7 @@ function AnimatedRoutes() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -24 }}
         transition={{ duration: 0.5 }}
-        // No Tailwind class, use default styling
-        style={{ flex: 1 }}
+        className={navStyles.animatedRoutes}
       >
         <Routes location={location} key={location.pathname}>
           <Route path="/mindmelt" element={<Home />} />
@@ -51,109 +51,51 @@ function AnimatedRoutes() {
   );
 }
 
-// Theme toggle switch
+// Theme toggle switch - using NavBar.module.css for all classes, no inline style
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
   return (
     <button
       aria-label="Toggle theme"
-      className="theme-toggle"
-      style={{
-        minWidth: 56,
-        borderRadius: 9999,
-        border: "1px solid #e5e5e5",
-        display: "flex",
-        alignItems: "center",
-        background: "var(--base-dark)",
-        padding: "2px 8px",
-        height: 32,
-        cursor: "pointer",
-        transition: "background 0.1s"
-      }}
+      className={navStyles.themeToggle}
       onClick={toggleTheme}
+      type="button"
     >
       {/* Light */}
       <span
-        className="theme-toggle-light"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: 24,
-          height: 24,
-          borderRadius: "50%",
-          background: theme === "light" ? "#fff" : "transparent",
-          boxShadow: theme === "light" ? "0 2px 8px #0002" : "none",
-          marginRight: 5,
-          border: theme === "light" ? "2px solid #bbeffd" : "1px solid #bbb",
-          transition: "all .28s cubic-bezier(.4,0,.2,1)"
-        }}
+        className={`${navStyles.themeToggleLight}${theme === "light" ? ` ${navStyles.selected}` : ""}`}
+        tabIndex={-1}
       >
-        <span style={{
-          width: 12,
-          height: 12,
-          display: "inline-block",
-          borderRadius: "50%",
-          background: "#f7d06c"
-        }}></span>
+        <span className={navStyles.icon} style={{ background: "#f7d06c" }}></span>
       </span>
       {/* Dark */}
       <span
-        className="theme-toggle-dark"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: 24,
-          height: 24,
-          borderRadius: "50%",
-          border: theme === "dark" ? "2px solid #003266" : "1px solid #bbb",
-          background: theme === "dark" ? "#011326" : "transparent",
-          marginLeft: 5,
-          transition: "all .28s cubic-bezier(.4,0,.2,1)"
-        }}
+        className={`${navStyles.themeToggleDark}${theme === "dark" ? ` ${navStyles.selected}` : ""}`}
+        tabIndex={-1}
       >
-        <span style={{
-          width: 12,
-          height: 12,
-          display: "inline-block",
-          borderRadius: "50%",
-          background: "#0c2638"
-        }}></span>
+        <span className={navStyles.icon} style={{ background: "#0c2638" }}></span>
       </span>
     </button>
   );
 }
 
+// Polished, modular, animated, responsive Apple-like Navbar with semantic module CSS
 function Navbar() {
   return (
-    <nav className="navbar" role="navigation">
-      <div className="container" style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        width: "100%"
-      }}>
-        <div className="logo" style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span className="logo-symbol">💧</span>
+    <nav className={navStyles.navbar} role="navigation">
+      <div className={navStyles.navbarContainer}>
+        <div className={navStyles.logo}>
+          <span className={navStyles.logoSymbol}>💧</span>
           MindMelt AI
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div className={navStyles.navLinks}>
           {navLinks.map((l) => (
             <Link
               to={l.to}
               key={l.to}
-              className="btn btn-nav"
-              style={{
-                background: "none",
-                color: "inherit",
-                fontWeight: 500,
-                fontSize: "1rem",
-                borderRadius: 3,
-                padding: "8px 14px",
-                marginRight: 0,
-                transition: "background .14s"
-              }}
+              className={navStyles.navLink}
+              aria-current={window.location.pathname === l.to ? "page" : undefined}
+              tabIndex={0}
             >
               {l.label}
             </Link>
@@ -173,20 +115,9 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="app" style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          background: "var(--base-dark)"
-        }}>
+        <div className={navStyles.app}>
           <Navbar />
-          <main style={{
-            flex: 1,
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center"
-          }}>
+          <main className={navStyles.mainContent}>
             <AnimatedRoutes />
           </main>
         </div>
