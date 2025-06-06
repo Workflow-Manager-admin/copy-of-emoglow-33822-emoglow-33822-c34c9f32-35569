@@ -91,7 +91,7 @@ function App() {
     <ThemeProvider>
       <Router>
         <div className={navStyles.app}>
-          <Navbar />
+          <NavBar />
           <main className={navStyles.mainContent}>
             <AnimatedRoutes />
           </main>
