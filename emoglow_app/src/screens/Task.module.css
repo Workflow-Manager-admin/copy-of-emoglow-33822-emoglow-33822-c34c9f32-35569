@@ -25,10 +25,12 @@
 }
 
 .taskCard {
-  border-radius: 18px;
-  background: rgba(255,255,255,0.15);
-  box-shadow: var(--shadow-med, 0 8px 32px rgba(40,64,120,0.13));
-  backdrop-filter: blur(13px);
+  border-radius: 19px;
+  background: var(--glass-bg, rgba(255,255,255,0.16));
+  box-shadow: 0 8px 32px 0 rgba(40,64,120,0.13), 0 2px 8px #b9caff19;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.3px solid var(--glass-border, rgba(255,255,255,0.17));
   padding: 38px 24px 28px 24px;
   width: 100%;
   min-height: 260px;
@@ -37,7 +39,13 @@
   align-items: center;
   animation: fadein-slow 1s;
   position: relative;
-  transition: outline 0.2s, box-shadow 0.21s;
+  transition: outline 0.2s, box-shadow 0.24s, border 0.26s, background 0.34s;
+}
+
+.dark-mode .taskCard {
+  --glass-bg: rgba(26, 31, 49, 0.33);
+  --glass-border: rgba(80,80,160,0.09);
+  color: #f2f5fc;
 }
 .taskCard:focus-visible, .taskCard[tabindex="0"]:focus {
   outline: 2.5px solid var(--accent, #007aff);
