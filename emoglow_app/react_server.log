@@ -43,3 +43,14 @@ ERROR in ./src/App.js 9:0-56
 Module not found: Error: Can't resolve 'framer-motion' in '/home/kavia/workspace/code-generation/emoglow-33822-c34c9f32/emoglow_app/src'
 
 webpack compiled with 2 errors
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'react-router-dom' in '/home/kavia/workspace/code-generation/emoglow-33822-c34c9f32/emoglow_app/src'
+ERROR in ./src/App.js 7:0-93
+Module not found: Error: Can't resolve 'react-router-dom' in '/home/kavia/workspace/code-generation/emoglow-33822-c34c9f32/emoglow_app/src'
+
+ERROR in ./src/App.js 9:0-56
+Module not found: Error: Can't resolve 'framer-motion' in '/home/kavia/workspace/code-generation/emoglow-33822-c34c9f32/emoglow_app/src'
+
+webpack compiled with 2 errors
