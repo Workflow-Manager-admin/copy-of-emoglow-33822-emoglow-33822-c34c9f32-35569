@@ -55,6 +55,7 @@ html, body {
   min-height: 100vh;
 }
 
+/* .dark-mode is the global class applied for dark mode to html by ThemeContext */
 .dark-mode {
   --primary: #111217;
   --secondary: #171922;
