@@ -16,10 +16,12 @@
 }
 
 .quoteContainer {
-  background: rgba(255,255,255,0.11);
-  border-radius: 16px;
-  box-shadow: var(--shadow-med, 0 8px 32px rgba(40,64,120,0.12));
-  backdrop-filter: blur(9px);
+  background: var(--glass-bg, rgba(255,255,255,0.13));
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(40,64,120,0.12), 0 2px 8px #b9caff14;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.2px solid var(--glass-border, rgba(255,255,255,0.16));
   padding: 34px 23px 18px 23px;
   max-width: 470px;
   width: 100%;
@@ -28,6 +30,13 @@
   align-items: center;
   margin: 0 auto 10px auto;
   gap: 0.9rem;
+  transition: background 0.36s, box-shadow 0.32s, border 0.3s;
+}
+
+.dark-mode .quoteContainer {
+  --glass-bg: rgba(26, 31, 49, 0.28);
+  --glass-border: rgba(80,80,160,0.09);
+  color: #ebf1f9;
 }
 
 .quoteMoodHeader {
