@@ -125,35 +125,11 @@ export default function MoodInput() {
 
   return (
     <section
-      // Remove all Tailwind classes, fallback to App.css + inline style as needed
-      style={{
-        minHeight: "calc(100vh - 64px)",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "32px 12px 48px 12px",
-        position: "relative",
-        background: "linear-gradient(135deg,#252850 0%, #232384 100%)",
-        transition: "background 1.2s"
-      }}
+      className={styles.moodInputSection}
       aria-labelledby="moodinput-title"
     >
       <motion.form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 32,
-          width: "100%",
-          maxWidth: 520,
-          margin: "0 auto",
-          boxShadow: "0 3px 36px #0001",
-          borderRadius: 16,
-          background: "rgba(255,255,255,0.01)"
-        }}
+        className={styles.moodForm}
         initial="hidden"
         animate="visible"
         variants={{
@@ -167,7 +143,7 @@ export default function MoodInput() {
         {/* Title */}
         <motion.h1
           id="moodinput-title"
-          className="text-2xl md:text-3xl font-bold text-center mb-1 text-white"
+          className={styles.moodTitle}
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.66, ease: "easeOut" }}
@@ -179,7 +155,7 @@ export default function MoodInput() {
         <AnimatePresence>
           {error && (
             <motion.div
-              className="bg-red-500/90 text-white px-3 py-2 rounded-md font-medium mb-1 w-full text-center shadow ring-2 ring-red-200"
+              className={styles.moodError}
               initial={{ opacity: 0, y: -22 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
