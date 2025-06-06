@@ -13,10 +13,11 @@ const navLinks = [
   { to: "/mindmelt/settings", label: "Settings" },
 ];
 
-// PUBLIC_INTERFACE
-/** 
+/**
  * Theme toggle button (Apple-styled pill switch)
+ * Now only toggles theme via global context - no per-navbar dark mode logic.
  */
+// PUBLIC_INTERFACE
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
   return (
@@ -26,17 +27,19 @@ function ThemeToggle() {
       onClick={toggleTheme}
       type="button"
     >
-      {/* Light */}
+      {/* Light pill */}
       <span
         className={`${navStyles.themeToggleLight}${theme === "light" ? ` ${navStyles.selected}` : ""}`}
         tabIndex={-1}
+        aria-label="Light mode"
       >
         <span className={navStyles.icon} style={{ background: "#f7d06c" }} />
       </span>
-      {/* Dark */}
+      {/* Dark pill */}
       <span
         className={`${navStyles.themeToggleDark}${theme === "dark" ? ` ${navStyles.selected}` : ""}`}
         tabIndex={-1}
+        aria-label="Dark mode"
       >
         <span className={navStyles.icon} style={{ background: "#0c2638" }} />
       </span>

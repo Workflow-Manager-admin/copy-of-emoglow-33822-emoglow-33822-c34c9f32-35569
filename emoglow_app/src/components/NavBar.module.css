@@ -1,7 +1,7 @@
 /* Main navigation bar: Apple-like sticky, shadow, radius */
 .navbar {
-  background: var(--secondary, #fff);
-  box-shadow: var(--shadow-nav, 0 1.5px 13px 0 rgba(120,120,140,0.07));
+  background: var(--secondary);
+  box-shadow: var(--shadow-nav);
   border-bottom: 1.5px solid #e9eaf2;
   position: sticky;
   top: 0;
