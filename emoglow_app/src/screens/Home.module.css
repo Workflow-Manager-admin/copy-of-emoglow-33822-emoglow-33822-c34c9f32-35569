@@ -27,6 +27,19 @@
   width: 100%;
   max-width: 530px;
   margin: 0 auto;
+  background: var(--glass-bg, rgba(255,255,255,0.19));
+  border-radius: 22px;
+  box-shadow: 0 8px 36px 0 rgba(40,64,120,0.13), 0 2px 8px #b9caff1a;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.3px solid var(--glass-border, rgba(255,255,255,0.18));
+  transition: background 0.4s, box-shadow 0.38s, border 0.3s;
+}
+
+.dark-mode .homeContainer {
+  --glass-bg: rgba(26, 31, 49, 0.36);
+  --glass-border: rgba(80,80,160,0.09);
+  color: #ebf1f9;
 }
 
 .homeGreeting {
