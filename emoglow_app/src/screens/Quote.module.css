@@ -1,5 +1,5 @@
-/* Apple-inspired, whitespace-rich, minimal Quote styles: flat card, calm, highly readable */
-
+ /* Apple-inspired, whitespace-rich, ultra-minimal quote card */
+ 
 .quoteSection {
   min-height: calc(100vh - 64px);
   width: 100%;
@@ -8,202 +8,214 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 44px 10px 30px 10px;
-  background: var(--quote-gradient, #f8fafd);
+  padding: 52px 14px 32px 14px;
+  background: var(--primary, #f8fafd);
   transition: background 1.2s;
   animation: fadein-slow 1s cubic-bezier(.4,0,.2,1) both;
 }
+
 .dark-mode .quoteSection {
-  --quote-gradient: #101217;
-  background: var(--quote-gradient);
+  background: var(--primary, #101217);
 }
 
-/* Flat, soft card */
+/* Flat, soft quote card */
 .quoteContainer {
   background: var(--secondary, #fff);
-  border-radius: 18px;
+  border-radius: 22px;
   box-shadow: none;
-  border: 1.4px solid #e8eaf0;
-  padding: 54px 40px 36px 40px;
-  max-width: 510px;
+  border: 1.4px solid #eaeaf0;
+  padding: 64px 36px 44px 36px;
+  max-width: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto 10px auto;
-  gap: 2.1rem;
-  transition: background 0.16s, border 0.19s;
+  margin: 0 auto 8px auto;
+  gap: 2.3rem;
+  transition: background 0.16s, border 0.18s;
 }
 
 .dark-mode .quoteContainer {
-  background: #191b24;
-  border: 1.4px solid #23243a;
-  color: #e5e8f9;
+  background: #181a22;
+  border: 1.2px solid #23243a;
+  color: #e7eafd;
 }
 
+/* Mood header: gentle accent, minimal label */
 .quoteMoodHeader {
   display: flex;
   align-items: center;
-  gap: 13px;
-  font-size: 1.29rem;
+  gap: 11px;
+  font-size: 1.22rem;
   color: var(--accent, #007aff);
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   letter-spacing: -0.01em;
   text-transform: capitalize;
 }
 
 .quoteMoodHeader .mood-label {
   font-size: 1rem;
-  padding: 2px 10px;
-  background: #f3f6fa;
+  padding: 2.5px 10px;
+  background: #f3f5fa;
   border-radius: 8px;
-  font-weight: 600;
   color: #1792ff;
+  font-weight: 600;
   letter-spacing: 0.012em;
-  transition: background 0.16s;
+  transition: background 0.12s;
 }
+
 .dark-mode .quoteMoodHeader .mood-label {
-  background: #212338;
-  color: #88bfff;
+  background: #202338;
+  color: #80a8ff;
 }
 
 .quoteMoodHeader .quoteTag {
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
-  background: #e6f4ff;
+  background: #f5faff;
   border-radius: 5px;
-  color: var(--accent, #007aff);
-  padding: 2px 9px 2px 9px;
-  letter-spacing: 0.06em;
+  color: #8bb8ff;
+  padding: 2px 10px;
+  letter-spacing: 0.045em;
   margin-left: 6px;
-}
-.dark-mode .quoteMoodHeader .quoteTag {
-  background: #18386c;
-  color: #85befc;
+  border: none;
 }
 
-/* Large readable quote text */
+.dark-mode .quoteMoodHeader .quoteTag {
+  background: #17346c;
+  color: #d1e5ff;
+}
+
+/* Large, soft, readable quote text */
 .quoteText {
-  font-size: 2.01rem;
+  font-size: 2.21rem;
   text-align: center;
-  color: var(--text-dark, #191b2a);
+  color: var(--text-dark, #18181c);
   font-weight: 600;
-  letter-spacing: -0.011em;
+  letter-spacing: -0.014em;
   margin-bottom: 8px;
-  line-height: 1.32;
-  min-height: 2.8rem;
-  padding: 0 4px;
+  line-height: 1.38;
+  min-height: 3.2rem;
+  padding: 0 6px;
   background: none;
   animation: fadein-slow 1s cubic-bezier(.4,0,.2,1) both;
   word-break: break-word;
 }
 
 .dark-mode .quoteText {
-  color: var(--text-light, #e5e8f9);
+  color: var(--text-light, #e5e8fa);
 }
 
-/* Calm, minimal author */
+/* Calm, minimal, soft author accent */
 .quoteAuthor {
-  font-size: 1.11rem;
+  font-size: 1.21rem;
   font-weight: 500;
-  color: #3d4a5d;
-  opacity: 0.80;
+  color: #848daa;
+  opacity: 0.8;
   text-align: center;
-  margin-bottom: 9px;
+  margin-bottom: 10px;
   font-style: italic;
   background: none;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 
 .dark-mode .quoteAuthor {
-  color: #b2c4de;
-  opacity: 0.78;
+  color: #b5c5e2;
+  opacity: 0.73;
 }
 
-/* (Optional) Video area: flat, subtle border */
+/* (Optional) Video area: keep flat, ultra-subtle border */
 .quoteVideoArea {
   width: 100%;
   max-width: 385px;
-  margin: 22px auto 0 auto;
-  border-radius: 13px;
+  margin: 24px auto 0 auto;
+  border-radius: 14px;
   overflow: hidden;
-  border: 1.2px solid #ddeaf7;
+  border: 1.1px solid #ecf1f8;
   box-shadow: none;
-  background: #fafcff;
-}
-.dark-mode .quoteVideoArea {
-  border: 1.2px solid #2a2d4c;
-  background: #1b2232;
+  background: #fcfdff;
 }
 
-/* Controls: calm layout, minimal */
+.dark-mode .quoteVideoArea {
+  border: 1px solid #282e48;
+  background: #181f2f;
+}
+
+/* Controls: whitespace, calm buttons without shadows/gradients */
 .quoteControls {
   display: flex;
   flex-direction: row;
-  gap: 18px;
+  gap: 20px;
   width: 100%;
   justify-content: center;
-  margin-top: 18px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
+
 .quoteControls button {
-  padding: 12px 27px;
-  font-size: 1.08rem;
-  border-radius: 12px;
+  padding: 13px 28px;
+  font-size: 1.09rem;
+  border-radius: 14px;
   outline: none;
   font-weight: 600;
-  transition: background 0.15s, color 0.14s, transform 0.12s;
+  transition: background 0.13s, color 0.14s, transform 0.11s;
   cursor: pointer;
   user-select: none;
-  border: none;
-  margin-bottom: 4px;
-  background: var(--accent, #007aff);
-  color: #fff;
+  border: 1.1px solid #e2eafc;
+  background: var(--secondary, #fff);
+  color: var(--accent, #007aff);
   box-shadow: none;
 }
-.quoteControls button:focus {
+
+.quoteControls button:focus,
+.quoteControls button:active,
+.quoteControls button:hover {
   outline: 2.5px solid var(--accent, #007aff);
-  background: #e6f4ff;
+  background: #f4f8fd;
   color: var(--accent, #007aff);
 }
-/* Calm info and footer */
+
+/* Calm info and privacy footer */
 .quoteInfo {
-  font-size: 0.99rem;
-  color: #577283ad;
+  font-size: 1.03rem;
+  color: #7390b5aa;
   text-align: center;
   font-weight: 500;
-  margin-top: 10px;
-  opacity: 0.78;
+  margin-top: 16px;
+  opacity: 0.82;
 }
+
 .dark-mode .quoteInfo {
-  color: #d6eaff99;
+  color: #b9d9ff99;
 }
+
 .quoteFooter {
-  margin-top: 30px;
+  margin-top: 32px;
   text-align: center;
-  color: #49597d35;
-  font-size: 0.98rem;
-  opacity: 0.67;
+  color: #49597d32;
+  font-size: 1rem;
+  opacity: 0.64;
   user-select: none;
   pointer-events: none;
   font-weight: 500;
 }
 
-/* Responsive: keep whitespace + readability */
+/* Responsive: maximize whitespace + soft scale for mobile */
 @media (max-width: 650px) {
-  .quoteContainer { max-width: 99vw; padding: 8vw 4vw 8vw 4vw;}
-  .quoteText { font-size: 1.17rem;}
+  .quoteContainer { max-width: 99vw; padding: 9vw 5vw 9vw 5vw;}
+  .quoteText { font-size: 1.23rem;}
 }
 
 @media (max-width: 500px) {
-  .quoteContainer { padding: 11px 2vw 10px 2vw;}
-  .quoteText { font-size: 0.97rem;}
-  .quoteMoodHeader { font-size: 1.01rem;}
+  .quoteContainer { padding: 12px 2vw 12px 2vw;}
+  .quoteText { font-size: 0.95rem;}
+  .quoteMoodHeader { font-size: 1.03rem;}
 }
 
+/* Slow fade-in for text and elements */
 @keyframes fadein-slow {
-  0% { opacity: 0; transform: translateY(23px);}
+  0% { opacity: 0; transform: translateY(26px);}
   100% { opacity: 1; transform: translateY(0);}
 }
