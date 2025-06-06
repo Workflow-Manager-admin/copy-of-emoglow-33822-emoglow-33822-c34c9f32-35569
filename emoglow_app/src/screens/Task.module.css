@@ -1,9 +1,133 @@
-.taskSection {}
-.taskCardArea {}
-.taskCard {}
-.taskMoodHeader {}
-.taskText {}
-.taskSuccessAnim {}
-.taskControls {}
-.taskInfo {}
-.taskFooter {}
+.taskSection {
+  min-height: calc(100vh - 64px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg,#232250 0%, #232384 100%);
+  transition: background 1.2s;
+  position: relative;
+  padding: 40px 14px 80px 14px;
+}
+
+.taskCardArea {
+  width: 100%;
+  max-width: 560px;
+  min-height: 314px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskCard {
+  border-radius: 18px;
+  background: rgba(255,255,255,0.15);
+  box-shadow: var(--shadow-med, 0 8px 32px rgba(40,64,120,0.13));
+  backdrop-filter: blur(13px);
+  padding: 38px 24px 28px 24px;
+  width: 100%;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadein-slow 1s;
+  position: relative;
+  transition: outline 0.2s, box-shadow 0.21s;
+}
+.taskCard:focus-visible, .taskCard[tabindex="0"]:focus {
+  outline: 2.5px solid var(--accent, #007aff);
+  box-shadow: 0 0 0 4px #aef0ff1a;
+}
+.taskMoodHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.12rem;
+  color: var(--accent, #007aff);
+  font-weight: 600;
+  margin-bottom: 11px;
+}
+.taskText {
+  font-size: 1.19rem;
+  text-align: center;
+  color: var(--text-light, #fff);
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.006em;
+  min-height: 2.3rem;
+}
+.taskSuccessAnim {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+}
+.taskSuccessAnim span {
+  font-size: 2.4rem;
+  color: var(--accent, #007aff);
+  filter: drop-shadow(0 2px 14px #d9efff60);
+}
+.taskControls {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 19px;
+}
+.taskControls button {
+  padding: 10px 25px;
+  font-size: 1rem;
+  border-radius: 8.5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg,#ffd168 0%, #ffd200 100%);
+  color: #172224;
+  box-shadow: 0 2px 8px #ffbe0050;
+  transition: background 0.19s, color 0.14s, box-shadow 0.22s, transform 0.15s;
+}
+.taskControls button:focus {
+  outline: 2px solid var(--accent, #007aff);
+  background: #eaeaead7;
+}
+.taskInfo {
+  font-size: 0.97rem;
+  color: #f7f6ffbb;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 9px;
+  opacity: 0.78;
+  letter-spacing: 0.012em;
+}
+.taskFooter {
+  margin-top: 18px;
+  text-align: center;
+  color: #eaf6fb88;
+  font-size: 0.96rem;
+  opacity: 0.72;
+  user-select: none;
+  pointer-events: none;
+  font-weight: 500;
+}
+
+@media (max-width: 650px) {
+  .taskCardArea { max-width: 99vw; }
+  .taskCard { padding: 4vw 2vw 13vw 2vw;}
+  .taskText { font-size: 1.07rem;}
+}
+@media (max-width: 500px) {
+  .taskCard { padding: 11px 2vw 16px 2vw;}
+  .taskText { font-size: 1.00rem;}
+  .taskMoodHeader { font-size: 1.01rem;}
+}
+
+@keyframes fadein-slow {
+  0% { opacity: 0; transform: translateY(28px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
