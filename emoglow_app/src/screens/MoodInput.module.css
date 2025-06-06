@@ -14,9 +14,9 @@
 }
 
 .moodForm {
-  background: var(--secondary, #fff9);
+  background: rgba(255,255,255,0.13);
   border-radius: 18px;
-  box-shadow: var(--shadow-low, 0 2px 8px rgba(0,0,0,0.12));
+  box-shadow: var(--shadow-low);
   padding: 34px 22px 32px 22px;
   max-width: 410px;
   width: 100%;
@@ -28,21 +28,23 @@
   margin-bottom: 28px;
   position: relative;
   animation: fadein-slow 1.12s cubic-bezier(.4,0,.2,1) both;
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
 }
 
 .moodTitle {
   text-align: center;
   font-size: 1.55rem;
   font-weight: 600;
-  color: var(--text-dark, #181c22);
+  color: var(--text-dark);
   margin-bottom: 6px;
   letter-spacing: -0.01em;
   line-height: 1.22;
 }
 
 .moodError {
-  color: var(--danger, #ff5252);
-  background: #fff7f6ee;
+  color: var(--danger);
+  background: rgba(255, 247, 246, 0.9);
   box-shadow: 0 1px 8px #ef222203;
   border-radius: 8px;
   padding: 7px 15px 8px 14px;
@@ -53,7 +55,6 @@
   margin-top: -11px;
 }
 
-/* Emoji mood grid */
 .moodEmojiGrid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -66,7 +67,7 @@
 
 .moodEmojiButton {
   background: linear-gradient(99deg,#f9fafd 0%, #dde3ff 100%);
-  color: #121233;
+  color: var(--text-dark);
   border: 1.5px solid #e6e8f4;
   border-radius: 9px;
   outline: none;
@@ -89,13 +90,12 @@
   animation: fadein-slow 1.1s;
 }
 
-.moodEmojiButton.selected,
-.moodEmojiButton:focus-visible {
+.moodEmojiButton.selected, .moodEmojiButton:focus-visible {
   background: linear-gradient(95deg,#bbdfff 0%, #dadbff 100%);
-  border-color: var(--accent, #007aff);
+  border-color: var(--accent);
   box-shadow: 0 4px 18px #77cbfa25;
-  outline: 2.5px solid var(--accent, #007aff);
-  color: var(--accent, #007aff);
+  outline: 2.5px solid var(--accent);
+  color: var(--accent);
   z-index: 1;
 }
 .moodEmojiButton:active {
@@ -105,12 +105,12 @@
 .moodEmojiLabel {
   margin-top: 6px;
   font-size: 0.97rem;
-  color: var(--text-secondary, #7086a3);
+  color: var(--text-secondary);
   font-weight: 500;
   transition: color 0.17s;
 }
 .selectedLabel {
-  color: var(--accent, #007aff);
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -125,7 +125,7 @@
 
 .moodSliderLabel {
   font-weight: 500;
-  color: var(--text-dark, #192344);
+  color: var(--text-dark);
   text-align: center;
   margin-bottom: 0;
   font-size: 1.04rem;
@@ -160,7 +160,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--accent, #007aff);
+  background: var(--accent);
   box-shadow: 0 2px 8px #98ddff55;
   border: 3px solid #f8fafc;
   cursor: pointer;
@@ -170,25 +170,25 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--accent, #007aff);
+  background: var(--accent);
   box-shadow: 0 2px 8px #98ddff55;
   border: 3px solid #f8fafc;
   cursor: pointer;
   transition: background 0.2s;
 }
 .moodSlider:focus::-webkit-slider-thumb {
-  outline: 2.5px solid var(--accent, #82c4fd);
+  outline: 2.5px solid var(--accent);
 }
 .moodSliderValue {
   font-size: 1.07rem;
-  color: var(--accent, #007aff);
+  color: var(--accent);
   font-weight: 600;
   margin-top: 0;
 }
 
 .moodJournalAdd {
   margin-top: 3px;
-  color: var(--accent, #0995ff);
+  color: var(--accent);
   background: #ebf7fd;
   border: 1.3px dashed #88bcfd;
   border-radius: 9px;
@@ -217,6 +217,7 @@
   padding: 11px 13px 3px 13px;
   opacity: 1;
   transition: all 0.29s cubic-bezier(.4,0,.2,1);
+  backdrop-filter: blur(8px);
 }
 
 .moodJournalLabel {
@@ -228,9 +229,9 @@
 
 .moodJournalArea {
   border-radius: 6px;
-  background: #fffefc;
+  background: var(--secondary);
   border: 1.2px solid #daecfa;
-  color: #222737;
+  color: var(--text-dark);
   padding: 8px 10px;
   font-size: 1.01rem;
   font-family: inherit;
@@ -241,7 +242,7 @@
   transition: border 0.23s, box-shadow 0.22s;
 }
 .moodJournalArea:focus {
-  border-color: var(--accent,#48aefa);
+  border-color: var(--accent);
   box-shadow: 0 2px 10px #aadfff22;
 }
 
