@@ -1,3 +1,5 @@
+/* Task Page: Soft, Flat, Apple Minimalism */
+
 .taskSection {
   min-height: calc(100vh - 64px);
   width: 100%;
@@ -5,19 +7,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--task-gradient, linear-gradient(135deg,#232250 0%, #232384 100%));
-  transition: background 1.2s;
+  background: var(--primary, #f8fafd);
+  transition: background 0.7s;
   position: relative;
   padding: 40px 14px 80px 14px;
 }
 .dark-mode .taskSection {
-  --task-gradient: linear-gradient(135deg, #16182a 0%, #1b2245 100%);
+  background: var(--primary, #101217);
 }
 
 .taskCardArea {
   width: 100%;
-  max-width: 560px;
-  min-height: 314px;
+  max-width: 600px;
+  min-height: 320px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -25,50 +27,100 @@
 }
 
 .taskCard {
-  border-radius: 19px;
-  background: var(--glass-bg, rgba(255,255,255,0.16));
-  box-shadow: 0 8px 32px 0 rgba(40,64,120,0.13), 0 2px 8px #b9caff19;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1.3px solid var(--glass-border, rgba(255,255,255,0.17));
-  padding: 38px 24px 28px 24px;
+  border-radius: 20px;
+  background: var(--secondary, #fff);
+  box-shadow: none;
+  border: 1.2px solid #eaeaf0;
+  padding: 60px 36px 44px 36px;
   width: 100%;
-  min-height: 260px;
+  min-height: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fadein-slow 1s;
+  animation: fadein-slow 1s cubic-bezier(.4,0,.2,1) both;
   position: relative;
-  transition: outline 0.2s, box-shadow 0.24s, border 0.26s, background 0.34s;
+  transition: border 0.21s, background 0.21s;
+  gap: 2.1rem;
 }
 
 .dark-mode .taskCard {
-  --glass-bg: rgba(26, 31, 49, 0.33);
-  --glass-border: rgba(80,80,160,0.09);
-  color: #f2f5fc;
+  background: #181a22;
+  border: 1.1px solid #23243a;
+  color: #e7eafd;
 }
+
 .taskCard:focus-visible, .taskCard[tabindex="0"]:focus {
   outline: 2.5px solid var(--accent, #007aff);
-  box-shadow: 0 0 0 4px #aef0ff1a;
+  outline-offset: 1px;
+  z-index: 2;
 }
+
 .taskMoodHeader {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 1.12rem;
-  color: var(--accent, #007aff);
-  font-weight: 600;
-  margin-bottom: 11px;
-}
-.taskText {
+  gap: 12px;
   font-size: 1.19rem;
-  text-align: center;
-  color: var(--text-light, #fff);
-  font-weight: 600;
-  margin-bottom: 8px;
-  letter-spacing: -0.006em;
-  min-height: 2.3rem;
+  color: var(--accent, #007aff);
+  font-weight: 700;
+  margin-bottom: 2px;
+  letter-spacing: -0.01em;
+  text-transform: capitalize;
 }
+
+.taskMoodHeader .mood-label {
+  font-size: 1rem;
+  padding: 3px 13px;
+  background: #f2f7fa;
+  border-radius: 9px;
+  color: #1792ff;
+  font-weight: 600;
+  letter-spacing: 0.012em;
+  border: none;
+  transition: background 0.11s;
+}
+
+.dark-mode .taskMoodHeader .mood-label {
+  background: #202338;
+  color: #80a8ff;
+}
+
+.taskMoodHeader .taskTag {
+  font-size: 0.79rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #f7faff;
+  border-radius: 6px;
+  color: #8bb8ff;
+  padding: 2px 10px;
+  letter-spacing: 0.04em;
+  margin-left: 7px;
+  border: none;
+}
+
+.dark-mode .taskMoodHeader .taskTag {
+  background: #17346c;
+  color: #d1e5ff;
+}
+
+.taskText {
+  font-size: 2.03rem;
+  text-align: center;
+  color: var(--text-dark, #18181c);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  margin-bottom: 7px;
+  line-height: 1.38;
+  min-height: 2.7rem;
+  padding: 0 6px;
+  background: none;
+  word-break: break-word;
+}
+
+.dark-mode .taskText {
+  color: var(--text-light, #e5e8fa);
+}
+
+/* Subtle, whitespace-dominant "chip" styles for Done/Task controls */
 .taskSuccessAnim {
   display: flex;
   flex-direction: column;
@@ -77,51 +129,65 @@
   position: absolute;
   inset: 0;
   z-index: 30;
+  pointer-events: none;
 }
 .taskSuccessAnim span {
   font-size: 2.4rem;
   color: var(--accent, #007aff);
-  filter: drop-shadow(0 2px 14px #d9efff60);
+  filter: none;
+  background: none;
+  letter-spacing: 0.03em;
 }
+
 .taskControls {
   display: flex;
   flex-direction: row;
-  gap: 18px;
+  gap: 21px;
   width: 100%;
   justify-content: center;
-  margin-top: 19px;
+  margin-top: 18px;
+  flex-wrap: wrap;
 }
+
+/* Buttons: soft chip, flat, ample space, no shadow */
 .taskControls button {
-  padding: 10px 25px;
-  font-size: 1rem;
-  border-radius: 8.5px;
-  font-weight: 600;
-  border: none;
+  padding: 16px 36px;
+  font-size: 1.09rem;
+  border-radius: 14px;
+  font-weight: 700;
+  outline: none;
+  border: 1.1px solid #e2eafc;
+  background: var(--secondary, #fff);
+  color: var(--accent, #007aff);
+  box-shadow: none;
+  transition: background 0.13s, color 0.11s, border 0.13s, transform 0.10s;
   cursor: pointer;
-  background: linear-gradient(90deg,#ffd168 0%, #ffd200 100%);
-  color: #172224;
-  box-shadow: 0 2px 8px #ffbe0050;
-  transition: background 0.19s, color 0.14s, box-shadow 0.22s, transform 0.15s;
+  user-select: none;
 }
-.taskControls button:focus {
-  outline: 2px solid var(--accent, #007aff);
-  background: #eaeaead7;
+.taskControls button:focus,
+.taskControls button:active,
+.taskControls button:hover {
+  outline: 2.5px solid var(--accent, #007aff);
+  background: #f6faff;
+  color: var(--accent, #007aff);
 }
+
 .taskInfo {
-  font-size: 0.97rem;
-  color: #f7f6ffbb;
+  font-size: 1.07rem;
+  color: #6f7c95a9;
   text-align: center;
   font-weight: 500;
-  margin-top: 9px;
-  opacity: 0.78;
-  letter-spacing: 0.012em;
+  margin-top: 11px;
+  opacity: 0.82;
+  letter-spacing: 0.011em;
 }
+
 .taskFooter {
-  margin-top: 18px;
+  margin-top: 36px;
   text-align: center;
-  color: #eaf6fb88;
-  font-size: 0.96rem;
-  opacity: 0.72;
+  color: #49597d32;
+  font-size: 1.04rem;
+  opacity: 0.66;
   user-select: none;
   pointer-events: none;
   font-weight: 500;
@@ -129,16 +195,20 @@
 
 @media (max-width: 650px) {
   .taskCardArea { max-width: 99vw; }
-  .taskCard { padding: 4vw 2vw 13vw 2vw;}
-  .taskText { font-size: 1.07rem;}
+  .taskCard { padding: 7vw 5vw 8vw 5vw; gap: 1.3rem;}
+  .taskText { font-size: 1.09rem;}
+  .taskControls button { font-size: 0.97rem; padding: 10px 7vw; }
 }
 @media (max-width: 500px) {
-  .taskCard { padding: 11px 2vw 16px 2vw;}
-  .taskText { font-size: 1.00rem;}
-  .taskMoodHeader { font-size: 1.01rem;}
+  .taskCard { padding: 12px 2vw 12px 2vw;}
+  .taskText { font-size: 0.92rem;}
+  .taskMoodHeader { font-size: 0.97rem;}
+  .taskControls { gap: 9px; }
+  .taskControls button { padding: 9px 3vw; font-size: 0.94rem; }
 }
 
+/* Slow fade-in for text and cards */
 @keyframes fadein-slow {
-  0% { opacity: 0; transform: translateY(28px);}
+  0% { opacity: 0; transform: translateY(26px);}
   100% { opacity: 1; transform: translateY(0);}
 }
