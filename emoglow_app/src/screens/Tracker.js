@@ -202,14 +202,17 @@ export default function Tracker() {
   // PUBLIC_INTERFACE
   return (
     <section
-      className="
-        min-h-[calc(100vh-74px)] w-full pb-8 pt-4
-        flex flex-col items-center justify-start
-        bg-mood-gradient dark:bg-mood-dark
-      "
+      // Remove all Tailwind classes, fallback to App.css/inline style for layout and background
       style={{
         minHeight: "calc(100vh - 64px)",
-        transition: "background 1s"
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        background: "linear-gradient(135deg,#252850 0%, #232384 100%)",
+        padding: "24px 10px 64px 10px",
+        transition: "background 1.2s"
       }}
       aria-label="Mood Tracker"
     >

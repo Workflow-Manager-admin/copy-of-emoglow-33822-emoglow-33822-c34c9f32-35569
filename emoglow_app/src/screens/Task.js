@@ -266,8 +266,16 @@ export default function Task() {
   // Show beautiful task card for current mood
   return (
     <section
-      className="flex flex-col items-center justify-center w-full min-h-[calc(100vh-64px)] px-2 sm:px-4 py-10 transition-all relative"
+      // Remove all Tailwind classes, fallback to App.css/inline style for layout and background
       style={{
+        minHeight: "calc(100vh - 64px)",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        padding: "40px 14px 80px 14px",
         background: moodGradient,
         transition: "background 1s"
       }}
