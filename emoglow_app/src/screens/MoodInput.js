@@ -129,7 +129,7 @@ export default function MoodInput() {
       aria-labelledby="moodinput-title"
     >
       <motion.form
-        className={styles.moodForm}
+        className={`${styles.moodForm} glass-container`}
         initial="hidden"
         animate="visible"
         variants={{
@@ -195,7 +195,7 @@ export default function MoodInput() {
               animate={selectedMood === i ? "selected" : "visible"}
             >
               <span aria-hidden="true">{m.emoji}</span>
-              <span className={styles.moodEmojiLabel + (selectedMood === i ? " " + styles.selectedLabel : "")}>
+              <span className={`mood-label ${styles.moodEmojiLabel}${selectedMood === i ? " " + styles.selectedLabel : ""}`}>
                 {m.label}
               </span>
             </motion.button>
