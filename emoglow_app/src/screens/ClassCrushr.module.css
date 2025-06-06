@@ -4,64 +4,44 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(110deg,#ede9fd 0%, #e3f2fd 100%);
-  padding: 3vw 2vw;
+  background: linear-gradient(110deg,#f3f4fa 0%, #e6f4fd 100%);
+  padding: 5vw 3vw;
 }
-
-/* Glass/Frosted variable-driven container for main content */
 .classCrushrContent {
-  background: var(--glass-bg, rgba(255,255,255,0.22));
-  border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(40,64,120,0.13), 0 2px 8px rgba(60,60,80,0.04);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1.4px solid var(--glass-border, rgba(255,255,255,0.19));
-  padding: 24px 18px;
-  margin-bottom: 2.1rem;
-  max-width: 420px;
+  background: var(--secondary, #fff);
+  border-radius: 17px;
+  box-shadow: 0 3px 16px rgba(60,84,120,0.035);
+  border: 1px solid #eef0f7;
+  padding: 36px 24px;
+  margin-bottom: 2.5rem;
+  max-width: 440px;
   width: 100%;
-  color: #43425a;
-  transition: background 0.34s, box-shadow 0.3s, border 0.3s;
+  color: var(--text-dark, #43425a);
 }
-
 .dark-mode .classCrushrContent {
-  --glass-bg: rgba(26, 31, 49, 0.33);
-  --glass-border: rgba(80,80,160,0.10);
-  color: #e2e5fa;
-}
-
-@media (max-width: 600px) {
-  .classCrushrContent { padding: 14px 3vw; }
-  .classCrushrHeader { font-size: 1.02rem;}
+  background: #171a24;
+  border: 1px solid #23243a;
+  color: #e7edfa;
 }
 .classCrushrHeader {
-  font-size: 1.45rem;
+  font-size: 1.38rem;
   font-weight: 600;
-  color: var(--accent, #8558fd);
+  color: var(--accent, #007aff);
   text-align: center;
-  margin-bottom: 1.2rem;
-  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
   margin-top: 0.7rem;
-}
-.classCrushrContent {
-  background: rgba(255,255,255,0.17);
-  border-radius: 17px;
-  box-shadow: var(--shadow-med, 0 8px 32px rgba(40,64,120,0.12));
-  padding: 24px 18px;
-  margin-bottom: 2.1rem;
-  max-width: 420px;
-  width: 100%;
-  color: #43425a;
+  letter-spacing: -0.01em;
 }
 .classCrushrFooter {
   text-align: center;
-  color: #877fff;
-  font-size: 1rem;
+  color: #7e96ed;
+  font-size: 1.02rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
+  margin-top: 24px;
 }
 
+/* Mobile spacing */
 @media (max-width: 600px) {
-  .classCrushrContent { padding: 14px 3vw; }
-  .classCrushrHeader { font-size: 1.02rem;}
+  .classCrushrContent { padding: 17px 5vw; }
+  .classCrushrHeader { font-size: 1.04rem;}
 }
