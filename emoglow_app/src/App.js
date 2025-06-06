@@ -164,14 +164,28 @@ function Navbar() {
   );
 }
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ * Main App component with ThemeProvider, Router, global layout, and Navbar.
+ */
 function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="app flex flex-col min-h-screen bg-mood-gradient dark:bg-mood-dark">
+        <div className="app" style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          background: "var(--base-dark)"
+        }}>
           <Navbar />
-          <main className="flex-1 w-full flex flex-col justify-center">
+          <main style={{
+            flex: 1,
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center"
+          }}>
             <AnimatedRoutes />
           </main>
         </div>
