@@ -192,6 +192,43 @@ input:focus, textarea:focus, select:focus {
   transition: box-shadow var(--transition);
 }
 
+/* === Glassmorphism Frosted Containers (used globally) === */
+.glass-container {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 19px;
+  box-shadow: 0 8px 36px 0 rgba(40,64,120,0.18), 0 1.5px 8px #b9caff19;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.2px solid rgba(255,255,255,0.17);
+  transition: background 0.4s, box-shadow 0.38s;
+}
+.dark-mode .glass-container {
+  background: rgba(26, 31, 49, 0.34);
+  border: 1.2px solid rgba(80,80,160,0.09);
+  box-shadow: 0 8px 36px 0 rgba(16,38,64,0.19), 0 1.5px 8px #11265528;
+}
+
+/* === Mood label transition for all screens === */
+.moodEmojiLabel, .mood-label {
+  color: #15181c;
+  font-weight: 500;
+  transition: color 0.33s cubic-bezier(.56,.38,0,1.37), background 0.23s cubic-bezier(.6,.5,0,1.38), text-shadow 0.26s;
+  cursor: pointer;
+}
+.moodEmojiButton:hover .moodEmojiLabel,
+.mood-label:hover {
+  color: #fff !important;
+  text-shadow: 0 1.5px 10px #2227;
+}
+.dark-mode .moodEmojiLabel, .dark-mode .mood-label {
+  color: #f1f2f7;
+}
+.dark-mode .moodEmojiButton:hover .moodEmojiLabel,
+.dark-mode .mood-label:hover {
+  color: #fff !important;
+  text-shadow: 0 2px 14px #fff8, 0 1px 3px #0052cf44;
+}
+
 .card:hover {
   box-shadow: 0 6px 36px 0 rgba(20,26,43,.17);
 }

@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <section className={styles.homeSection} tabIndex={-1}>
       <motion.div
-        className={styles.homeContainer}
+        className={`${styles.homeContainer} glass-container`}
         initial="hidden"
         animate="visible"
         variants={{
