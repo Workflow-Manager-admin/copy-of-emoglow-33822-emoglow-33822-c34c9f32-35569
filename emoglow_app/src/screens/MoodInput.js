@@ -204,28 +204,24 @@ export default function MoodInput() {
 
         {/* Intensity slider */}
         <motion.div
-          className="w-full flex flex-col items-center gap-2 mb-1"
+          className={styles.moodIntensity}
           variants={formVariants}
         >
           <label
             htmlFor="intensity-slider"
-            className="block text-white/90 font-medium mb-1"
+            className={styles.moodSliderLabel}
           >
             How strongly do you feel it? <span className="sr-only">(required, 1-10)</span>
           </label>
-          <div className="flex items-center gap-4 w-full">
-            <span className="inline-block text-white/70 font-bold">1</span>
+          <div className={styles.moodSliderRow}>
+            <span className={styles.moodSliderMin}>1</span>
             <input
               type="range"
               id="intensity-slider"
               min={1}
               max={10}
               step={1}
-              className="
-                flex-1 accent-blue-400 h-3 rounded-lg bg-white/10
-                appearance-none transition-all outline-none
-                focus:outline-none focus:ring-2 focus:ring-accent/60
-              "
+              className={styles.moodSlider}
               style={{
                 background:
                   "linear-gradient(90deg, #66a6ff " +
@@ -242,10 +238,10 @@ export default function MoodInput() {
               aria-label="Mood intensity"
               required
             />
-            <span className="inline-block text-white/70 font-bold">10</span>
+            <span className={styles.moodSliderMax}>10</span>
           </div>
           <span
-            className="text-accent font-bold text-xl tracking-wider"
+            className={styles.moodSliderValue}
             aria-live="polite"
           >
             {intensity}
@@ -256,7 +252,7 @@ export default function MoodInput() {
         <AnimatePresence>
           {!showJournal && (
             <motion.button
-              className="text-accent underline text-base mt-1 mb-2 focus:outline-none"
+              className={styles.moodJournalAdd}
               variants={formVariants}
               type="button"
               onClick={handleShowJournal}
