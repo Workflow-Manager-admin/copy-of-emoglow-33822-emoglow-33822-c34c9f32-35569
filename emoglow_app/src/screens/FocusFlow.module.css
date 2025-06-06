@@ -17,14 +17,24 @@
   margin-top: 0.7rem;
 }
 .focusFlowContent {
-  background: rgba(255,255,255,0.16);
-  border-radius: 16px;
-  box-shadow: var(--shadow-med, 0 8px 32px rgba(40,64,120,0.13));
+  background: var(--glass-bg, rgba(255,255,255,0.16));
+  border-radius: 17px;
+  box-shadow: 0 8px 32px rgba(40,64,120,0.13), 0 2px 8px rgba(60,60,80,0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.4px solid var(--glass-border, rgba(255,255,255,0.18));
   padding: 24px 16px;
   margin-bottom: 1.8rem;
   max-width: 420px;
   width: 100%;
   color: #273982;
+  transition: background 0.34s, box-shadow 0.3s, border 0.3s;
+}
+
+.dark-mode .focusFlowContent {
+  --glass-bg: rgba(26, 31, 49, 0.31);
+  --glass-border: rgba(80,80,160,0.09);
+  color: #e0eafd;
 }
 .focusFlowFooter {
   text-align: center;
