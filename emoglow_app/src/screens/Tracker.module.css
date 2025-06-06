@@ -5,11 +5,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: linear-gradient(135deg,#232250 0%, #232384 100%);
+  background: var(--tracker-gradient, linear-gradient(135deg,#232250 0%, #232384 100%));
   padding: 24px 10px 64px 10px;
   transition: background 1.2s;
   position: relative;
   animation: fadein-slow 1s cubic-bezier(.4,0,.2,1) both;
+}
+.dark-mode .trackerSection {
+  --tracker-gradient: linear-gradient(135deg,#191b2b 0%, #23254e 100%);
 }
 
 .trackerTitle {
