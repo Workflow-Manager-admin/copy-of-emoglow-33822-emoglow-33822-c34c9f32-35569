@@ -34,7 +34,8 @@ function AnimatedRoutes() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -24 }}
         transition={{ duration: 0.5 }}
-        className="flex-1"
+        // No Tailwind class, use default styling
+        style={{ flex: 1 }}
       >
         <Routes location={location} key={location.pathname}>
           <Route path="/mindmelt" element={<Home />} />
