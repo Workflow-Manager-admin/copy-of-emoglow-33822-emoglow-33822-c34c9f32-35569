@@ -99,46 +99,52 @@
 .settingsReminderToggle {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   width: 100%;
+  margin-bottom: 0;
 }
 .settingsReminderBtn {
-  width: 62px;
-  height: 28px;
+  width: 54px;
+  height: 24px;
   border-radius: 999px;
-  background: #e2eafc;
-  border: 1.2px solid #cce3f3;
+  background: #f6fafd;
+  border: 1.1px solid #d2d6e5;
   display: flex;
   align-items: center;
   position: relative;
   cursor: pointer;
-  transition: background 0.18s;
+  transition: background 0.13s, border-color 0.13s;
   outline: none;
   padding: 0;
+  box-shadow: none;
 }
 .settingsReminderBtn[aria-pressed="true"] {
-  background: #baf0e9;
-  border-color: #57dcce;
+  background: #e0fcf8;
+  border-color: var(--accent, #007aff);
 }
+.settingsReminderBtn:focus-visible {
+  outline: 2.2px solid var(--accent, #007aff);
+}
+
 .settingsReminderToggleKnob {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 1.5px 6px #00999910;
+  box-shadow: none;
   position: absolute;
-  top: 2.5px;
-  left: 4px;
-  transition: left 0.23s cubic-bezier(0.46,0.24,0.58,1.01);
+  top: 2.9px;
+  left: 4.3px;
+  transition: left 0.18s cubic-bezier(0.46,0.24,0.58,1.01);
 }
 .settingsReminderBtn[aria-pressed="true"] .settingsReminderToggleKnob {
-  left: calc(100% - 26px);
+  left: calc(100% - 23.5px);
 }
 
 .settingsReminderFeedback {
-  font-size: 0.94rem;
+  font-size: 0.93rem;
   color: var(--accent, #007aff);
-  margin-top: 6px;
+  margin-top: 5px;
   animation: fadein-slow 1s;
 }
 
