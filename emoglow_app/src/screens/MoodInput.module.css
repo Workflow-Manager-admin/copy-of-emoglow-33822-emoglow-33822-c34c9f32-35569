@@ -38,9 +38,12 @@
 }
 
 .moodForm {
-  background: rgba(255,255,255,0.13);
-  border-radius: 18px;
-  box-shadow: var(--shadow-low);
+  background: var(--glass-bg, rgba(255,255,255,0.13));
+  border-radius: 19px;
+  box-shadow: 0 8px 36px 0 rgba(40,64,120,0.13), 0 2px 8px #b9caff19;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.28px solid var(--glass-border, rgba(255,255,255,0.17));
   padding: 34px 22px 32px 22px;
   max-width: 410px;
   width: 100%;
@@ -52,8 +55,13 @@
   margin-bottom: 28px;
   position: relative;
   animation: fadein-slow 1.12s cubic-bezier(.4,0,.2,1) both;
-  backdrop-filter: blur(13px);
-  -webkit-backdrop-filter: blur(13px);
+  transition: background 0.38s, box-shadow 0.28s, border 0.3s;
+}
+
+.dark-mode .moodForm {
+  --glass-bg: rgba(26, 31, 49, 0.34);
+  --glass-border: rgba(80,80,160,0.09);
+  color: #ebf1f9;
 }
 
 .moodTitle {
