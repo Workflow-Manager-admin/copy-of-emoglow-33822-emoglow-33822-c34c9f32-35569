@@ -32,8 +32,6 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "cross-env": "^7.0.3",
-    "postcss": "^8.5.4"
+    "cross-env": "^7.0.3"
   }
 }
