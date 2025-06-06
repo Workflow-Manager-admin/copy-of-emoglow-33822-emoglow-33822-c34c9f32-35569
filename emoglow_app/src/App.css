@@ -14,19 +14,7 @@ body {
   flex-direction: column;
 }
 
-.navbar {
-  background-color: var(--base-dark);
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  box-sizing: border-box;
-  z-index: 100;
-}
+/* .navbar uses only variable backgrounds from theme.css and NavBar.module.css. Remove specific definitions here. */
 
 .logo {
   font-size: 1.25rem;
@@ -46,6 +34,7 @@ body {
   padding: 0 24px;
   width: 100%;
   box-sizing: border-box;
+  background: none;
 }
 
 .hero {
