@@ -1,4 +1,39 @@
-.splitMateSection {}
-.splitMateHeader {}
-.splitMateContent {}
-.splitMateFooter {}
+.splitMateSection {
+  min-height: 75vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg,#fceabb 0%, #ffa5b7 100%);
+  padding: 3vw 2vw;
+}
+.splitMateHeader {
+  font-size: 1.43rem;
+  font-weight: 600;
+  color: var(--accent, #ff512f);
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.01em;
+  margin-top: 0.7rem;
+}
+.splitMateContent {
+  background: rgba(255,255,255,0.17);
+  border-radius: 16px;
+  box-shadow: var(--shadow-med, 0 8px 32px rgba(80,44,64,0.11));
+  padding: 22px 17px;
+  margin-bottom: 1.8rem;
+  max-width: 420px;
+  width: 100%;
+  color: #68415d;
+}
+.splitMateFooter {
+  text-align: center;
+  color: #ff559d;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.009em;
+}
+@media (max-width: 600px) {
+  .splitMateContent { padding: 11px 3vw; }
+  .splitMateHeader { font-size: 1.02rem;}
+}
