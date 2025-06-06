@@ -12,20 +12,31 @@ export default function Home() {
 
   return (
     <section
-      className="
-        w-full min-h-[calc(100vh-64px)]
-        flex flex-col items-center justify-center
-        px-4
-        bg-mood-gradient dark:bg-mood-dark
-        transition-all relative
-        "
+      // Removed Tailwind classes, using inline and App.css for layout and backgrounds
       style={{
         minHeight: "calc(100vh - 64px)", // minus navbar height
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0 16px",
+        position: "relative",
+        background: "linear-gradient(135deg,#252850 0%, #232384 100%)",
+        transition: "background 1.2s"
       }}
     >
       {/* Centered animated container */}
       <motion.div
-        className="flex flex-col items-center justify-center gap-8"
+        // Equivalent layout with CSS/inline styles
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 32,
+          width: '100%'
+        }}
         initial="hidden"
         animate="visible"
         variants={{
