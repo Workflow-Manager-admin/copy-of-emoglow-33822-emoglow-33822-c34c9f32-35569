@@ -86,16 +86,24 @@
   outline: 2px solid #dcdcfb;
 }
 .trackerChartContainer {
-  background: rgba(20,24,44,0.12);
-  border-radius: 15px;
-  box-shadow: 0 4px 28px #12151d0d;
-  backdrop-filter: blur(6px);
+  background: var(--glass-bg, rgba(20,24,44,0.12));
+  border-radius: 17px;
+  box-shadow: 0 8px 32px 0 rgba(40,64,120,0.10), 0 2px 8px #1d1f2410;
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  border: 1.2px solid var(--glass-border, rgba(60,80,120,0.13));
   padding: 27px 17px 12px 17px;
   width: 100%;
   max-width: 650px;
   min-height: 270px;
   margin: 0 auto;
   margin-top: 0.7rem;
+  transition: background 0.34s, box-shadow 0.26s, border 0.24s;
+}
+
+.dark-mode .trackerChartContainer {
+  --glass-bg: rgba(26, 31, 49, 0.30);
+  --glass-border: rgba(80,80,160,0.10);
 }
 .trackerLegend {
   display: flex;
