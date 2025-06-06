@@ -1,0 +1,269 @@
+:root {
+  /* --- Apple-Inspired Branding Palette --- */
+  --primary: rgb(245, 247, 250);
+  --secondary: rgb(255, 255, 255);
+  --accent: rgb(0, 122, 255);
+  --text-dark: #111112;
+  --text-light: #fff;
+  --text-secondary: #606770;
+  --success: #43e06b;
+  --warning: #ffb300;
+  --danger: #ff5252;
+
+  /* --- Typography & Font --- */
+  --font-family: 'Inter', 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+  --font-size-base: 1rem;         /* 16px */
+  --font-size-lg: 1.22rem;
+  --font-size-xl: 2.2rem;
+  --letter-spacing: -0.01em;
+  --line-height: 1.55;
+
+  /* --- Spacing --- */
+  --spacing-xs: 0.25rem;      /* 4px */
+  --spacing-sm: 0.5rem;       /* 8px */
+  --spacing-md: 1rem;         /* 16px */
+  --spacing-lg: 1.5rem;       /* 24px */
+  --spacing-xl: 2.75rem;      /* 44px */
+
+  /* --- Border Radius --- */
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 4px;
+
+  /* --- Shadows (Apple-like) --- */
+  --shadow-low: 0 2px 8px rgba(0,0,0,0.08), 0 0.5px 1.5px rgba(60,60,80,0.03);
+  --shadow-med: 0 8px 32px rgba(20,32,72,0.13), 0 2px 8px rgba(50,50,70,0.09);
+  --shadow-nav: 0 1.5px 13px 0 rgba(120,120,140,0.07);
+  --shadow-focus: 0 0 0 3px var(--accent);
+
+  /* --- Transitions --- */
+  --transition-fast: 0.13s cubic-bezier(.4,0,.2,1);
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-dark);
+  background: var(--primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+.dark-mode {
+  --primary: #111217;
+  --secondary: #171922;
+  --accent: rgb(0, 122, 255);
+  --text-dark: #f3f6fa;
+  --text-light: #ebf1f9;
+  --text-secondary: #a8afc4;
+  --shadow-low: 0 2px 8px rgba(0,0,0,0.23), 0 0.5px 1.5px rgba(56,60,110,0.04);
+  background: var(--primary);
+  color: var(--text-dark);
+}
+
+/* Responsive typography */
+html {
+  font-size: 16px;
+}
+@media (max-width: 800px) {
+  html { font-size: 15px; }
+}
+@media (max-width: 600px) {
+  html { font-size: 14.5px; }
+}
+
+/* Reset, Apple-style */
+/* http://meyerweb.com/eric/tools/css/reset/ v2.0 + Apple touches */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--primary);
+  color: var(--text-dark);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  overflow-x: hidden;
+  transition: background var(--transition);
+}
+
+/* Headings, Apple style */
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  color: inherit;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.18;
+}
+
+h1 { font-size: var(--font-size-xl); margin-top: var(--spacing-lg);}
+h2 { font-size: 1.7rem;}
+h3 { font-size: 1.32rem;}
+h4, h5, h6 { font-size: 1rem;}
+
+/* Paragraphs and links */
+p {
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-dark);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+/* Form elements */
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  transition: outline var(--transition);
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: var(--shadow-focus);
+  outline-offset: 3px;
+}
+button, .btn {
+  background: var(--accent);
+  color: var(--text-light);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  box-shadow: var(--shadow-low);
+  cursor: pointer;
+  font-weight: var(--font-weight-bold);
+  border: none;
+  font-size: 1rem;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+button:hover, .btn:hover {
+  background: #005eea;
+  box-shadow: var(--shadow-med);
+}
+
+/* Inputs, textareas */
+input, textarea, select {
+  border-radius: var(--radius-sm);
+  background: var(--secondary);
+  color: var(--text-dark);
+  border: 1.5px solid #d4d7e0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: var(--shadow-low);
+  transition: border-color var(--transition);
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent);
+}
+
+/* Apple-styled containers & cards */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  width: 100%;
+}
+
+.card {
+  background: var(--secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-med);
+  padding: var(--spacing-lg);
+  transition: box-shadow var(--transition);
+}
+
+.card:hover {
+  box-shadow: 0 6px 36px 0 rgba(20,26,43,.17);
+}
+
+/* Utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center { text-align: center; }
+.font-bold { font-weight: var(--font-weight-bold); }
+.shadow { box-shadow: var(--shadow-med);}
+.transition { transition: all var(--transition); }
+
+/* Fade-in utility for h1/h2/texts (Apple style) */
+@keyframes fadein-slow {
+  0% { opacity: 0; transform: translateY(32px);}
+  70% { opacity: 1;}
+  100% { opacity: 1; transform: translateY(0);}
+}
+.fade-in, h1, h2 {
+  animation: fadein-slow 1.1s cubic-bezier(.4,0,.2,1) both;
+  animation-delay: 0.5s;
+}
+
+/* Apple-like scrollbar styling (webkit) */
+::-webkit-scrollbar {
+  width: 8px; background: var(--secondary);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #d7dde7;
+}
+
+/* Dark mode scrollbars */
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: #253051;
+}
+
+/* Responsive container */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.22rem; }
+}
+
+/* Nav, shadow & border etc. */
+.navbar {
+  background: var(--secondary);
+  box-shadow: var(--shadow-nav);
+  border-bottom: 1.5px solid #e9eaf2;
+  position: sticky; top: 0;
+  z-index: 100;
+  width: 100%;
+  min-height: 54px;
+}
+
+/* Dark mode navbar */
+.dark-mode .navbar {
+  background: #121317;
+  border-bottom: 1.5px solid #222436;
+  box-shadow: 0 2px 24px 0 rgba(24,28,44,.12);
+}
+
+/* Smooth transitions for theme, background, etc. */
+body, .navbar, .card, input, textarea, select {
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
