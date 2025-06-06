@@ -283,14 +283,14 @@ export default function Task() {
     >
       {/* Animated task suggestion card */}
       <div
-        className="w-full max-w-lg mx-auto"
+        className="glass-container w-full max-w-lg mx-auto"
         style={{ minHeight: 360 }}
       >
         <AnimatePresence mode="wait">
           {!animating && (
             <motion.div
               key={`action-card-${taskIdx}-${done}`}
-              className={`rounded-xl shadow-2xl p-6 sm:p-8 bg-white/20 dark:bg-black/30 backdrop-blur-xl flex flex-col items-center ${cardMinHeight} ${cardMaxWidth} relative`}
+              className={`rounded-xl shadow-2xl p-6 sm:p-8 flex flex-col items-center ${cardMinHeight} ${cardMaxWidth} relative`}
               style={{
                 transition: "all 0.34s cubic-bezier(0.33,1,0.68,1)",
                 outline: done ? `3px solid ${accentColor}` : "none",

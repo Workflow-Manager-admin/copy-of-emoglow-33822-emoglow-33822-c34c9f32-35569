@@ -120,7 +120,7 @@ export default function Settings() {
       }}
     >
       <motion.div
-        className="w-full max-w-xl bg-white/10 dark:bg-black/20 shadow-xl rounded-xl p-5 md:p-8 flex flex-col gap-7 items-center"
+        className="glass-container w-full max-w-xl shadow-xl rounded-xl p-5 md:p-8 flex flex-col gap-7 items-center"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.72, ease: "easeOut" }}
