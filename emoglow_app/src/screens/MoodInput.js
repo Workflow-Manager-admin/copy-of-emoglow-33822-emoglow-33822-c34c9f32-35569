@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import styles from "./MoodInput.module.css";
 
 /**
  * MoodInput Screen for MindMelt AI
