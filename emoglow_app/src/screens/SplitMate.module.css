@@ -17,14 +17,24 @@
   margin-top: 0.7rem;
 }
 .splitMateContent {
-  background: rgba(255,255,255,0.17);
+  background: var(--glass-bg, rgba(255,255,255,0.17));
   border-radius: 16px;
-  box-shadow: var(--shadow-med, 0 8px 32px rgba(80,44,64,0.11));
+  box-shadow: 0 8px 32px rgba(80,44,64,0.13), 0 2px 8px rgba(70,60,80,0.03);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  border: 1.35px solid var(--glass-border, rgba(255,255,255,0.20));
   padding: 22px 17px;
   margin-bottom: 1.8rem;
   max-width: 420px;
   width: 100%;
   color: #68415d;
+  transition: background 0.34s, box-shadow 0.3s, border 0.3s;
+}
+
+.dark-mode .splitMateContent {
+  --glass-bg: rgba(26, 31, 49, 0.28);
+  --glass-border: rgba(80,80,160,0.08);
+  color: #ffe4f7;
 }
 .splitMateFooter {
   text-align: center;
