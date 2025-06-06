@@ -22,8 +22,9 @@ export function ThemeProvider({ children }) {
     document.documentElement.classList.remove("light", "dark", "dark-mode");
     if (theme === "dark") {
       document.documentElement.classList.add("dark-mode");
+    } else {
+      document.documentElement.classList.remove("dark-mode");
     }
-    // For light, ensure .dark-mode is not present
     localStorage.setItem("theme", theme);
   }, [theme]);
 
