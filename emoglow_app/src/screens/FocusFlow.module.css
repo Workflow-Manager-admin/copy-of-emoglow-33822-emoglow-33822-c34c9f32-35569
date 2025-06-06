@@ -4,46 +4,41 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(120deg,#dbeafd 0%, #fff6fa 100%);
-  padding: 3vw 2vw;
+  background: linear-gradient(120deg,#e3effd 0%, #f8fafd 100%);
+  padding: 5vw 3vw;
 }
 .focusFlowHeader {
-  font-size: 1.43rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--accent, #167ad9);
   text-align: center;
-  margin-bottom: 1.2rem;
-  letter-spacing: -0.01em;
+  margin-bottom: 1.4rem;
   margin-top: 0.7rem;
 }
 .focusFlowContent {
-  background: var(--glass-bg, rgba(255,255,255,0.16));
-  border-radius: 17px;
-  box-shadow: 0 8px 32px rgba(40,64,120,0.13), 0 2px 8px rgba(60,60,80,0.04);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1.4px solid var(--glass-border, rgba(255,255,255,0.18));
-  padding: 24px 16px;
-  margin-bottom: 1.8rem;
-  max-width: 420px;
+  background: var(--secondary, #fff);
+  border-radius: 16px;
+  box-shadow: 0 3px 14px rgba(60,84,120,0.03);
+  border: 1px solid #eef1f7;
+  padding: 29px 20px;
+  margin-bottom: 1.9rem;
+  max-width: 440px;
   width: 100%;
-  color: #273982;
-  transition: background 0.34s, box-shadow 0.3s, border 0.3s;
+  color: var(--text-dark, #273982);
 }
-
 .dark-mode .focusFlowContent {
-  --glass-bg: rgba(26, 31, 49, 0.31);
-  --glass-border: rgba(80,80,160,0.09);
-  color: #e0eafd;
+  background: #1a1b20;
+  border: 1px solid #23243a;
+  color: #dbe2fd;
 }
 .focusFlowFooter {
   text-align: center;
-  color: #47a6ff;
-  font-size: 1rem;
+  color: #77a6ff;
+  font-size: 1.02rem;
   font-weight: 500;
-  letter-spacing: 0.009em;
+  margin-top: 23px;
 }
 @media (max-width: 600px) {
-  .focusFlowContent { padding: 12px 3vw; }
+  .focusFlowContent { padding: 15px 4vw; }
   .focusFlowHeader { font-size: 1.02rem;}
 }
