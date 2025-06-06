@@ -152,39 +152,46 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
   align-items: flex-start;
 }
 .settingsClearBtn {
-  padding: 8px 20px;
+  padding: 9px 26px;
   border-radius: 8px;
-  background: linear-gradient(90deg,#ff8484 0%, #ffd3bb 100%);
-  border: none;
+  background: #faeded;
+  border: 1.2px solid #ffe7e7;
   font-weight: 600;
   font-size: 1rem;
-  color: #fff;
+  color: #da2e41;
   cursor: pointer;
   margin-right: 5px;
   margin-bottom: 3px;
+  transition: background 0.13s, color 0.13s, border 0.13s;
+  box-shadow: none;
 }
 .settingsClearBtn:disabled {
-  background: #ffd2dd;
-  color: #fff9;
-  opacity: 0.7;
+  background: #f3e8ee;
+  color: #ccc;
+  opacity: 0.75;
   cursor: not-allowed;
 }
+.settingsClearBtn:focus-visible, .settingsClearBtn:hover {
+  background: #fff0f0;
+  color: #ba1d33;
+  border-color: #ebafbd;
+}
 .settingsClearSuccess {
-  color: var(--success, #43e06b);
+  color: var(--success, #33c374);
   font-weight: 600;
   font-size: 1rem;
-  margin-left: 7px;
+  margin-left: 9px;
 }
 
 .settingsInfoMessage {
-  font-size: 0.91rem;
-  color: #dde7f9;
+  font-size: 0.94rem;
+  color: #8fa4bf;
   font-weight: 400;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 .settingsEmailArea {
