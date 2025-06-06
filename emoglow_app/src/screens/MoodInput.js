@@ -269,13 +269,13 @@ export default function MoodInput() {
         <AnimatePresence>
           {showJournal && (
             <motion.div
-              className="w-full"
+              className={styles.moodJournal}
               initial={{ opacity: 0, y: 16, height: 0 }}
               animate={{ opacity: 1, y: 0, height: "auto" }}
               exit={{ opacity: 0, y: 12, height: 0 }}
               transition={{ type: "spring", duration: 0.54 }}
             >
-              <label htmlFor="journal" className="text-white font-medium">
+              <label htmlFor="journal" className={styles.moodJournalLabel}>
                 What else about your mood today? (optional)
               </label>
               <textarea
@@ -283,12 +283,7 @@ export default function MoodInput() {
                 id="journal"
                 rows={3}
                 maxLength={400}
-                className="
-                  mt-2 block w-full p-3 rounded-lg border border-white/15
-                  bg-white/5 text-white/90 placeholder:text-white/50
-                  focus:outline-none focus:ring-2 focus:ring-accent/40
-                  resize-vertical transition
-                "
+                className={styles.moodJournalArea}
                 placeholder="Type any thoughts, context, or notes here…"
                 value={journal}
                 onChange={e => setJournal(e.target.value)}
