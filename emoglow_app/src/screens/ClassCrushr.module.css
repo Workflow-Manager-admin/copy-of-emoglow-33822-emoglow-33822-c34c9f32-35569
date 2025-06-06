@@ -7,6 +7,33 @@
   background: linear-gradient(110deg,#ede9fd 0%, #e3f2fd 100%);
   padding: 3vw 2vw;
 }
+
+/* Glass/Frosted variable-driven container for main content */
+.classCrushrContent {
+  background: var(--glass-bg, rgba(255,255,255,0.22));
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(40,64,120,0.13), 0 2px 8px rgba(60,60,80,0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.4px solid var(--glass-border, rgba(255,255,255,0.19));
+  padding: 24px 18px;
+  margin-bottom: 2.1rem;
+  max-width: 420px;
+  width: 100%;
+  color: #43425a;
+  transition: background 0.34s, box-shadow 0.3s, border 0.3s;
+}
+
+.dark-mode .classCrushrContent {
+  --glass-bg: rgba(26, 31, 49, 0.33);
+  --glass-border: rgba(80,80,160,0.10);
+  color: #e2e5fa;
+}
+
+@media (max-width: 600px) {
+  .classCrushrContent { padding: 14px 3vw; }
+  .classCrushrHeader { font-size: 1.02rem;}
+}
 .classCrushrHeader {
   font-size: 1.45rem;
   font-weight: 600;
