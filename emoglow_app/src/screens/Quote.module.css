@@ -7,9 +7,12 @@
   justify-content: center;
   position: relative;
   padding: 34px 10px 18px 10px;
-  background: linear-gradient(135deg,#252850 0%, #232384 100%);
+  background: var(--quote-gradient, linear-gradient(135deg,#252850 0%, #232384 100%));
   transition: background 1.2s;
   animation: fadein-slow 1.08s cubic-bezier(.4,0,.2,1) both;
+}
+.dark-mode .quoteSection {
+  --quote-gradient: linear-gradient(135deg,#181b2b 0%, #23253e 100%);
 }
 
 .quoteContainer {
