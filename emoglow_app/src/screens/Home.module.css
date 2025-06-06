@@ -8,9 +8,13 @@
   justify-content: center;
   position: relative;
   padding: 0 16px;
-  background: linear-gradient(135deg,#252850 0%, #232384 100%);
+  background: var(--home-gradient, linear-gradient(135deg, #252850 0%, #232384 100%));
   transition: background 1.2s;
   /* Responsive vertical pad */
+}
+/* In dark mode, background derived from variable for theme switching */
+.dark-mode .homeSection {
+  --home-gradient: linear-gradient(135deg, #151728 0%, #1a233a 100%);
 }
 
 /* Centered animated home greeting container */
