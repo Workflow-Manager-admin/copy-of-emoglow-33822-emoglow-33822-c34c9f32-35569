@@ -106,14 +106,18 @@ export default function Settings() {
   // Layout
   return (
     <section
-      className="
-        min-h-[calc(100vh-64px)]
-        flex flex-col px-3 py-8 sm:py-16 items-center justify-center
-        bg-mood-gradient dark:bg-mood-dark
-        transition-all
-      "
+      // Removed all Tailwind classes, fallback to App.css/inline style for layout and background
       aria-label="Settings"
-      style={{ minHeight: "calc(100vh - 64px)" }}
+      style={{
+        minHeight: "calc(100vh - 64px)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "48px 16px",
+        background: "linear-gradient(135deg,#252850 0%, #232384 100%)",
+        transition: "background 1.2s"
+      }}
     >
       <motion.div
         className="w-full max-w-xl bg-white/10 dark:bg-black/20 shadow-xl rounded-xl p-5 md:p-8 flex flex-col gap-7 items-center"

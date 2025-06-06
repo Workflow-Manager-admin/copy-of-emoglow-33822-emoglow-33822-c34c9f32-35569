@@ -124,19 +124,35 @@ export default function MoodInput() {
 
   return (
     <section
-      className="
-        w-full min-h-[calc(100vh-64px)]
-        flex flex-col items-center justify-center px-2 sm:px-4 pt-8 pb-12 relative
-        bg-mood-gradient dark:bg-mood-dark
-        transition-all
-      "
+      // Remove all Tailwind classes, fallback to App.css + inline style as needed
       style={{
         minHeight: "calc(100vh - 64px)",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "32px 12px 48px 12px",
+        position: "relative",
+        background: "linear-gradient(135deg,#252850 0%, #232384 100%)",
+        transition: "background 1.2s"
       }}
       aria-labelledby="moodinput-title"
     >
       <motion.form
-        className="flex flex-col items-center justify-center gap-8 w-full max-w-lg mx-auto shadow-2xl rounded-xl bg-white/0 dark:bg-black/0"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 32,
+          width: "100%",
+          maxWidth: 520,
+          margin: "0 auto",
+          boxShadow: "0 3px 36px #0001",
+          borderRadius: 16,
+          background: "rgba(255,255,255,0.01)"
+        }}
         initial="hidden"
         animate="visible"
         variants={{

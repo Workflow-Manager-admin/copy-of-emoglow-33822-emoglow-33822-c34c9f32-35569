@@ -289,13 +289,18 @@ export default function Quote() {
 
   return (
     <section
-      className={`
-        flex flex-col items-center justify-center
-        w-full min-h-[calc(100vh-64px)] px-3 py-8 sm:py-16 relative transition-all
-      `}
+      // Remove all Tailwind classes. Use App.css/inline styles for layout/background.
       style={{
+        minHeight: "calc(100vh - 64px)",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
         background: moodGradient || "var(--base-dark)",
-        transition: "background 1s"
+        transition: "background 1s",
+        padding: "32px 12px"
       }}
     >
       {/* Inner container, card-style, animate fade+up in */}
