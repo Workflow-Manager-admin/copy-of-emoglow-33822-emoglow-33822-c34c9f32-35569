@@ -1,11 +1,152 @@
-.trackerSection {}
-.trackerTitle {}
-.trackerDescription {}
-.trackerControls {}
-.trackerViewToggle {}
-.trackerDownloadBtn {}
-.trackerClearBtn {}
-.trackerChartContainer {}
-.trackerLegend {}
-.trackerFooter {}
-.trackerEmptyState {}
+.trackerSection {
+  min-height: calc(100vh - 64px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(135deg,#232250 0%, #232384 100%);
+  padding: 24px 10px 64px 10px;
+  transition: background 1.2s;
+  position: relative;
+  animation: fadein-slow 1s cubic-bezier(.4,0,.2,1) both;
+}
+
+.trackerTitle {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-light, #fff);
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+  margin-top: 18px;
+}
+.trackerDescription {
+  text-align: center;
+  color: #cfd8e7;
+  font-size: 1.09rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  opacity: 0.83;
+}
+.trackerControls {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  align-items: center;
+  justify-content: center;
+  margin: 1.06rem auto 0 auto;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 700px;
+}
+.trackerViewToggle {
+  display: flex;
+  border-radius: 17px;
+  overflow: hidden;
+  background: #fff9;
+  border: 1.5px solid #e6eaf2;
+  box-shadow: 0 2px 8px #b9caff11;
+}
+.trackerViewToggle button {
+  flex: 1;
+  background: transparent;
+  color: #151839;
+  font-weight: 600;
+  border: none;
+  padding: 9px 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.12s;
+}
+.trackerViewToggle button.selected,
+.trackerViewToggle button:focus-visible {
+  background: var(--accent, #007aff);
+  color: #fff;
+}
+.trackerDownloadBtn, .trackerClearBtn {
+  border-radius: 9px;
+  padding: 7px 19px;
+  font-size: 1rem;
+  font-weight: 600;
+  outline: none;
+  border: none;
+  background: linear-gradient(90deg,#aabbff 0%, #e3f0ff 100%);
+  color: #123;
+  box-shadow: 0 2px 9px #b1c6f911;
+  transition: background 0.16s, color 0.14s;
+  cursor: pointer;
+}
+.trackerDownloadBtn:focus,
+.trackerClearBtn:focus {
+  outline: 2px solid #dcdcfb;
+}
+.trackerChartContainer {
+  background: rgba(20,24,44,0.12);
+  border-radius: 15px;
+  box-shadow: 0 4px 28px #12151d0d;
+  backdrop-filter: blur(6px);
+  padding: 27px 17px 12px 17px;
+  width: 100%;
+  max-width: 650px;
+  min-height: 270px;
+  margin: 0 auto;
+  margin-top: 0.7rem;
+}
+.trackerLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 13px;
+  width: 100%;
+  justify-content: center;
+}
+.trackerLegend span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.94rem;
+  font-weight: 500;
+  background: #eef7ff55;
+  color: var(--accent, #007aff);
+  border-radius: 15px;
+  padding: 4px 9px;
+  border: 1.2px solid #d1d9ff90;
+}
+.trackerFooter {
+  margin-top: 15px;
+  font-size: 0.93rem;
+  color: #eaf6fbab;
+  text-align: center;
+  opacity: 0.68;
+  user-select: none;
+  font-weight: 500;
+}
+.trackerEmptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 26px 0 0 0;
+  min-height: 180px;
+  color: #8da3be;
+  font-weight: 600;
+  opacity: 0.88;
+  font-size: 1.19rem;
+}
+
+@media (max-width: 780px) {
+  .trackerChartContainer { max-width: 99vw; padding: 3vw 2vw 2vw 2vw;}
+  .trackerControls { gap: 4px; }
+}
+@media (max-width: 600px) {
+  .trackerSection { padding: 0 0 40px 0;}
+  .trackerTitle { font-size: 1.28rem;}
+}
+
+@keyframes fadein-slow {
+  0% { opacity: 0; transform: translateY(34px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
