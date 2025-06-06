@@ -1,137 +1,172 @@
-/* SETTINGS FLEX REFACTOR - Minimal, Apple-like, responsive */
-/* OUTER SECTION */
-.settingsSection {
-  min-height: calc(100vh - 64px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 48px 16px;
-  background: var(--primary, #f8fafd);
-  transition: background 0.5s;
-}
-/* Dark mode */
-.dark-mode .settingsSection {
-  background: var(--primary, #101217);
+:root {
+  --settings-bg: #f7fafd;
+  --settings-bg-dark: #151a24;
+  --settings-card-bg: #fff;
+  --settings-card-bg-dark: #191a22;
+  --settings-border: #eceff6;
+  --settings-border-dark: #22243a;
+  --settings-label: #222b3a;
+  --settings-label-dark: #e7eafd;
+  --settings-accent: #007aff;
+  --settings-danger: #ff5252;
+  --settings-radius-lg: 22px;
+  --settings-radius-md: 14px;
+  --settings-radius-sm: 7px;
+  --settings-shadow: 0 2.5px 18px #22253a0a;
 }
 
-/* CONTAINER CARD */
-.settingsContainer {
-  width: 100%;
-  max-width: 480px;
-  padding: 42px 28px 32px 28px;
-  background: var(--secondary, #fff);
-  border-radius: 20px;
-  border: 1.2px solid #eaeaf0;
-  box-shadow: 0 2px 12px rgba(43,55,99,0.04);
+/* OUTER WRAPPER */
+.settingsSection {
+  min-height: calc(100vh - 64px);
+  width: 100vw;
+  background: var(--settings-bg);
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 2.2rem;
-  animation: fadein-slow 1s cubic-bezier(.4,0,.2,1) both;
-  transition: background 0.16s, border 0.18s;
+  align-items: center;
+  justify-content: center;
+  padding: 52px 0 52px 0;
+  transition: background 0.5s;
 }
-.dark-mode .settingsContainer {
-  background: #191b24;
-  border: 1.2px solid #23243a;
+.dark-mode .settingsSection {
+  background: var(--settings-bg-dark);
+}
+
+/* CARD */
+.settingsCard {
+  width: 100%;
+  max-width: 430px;
+  background: var(--settings-card-bg);
+  border-radius: var(--settings-radius-lg);
+  box-shadow: none;
+  border: 1.3px solid var(--settings-border);
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  align-items: stretch;
+  padding: 44px 32px 36px 32px;
+  transition: background 0.16s, border 0.16s;
+}
+.dark-mode .settingsCard {
+  background: var(--settings-card-bg-dark);
+  border: 1.2px solid var(--settings-border-dark);
   color: #e7eafd;
 }
 
 /* TITLE */
 .settingsTitle {
-  text-align: center;
-  font-size: 2rem;
+  font-size: 2.0rem;
   font-weight: 700;
-  color: var(--text-dark, #273556);
-  letter-spacing: -0.013em;
-  margin-bottom: 1rem;
-  margin-top: 0;
+  color: var(--settings-label);
+  letter-spacing: -0.012em;
+  text-align: center;
+  margin-bottom: 14px;
+  margin-top: 0px;
+  background: none;
+  line-height: 1.13;
 }
-.dark-mode .settingsTitle { color: var(--text-light, #e7eafd); }
+.dark-mode .settingsTitle {
+  color: var(--settings-label-dark);
+}
 
-/* FLEX GROUP UTILITY - groups (theme, reminder, clear, email) */
+/* FLEX GROUPS */
 .settingsGroup {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   gap: 10px;
-  margin-bottom: 0.5rem;
   width: 100%;
+  margin-bottom: 0.8rem;
 }
 
 /* LABELS */
 .settingsLabel {
   font-weight: 600;
-  color: var(--text-dark, #2c3247);
-  opacity: 0.96;
+  color: var(--settings-label);
   font-size: 1.09rem;
   margin-bottom: 4px;
   letter-spacing: -0.007em;
   background: none;
+  opacity: 0.98;
 }
-.dark-mode .settingsLabel { color: #e7eafd; }
+.dark-mode .settingsLabel {
+  color: var(--settings-label-dark);
+}
 
-/* ROW for controls (Theme/Reminder/Data) */
-.settingsRow {
+/* FLEX ROWS for controls */
+.settingsRow,
+.settingsRowFlex {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   width: 100%;
+  min-height: 38px;
 }
 
 /* THEME TOGGLE PILL */
-.settingsThemeBtn {
-  background: #f6fafd;
-  border-radius: 999px;
-  min-width: 64px;
-  height: 36px;
+.settingsThemeToggle {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 1.3px solid #e2eaf3;
-  transition: background 0.14s, border-color 0.14s;
+  flex-direction: row;
+  background: #f6fafd;
+  border-radius: 999px;
+  min-width: 68px;
+  height: 36px;
+  border: 1.35px solid #dde3f1;
+  padding: 4px 9px;
+  gap: 8px;
   cursor: pointer;
-  outline: none;
-  padding: 3px 7px;
-  gap: 7px;
   box-shadow: none;
+  outline: none;
+  transition: background 0.15s;
 }
-.settingsThemeBtn:focus-visible {
-  outline: 2.5px solid var(--accent, #007aff);
+.dark-mode .settingsThemeToggle {
+  background: #21243b;
+  border: 1.3px solid #22243a;
 }
-.settingsThemeBtn .settingsThemeCircle {
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
+.settingsThemeMode {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border 0.16s, background 0.16s;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   border: 1.3px solid #ccd7ee;
   background: #fff;
-  margin: 0 4px;
-  box-shadow: none;
+  transition: border 0.15s, background 0.15s;
 }
-.settingsThemeBtn .settingsThemeCircle.selected {
-  border: 2.2px solid var(--accent, #007aff);
-  background: #fffde0 !important;
+.settingsThemeMode.selected {
+  border: 2px solid var(--settings-accent);
+  background: #fffde6 !important;
+}
+.settingsThemeModeDark {
+  background: #23232b;
+}
+.settingsThemeIcon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.settingsThemeLabel {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-left: 5px;
+  opacity: 0.86;
 }
 
-/* REMINDER FLEX */
+/* REMINDER TOGGLE FLEX */
 .settingsReminderRow {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 12px;
+  flex-direction: row;
+  gap: 14px;
   width: 100%;
 }
-.settingsReminderBtn {
+.settingsReminderToggle {
   width: 54px;
   height: 28px;
   border-radius: 99px;
-  background: #f6fafd;
-  border: 1.2px solid #d2d6e5;
+  background: #f7fafb;
+  border: 1.3px solid #d2d7ec;
   display: flex;
   align-items: center;
   position: relative;
@@ -143,152 +178,202 @@
   margin-right: 3px;
   padding: 0;
 }
-.settingsReminderBtn[aria-pressed="true"] {
-  background: #defbfc;
-  border-color: var(--accent, #007aff);
+.settingsReminderToggle[aria-pressed="true"] {
+  background: #e7f8fb;
+  border-color: var(--settings-accent);
 }
-.settingsReminderBtn:focus-visible {
-  outline: 2.2px solid var(--accent, #007aff);
+.settingsReminderToggle:focus-visible {
+  outline: 2.2px solid var(--settings-accent);
 }
 .settingsReminderKnob {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 1px 6px #0001;
+  box-shadow: 0 1px 5px #0002;
   position: absolute;
-  left: 5px;
+  left: 6px;
   top: 4px;
-  transition: left 0.17s cubic-bezier(.45,.16,.63,.97);
+  transition: left 0.18s cubic-bezier(.47,.15,.55,.95), background 0.14s;
 }
-.settingsReminderBtn[aria-pressed="true"] .settingsReminderKnob {
+.settingsReminderToggle[aria-pressed="true"] .settingsReminderKnob {
   left: calc(100% - 25px);
 }
-.settingsReminderFeedback {
-  font-size: 0.98rem;
-  color: var(--accent, #007aff);
-  margin-top: 6px;
-  margin-bottom: 0;
-  animation: fadein-slow 1s;
-  min-height: 1em;
+
+.settingsReminderStatus, .settingsReminderFeedback {
+  font-size: 0.99rem;
+  font-weight: 500;
+  color: var(--settings-accent);
+  margin-left: 7px;
+  margin-top: 2px;
+  min-width: 60px;
 }
 
-/* CLEAR/RESET DATA */
+/* CLEAR/RESET */
 .settingsClearRow {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  width: 100%;
 }
 .settingsClearBtn {
   padding: 10px 23px;
-  border-radius: 10px;
+  border-radius: var(--settings-radius-md);
+  border: 1.4px solid #ffe0e4;
   background: #faeded;
-  border: 1.2px solid #ffe7e7;
+  color: #c31236;
   font-weight: 600;
   font-size: 1rem;
-  color: #da2e41;
   cursor: pointer;
-  transition: background 0.10s, color 0.13s, border 0.13s;
+  outline: none;
   box-shadow: none;
+  transition: background 0.13s, color 0.13s, border 0.11s;
 }
-.settingsClearBtn:focus-visible, .settingsClearBtn:hover {
+.settingsClearBtn:focus-visible,
+.settingsClearBtn:hover {
   background: #fff0f0;
-  color: #ba1d33;
-  border-color: #ebafbd;
+  color: #b5122c;
+  border-color: #eeb2b2;
 }
 .settingsClearBtn:disabled {
-  background: #f3e8ee;
-  color: #b5b1b1;
-  opacity: 0.7;
+  background: #f2e6e8;
+  color: #bdbdbd;
+  opacity: 0.74;
   cursor: not-allowed;
 }
 .settingsClearSuccess {
   color: var(--success, #33c374);
   font-weight: 700;
   font-size: 1rem;
-  margin-left: 7px;
+  margin-left: 8px;
 }
-/* Info below clear/reset */
-.settingsInfoMessage {
-  font-size: 0.96rem;
-  color: #8fa4bf;
+.settingsClearInfo {
+  font-size: 0.95rem;
+  color: #8594ac;
   font-weight: 400;
   margin-top: 5px;
-  margin-bottom: 0;
 }
 
-/* EMAIL AREA */
+/* EMAIL GROUP */
 .settingsEmailRow {
   display: flex;
   flex-direction: row;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
   width: 100%;
+  min-height: 38px;
 }
 .settingsEmailInput {
-  padding: 10px 14px;
+  padding: 10px 15px;
   background: #f9fbfd;
-  color: #232a39;
-  border: 1.3px solid #d4e7f0;
+  color: #1c202b;
+  border: 1.3px solid #d6e4f2;
   font-size: 1.07rem;
-  border-radius: 6px;
+  border-radius: var(--settings-radius-sm);
   flex: 1 1 0;
-  min-width: 0;
+  min-width: 64px;
   box-shadow: none;
+  outline: none;
   transition: border 0.13s;
 }
 .settingsEmailInput:focus {
-  border-color: var(--accent, #007aff);
-  outline: none;
+  border-color: var(--settings-accent);
+}
+.settingsEmailInput[aria-invalid="true"] {
+  border-color: var(--settings-danger);
+  background: #fff7f7;
 }
 .settingsEmailVerifyBtn {
-  padding: 9px 18px;
+  padding: 10px 18px;
   border-radius: 8px;
-  background: #eafbea;
-  font-weight: 600;
+  background: #def8e2;
+  color: #168852;
   font-size: 1.01rem;
-  color: #157932;
-  border: 1.2px solid #b5edb9;
+  font-weight: 600;
+  border: 1.2px solid #b9efc3;
   cursor: pointer;
-  transition: background 0.13s, color 0.13s, border 0.13s;
+  box-shadow: none;
+  outline: none;
+  transition: background 0.12s, color 0.13s, border 0.13s;
 }
-.settingsEmailVerifyBtn:focus-visible, .settingsEmailVerifyBtn:hover {
-  background: #d8fbd4;
-  color: #106d24;
-  border-color: #86de99;
+.settingsEmailVerifyBtn:hover,
+.settingsEmailVerifyBtn:focus-visible {
+  background: #cafbe8;
+  color: #0f6f25;
+  border-color: #92dfa0;
 }
 .settingsEmailVerifyBtn:disabled {
-  background: #dbefdb;
-  color: #a5e6b8;
+  background: #dfeee2;
+  color: #aeefb7;
   cursor: not-allowed;
 }
 .settingsEmailFeedback {
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   margin-top: 4px;
   font-weight: 500;
-  color: var(--accent, #007aff);
-  min-height: 1.3em;
+  color: var(--settings-accent);
+  min-height: 1.2em;
+}
+.settingsEmailFeedback.fail {
+  color: var(--settings-danger);
+}
+.settingsEmailFeedback.success {
+  color: var(--success, #33c374);
 }
 
-/* Responsive adjustments */
-@media (max-width: 700px) {
-  .settingsContainer {
-    padding: 14px 2vw 16px 2vw;
-    max-width: 97vw;
-    border-radius: 13px;
-  }
-  .settingsTitle { font-size: 1.19rem; }
-}
-@media (max-width: 480px) {
-  .settingsContainer { padding: 8px 1vw 13px 1vw; }
-  .settingsTitle { font-size: 1.07rem; }
-  .settingsEmailInput { font-size: 0.99rem; }
-  .settingsClearBtn { font-size: 0.96rem; }
+/* ALL BUTTONS FLAT & CALM */
+.settingsCard button,
+.settingsCard input[type="button"],
+.settingsCard input[type="submit"] {
+  box-shadow: none !important;
+  outline: none;
+  transition: background 0.12s, color 0.13s, border 0.13s;
+  font-family: inherit;
+  font-size: 1.01rem;
 }
 
-/* Fade-in keyframes for minimalist transitions */
-@keyframes fadein-slow {
+/* Animations for feedback */
+@keyframes fadein-soft {
   0% { opacity: 0; transform: translateY(18px);}
   100% { opacity: 1; transform: translateY(0);}
 }
+.settingsReminderFeedback,
+.settingsClearSuccess,
+.settingsEmailFeedback {
+  animation: fadein-soft 0.9s cubic-bezier(.4,0,.2,1) both;
+}
+
+@media (max-width: 660px) {
+  .settingsCard {
+    padding: 13px 2vw 13px 2vw;
+    max-width: 99vw;
+    border-radius: 13px;
+  }
+  .settingsTitle {
+    font-size: 1.19rem;
+  }
+  .settingsEmailInput {
+    font-size: 0.97rem;
+  }
+}
+@media (max-width: 420px) {
+  .settingsCard {
+    padding: 8px 1vw 13px 1vw;
+    min-width: 0;
+  }
+  .settingsTitle {
+    font-size: 1.07rem;
+  }
+}
+
+/* Accessibility/Focus states */
+.settingsCard button:focus-visible,
+.settingsCard input:focus-visible,
+.settingsCard [tabindex="0"]:focus-visible {
+  outline: 2.5px solid var(--settings-accent);
+  outline-offset: 1.5px;
+  z-index: 2;
+}
+
+/* Remove all non-essential shadows, add only whitespace and border */
