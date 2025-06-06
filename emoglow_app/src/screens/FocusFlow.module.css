@@ -1,4 +1,39 @@
-.focusFlowSection {}
-.focusFlowHeader {}
-.focusFlowContent {}
-.focusFlowFooter {}
+.focusFlowSection {
+  min-height: 75vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg,#dbeafd 0%, #fff6fa 100%);
+  padding: 3vw 2vw;
+}
+.focusFlowHeader {
+  font-size: 1.43rem;
+  font-weight: 600;
+  color: var(--accent, #167ad9);
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.01em;
+  margin-top: 0.7rem;
+}
+.focusFlowContent {
+  background: rgba(255,255,255,0.16);
+  border-radius: 16px;
+  box-shadow: var(--shadow-med, 0 8px 32px rgba(40,64,120,0.13));
+  padding: 24px 16px;
+  margin-bottom: 1.8rem;
+  max-width: 420px;
+  width: 100%;
+  color: #273982;
+}
+.focusFlowFooter {
+  text-align: center;
+  color: #47a6ff;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.009em;
+}
+@media (max-width: 600px) {
+  .focusFlowContent { padding: 12px 3vw; }
+  .focusFlowHeader { font-size: 1.02rem;}
+}
