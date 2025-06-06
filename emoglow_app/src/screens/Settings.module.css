@@ -203,44 +203,51 @@
 .settingsEmailInputRow {
   display: flex;
   flex-direction: row;
-  gap: 7px;
+  gap: 10px;
   align-items: center;
 }
 .settingsEmailInput {
-  padding: 8px 13px;
-  background: #fbfcfd;
-  color: #222;
-  border: 1.3px solid #cce5fc;
-  font-size: 1.03rem;
+  padding: 9px 16px;
+  background: #f9fbfd;
+  color: #232a39;
+  border: 1.2px solid #d4e7f0;
+  font-size: 1.05rem;
   border-radius: 6px;
   flex: 1 1 0;
   min-width: 0;
-  box-shadow: 0 1px 6px #b9daff18;
-  transition: border 0.17s;
+  box-shadow: none;
+  transition: border 0.13s;
 }
 .settingsEmailInput:focus {
   border-color: var(--accent, #007aff);
+  outline: none;
 }
 .settingsEmailVerifyBtn {
-  padding: 7px 13px;
+  padding: 8px 18px;
   border-radius: 7px;
-  background: linear-gradient(90deg,#aaeab1 0%, #b0e2ff 100%);
+  background: #eafbea;
   font-weight: 600;
   font-size: 0.98rem;
-  color: #003144;
-  border: none;
+  color: #157932;
+  border: 1.1px solid #b5edb9;
   cursor: pointer;
-  transition: background 0.14s;
+  transition: background 0.13s, color 0.13s, border 0.13s;
+}
+.settingsEmailVerifyBtn:focus-visible, .settingsEmailVerifyBtn:hover {
+  background: #d8fbd4;
+  color: #106d24;
+  border-color: #86de99;
 }
 .settingsEmailFeedback {
-  font-size: 0.95rem;
-  margin-top: 3px;
+  font-size: 0.96rem;
+  margin-top: 4px;
   font-weight: 500;
+  color: var(--accent, #007aff);
 }
 
 @media (max-width: 600px) {
-  .settingsContainer { padding: 17px 2vw 16px 2vw;}
-  .settingsTitle { font-size: 1.19rem;}
+  .settingsContainer { padding: 14px 2vw 14px 2vw;}
+  .settingsTitle { font-size: 1.12rem;}
 }
 @keyframes fadein-slow {
   0% { opacity: 0; transform: translateY(30px);}
