@@ -5,133 +5,136 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: var(--tracker-gradient, #f8fafd);
-  padding: 24px 10px 64px 10px;
-  transition: background 0.7s;
+  background: var(--primary, #f8fafd);
+  padding: 28px 0 54px 0;
+  transition: background 0.5s;
   position: relative;
 }
 
 .dark-mode .trackerSection {
-  --tracker-gradient: #101217;
-  background: var(--tracker-gradient, #101217);
+  background: var(--primary, #101217);
 }
 
 .trackerTitle {
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2.06rem;
   font-weight: 700;
-  color: var(--text-light, #fff);
+  color: var(--text-dark, #222e37);
   letter-spacing: -0.01em;
   margin-bottom: 2px;
-  margin-top: 18px;
+  margin-top: 22px;
   background: none;
+}
+.dark-mode .trackerTitle {
+  color: var(--text-light, #e7ecfa);
 }
 
 .trackerDescription {
   text-align: center;
-  color: #cfd8e7;
+  color: var(--text-secondary, #8c9ab3);
   font-size: 1.09rem;
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   letter-spacing: -0.01em;
-  opacity: 0.83;
+  opacity: 0.85;
   background: none;
 }
+.dark-mode .trackerDescription {
+  color: #a2acc7;
+}
 
-/* Control row - maximally spaced, whitespace only */
 .trackerControls {
   display: flex;
   flex-direction: row;
-  gap: 13px;
+  gap: 12px;
   align-items: center;
   justify-content: center;
-  margin: 1.06rem auto 0 auto;
+  margin: 1.15rem auto 0 auto;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 700px;
+  max-width: 730px;
   background: none;
 }
 
-/* Toggle: flat and minimalist pill, no shadow or glass */
+/* View toggle: flat pill, variable driven */
 .trackerViewToggle {
   display: flex;
-  border-radius: 20px;
+  border-radius: 19px;
   overflow: hidden;
   background: var(--secondary, #fff);
-  border: 1.2px solid #e6eaf2;
-  box-shadow: none;
+  border: 1.1px solid #e3e7f2;
 }
-
 .trackerViewToggle button {
-  flex: 1;
   background: transparent;
-  color: #151839;
+  color: #282d32;
   font-weight: 600;
   border: none;
-  padding: 9px 28px;
+  min-width: 95px;
+  padding: 10px 12px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.13s, color 0.13s;
+  transition: background 0.12s, color 0.14s;
   outline: none;
-  border-radius: 0;
 }
-
 .trackerViewToggle button.selected,
 .trackerViewToggle button:focus-visible {
   background: var(--accent, #007aff);
   color: #fff;
 }
 
-/* Download / clear: flat, minimal "chip" style */
+/* Download & clear buttons: flat, minimal border, crisp */
 .trackerDownloadBtn,
 .trackerClearBtn {
-  border-radius: 9px;
-  padding: 8px 21px;
-  font-size: 1rem;
+  border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 1.01rem;
   font-weight: 600;
-  outline: none;
-  border: 1.1px solid #e2eafc;
   background: var(--secondary, #fff);
   color: var(--accent, #007aff);
+  border: 1.1px solid #e3e7f5;
   box-shadow: none;
-  transition: background 0.12s, color 0.12s, border 0.11s;
   cursor: pointer;
+  transition: background 0.15s, color 0.13s, border 0.13s;
+  outline: none;
 }
 .trackerDownloadBtn:focus,
 .trackerClearBtn:focus,
 .trackerDownloadBtn:hover,
 .trackerClearBtn:hover {
-  background: #f6faff;
+  background: #f7fafd;
   color: var(--accent, #007aff);
   outline: 2px solid var(--accent, #007aff);
 }
 
-/* Card-container for chart: flat, no glass, gentle border, max whitespace */
+/* Card container for chart area: super flat, gentle border, whitespace-heavy */
 .trackerChartContainer {
   background: var(--secondary, #fff);
   border-radius: 18px;
   box-shadow: none;
-  border: 1.2px solid #e9ebf4;
-  padding: 28px 18px 14px 18px;
+  border: 1.2px solid #e3e7f2;
+  padding: 34px 18px 21px 18px;
   width: 100%;
-  max-width: 650px;
-  min-height: 270px;
+  max-width: 670px;
+  min-height: 260px;
   margin: 0 auto;
-  margin-top: 0.7rem;
-  transition: background 0.21s, border 0.18s;
+  margin-top: 1.2rem;
+  transition: background 0.18s, border 0.18s;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
 }
 
 .dark-mode .trackerChartContainer {
-  background: #191b24;
-  border: 1.1px solid #22243a;
+  background: #181a22;
+  border: 1.1px solid #23243a;
 }
 
-/* Flat mood legend, only subtle border and color accent */
 .trackerLegend {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 13px;
+  gap: 9px;
+  margin-top: 16px;
   width: 100%;
   justify-content: center;
   background: none;
@@ -146,56 +149,55 @@
   color: var(--accent, #007aff);
   border-radius: 15px;
   padding: 5px 10px;
-  border: 1.1px solid #d8e3fa;
+  border: 1.1px solid #dde7fa;
 }
-
 .dark-mode .trackerLegend span {
   background: #20222b;
-  color: #b7d6ff;
+  color: #b6d4ff;
   border-color: #23304e;
 }
 
-/* Subtle privacy footer */
 .trackerFooter {
-  margin-top: 20px;
-  font-size: 0.96rem;
-  color: #becbe2;
+  margin-top: 22px;
+  font-size: 0.99rem;
+  color: #bed0ef;
   text-align: center;
-  opacity: 0.64;
+  opacity: 0.7;
   user-select: none;
   font-weight: 500;
   background: none;
 }
+.dark-mode .trackerFooter {
+  color: #92b6e9;
+}
 
-/* Blank state: calm, faded */
+/* Empty/blank state: calm, faded */
 .trackerEmptyState {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 26px 0 0 0;
+  padding: 36px 0 0 0;
   min-height: 180px;
   color: #8da3be;
   font-weight: 600;
-  opacity: 0.86;
-  font-size: 1.19rem;
+  opacity: 0.89;
+  font-size: 1.13rem;
   background: none;
 }
 
-/* Slow fade-in for text and cards (matches theme's fadein) */
+@media (max-width: 800px) {
+  .trackerChartContainer { max-width: 99vw; padding: 4vw 2vw 4vw 2vw;}
+  .trackerControls { gap: 5px; }
+}
+@media (max-width: 590px) {
+  .trackerSection { padding: 0 0 28px 0; }
+  .trackerTitle { font-size: 1.17rem; }
+  .trackerChartContainer { padding: 12px 1vw 10px 1vw; }
+}
+
 @keyframes fadein-slow {
   0% { opacity: 0; transform: translateY(30px);}
   100% { opacity: 1; transform: translateY(0);}
-}
-
-/* Responsive: maximize whitespace, soft scale for mobile */
-@media (max-width: 780px) {
-  .trackerChartContainer { max-width: 99vw; padding: 3vw 2vw 2vw 2vw;}
-  .trackerControls { gap: 5px; }
-}
-@media (max-width: 600px) {
-  .trackerSection { padding: 0 0 40px 0;}
-  .trackerTitle { font-size: 1.28rem;}
-  .trackerChartContainer { min-width: 0; padding: 9vw 2vw 4vw 2vw; }
 }
