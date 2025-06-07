@@ -2,4 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add any custom utilities or tweaks for premium feel here */
+/* Premium custom Apple-like tweaks */
+@layer utilities {
+  .elevation-soft {
+    box-shadow: 0 2px 24px 0 rgba(110,160,255,0.07), 0 12px 64px 0 rgba(130,172,244,0.13);
+  }
+  .glass-panel {
+    backdrop-filter: blur(14px) saturate(1.09);
+    background-color: rgba(254,254,255,0.77);
+  }
+  .card-anim {
+    transition: box-shadow .21s cubic-bezier(.31,.64,.51,.98), background 0.28s cubic-bezier(.24,.48,.33,1.12), border-radius .19s;
+  }
+  .spacious {
+    letter-spacing: 0.008em;
+    word-spacing: 0.1em;
+    line-height: 1.63;
+    font-feature-settings: "ss01" on;
+  }
+  .apple-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(120deg,#bde9fd 24%,#bacfff 100%);
+    border-radius: 19px;
+    min-height: 56px;
+    border: 1.5px solid #ffffff0d;
+  }
+}
