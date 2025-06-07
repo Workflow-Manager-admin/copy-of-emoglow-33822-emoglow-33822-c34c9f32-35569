@@ -1,67 +1,112 @@
 :root {
-  --base-light: #00ffff;
-  --base-dark: #00008b;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-  /* DevSuite gradients & theme */
-  --devsuite-gradient: linear-gradient(98deg, #e0f7fa 56%, #c9e4ff 100%);
-  --devsuite-gradient-dark: linear-gradient(91deg, #16202e 70%, #0a1a35 100%);
-  --logo-glow: 0 0 10px #00fff6aa, 0 0 40px #16a08544;
+  /* Apple-like light & dark gradients, subtle shadow, unified accent */
+  --base-light: #91e6ff;           /* new: soft glass blue, feels premium */
+  --base-dark: #0c1121;            /* deep space blue, elegant dark */
+  --accent: #ff9800;
+  --accent-fade: #ff980055;
+  --surface: #fff;
+  --surface-dark: #1a2236;
+  --text-color: #0c1121;
+  --text-color-dark: #f8fafc;
+  --text-secondary: #6b768b;
+
+  /* Gradients */
+  --gradient-light: linear-gradient(98deg, #e3f2fd 0%, #f5fcff 100%);
+  --gradient-dark: linear-gradient(91deg, #16202e 73%, #223047 100%);
+  --elevate: 0 1.5px 12px 0 rgb(60,120,250,0.07), 0 1.5px 48px 0 rgb(90,120,255,0.10);
+
+  --border-color: rgba(33, 44, 85, 0.08);
+  --border-color-dark: rgba(160, 180, 220, 0.06);
+  --border-radius: 16px;
+
+  --card-bg: #fff;
+  --card-bg-dark: #181c23d9;
+  --card-shadow: 0 3px 32px 0 rgb(20,40,80,0.09);
+
+  --modal-bg: rgba(245,247,253,0.98);
+  --modal-bg-dark: rgba(20,24,41,0.97);
+
+  --logo-glow: 0 0 22px #b5fbff60, 0 0 62px #16a08533;
 }
 
 [data-theme='light'] {
-  --background-main: #f7fafc;
-  --background-secondary: #fafbff;
+  --background-main: #f8fafc;
+  --background-secondary: #f2f5fc;
+  --text-color: var(--text-color);
+  --border-curr: var(--border-color);
+  --card-bg-curr: var(--card-bg);
+  --modal-bg-curr: var(--modal-bg);
 }
 [data-theme='dark'] {
-  --background-main: #10172b;
-  --background-secondary: #191e23;
+  --background-main: #101622;
+  --background-secondary: #151a24;
+  --text-color: var(--text-color-dark);
+  --border-curr: var(--border-color-dark);
+  --card-bg-curr: var(--card-bg-dark);
+  --modal-bg-curr: var(--modal-bg-dark);
 }
 
+/* --- GenCloud Logo effect --- */
 .devsuite-logo {
   will-change: transform;
   text-shadow: var(--logo-glow);
-  filter: drop-shadow(0 2px 14px #35e6f5cc);
-  transition: filter 0.2s;
+  filter: drop-shadow(0 2px 16px #93e9feaa);
+  transition: filter 0.28s cubic-bezier(.68,-0.2,.29,1.23), transform 0.22s cubic-bezier(.21,.67,.83,.67);
 }
 
-.gradient-text {
-  background-image: linear-gradient(88deg,#35e6f5,#decaff 60%);
+/* Gradient text for Apple-like hero headers */
+.gradient-text,
+.bg-gradient-text {
+  background-image: linear-gradient(92deg, #65e3fa 3%, #ffa96b 87%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* --- Unification of baseline --- */
 body {
   margin: 0;
-  font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: var(--base-dark);
+  font-family: 'SF Pro Display', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100dvh;
+  background: var(--gradient-light);
   color: var(--text-color);
+  letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.47s cubic-bezier(.65,.05,.36,1), color 0.36s cubic-bezier(.65,.05,.36,1);
+}
+
+[data-theme="dark"] body {
+  background: var(--gradient-dark);
+  color: var(--text-color-dark);
 }
 
 .app {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  background: none;
 }
 
-.navbar {
-  background-color: var(--base-dark);
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  box-sizing: border-box;
+/* ---- Apple-like Navigation ---- */
+.navbar, .navbar.bg {
+  background: rgba(20,29,49,0.92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-curr);
+  transition: border 0.18s, background 0.32s cubic-bezier(.4,.07,.5,1);
+  box-shadow: 0 2px 18px 0 rgb(15,30,60,0.03);
   z-index: 100;
 }
 
-.logo {
-  font-size: 1.25rem;
-  font-weight: 600;
+/* Remove border for mobile nav when at top */
+.navbar {
+  border-bottom: 1px solid var(--border-curr);
+}
+
+.logo, .devsuite-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -72,61 +117,182 @@ body {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1050px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 3vw;
   width: 100%;
   box-sizing: border-box;
 }
 
+/* ---- Hero Section ---- */
 .hero {
-  padding-top: 120px;
+  padding-top: min(16dvh,128px);
   padding-bottom: 64px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
+  background: none;
 }
 
+/* Subtle subtitle text */
 .subtitle {
-  color: var(--base-light);
+  color: #91e6ff;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.18rem;
+  text-shadow: 0 2px 9px #eaeeee0a;
 }
 
 .title {
-  font-size: 3.5rem;
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
+  font-size: clamp(2.7rem, 7vw, 3.7rem);
+  font-weight: 700;
+  letter-spacing: -0.009em;
+  line-height: 1.14;
+  margin: 0 0 6px 0;
+  text-shadow: 0 2px 18px #add1fa17, 0 0.5px 1.5px #cfeaff0d;
 }
 
 .description {
-  font-size: 1.1rem;
-  line-height: 1.5;
+  font-size: 1.12rem;
+  line-height: 1.56;
   color: var(--text-secondary);
   max-width: 600px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 450;
+  text-shadow: 0 1px 6px #ddeefe10;
 }
 
-.btn {
-  background-color: var(--base-light);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: 500;
+/* ----- BUTTONS (minimal/premium) ----- */
+.btn, .btn-large {
+  background: linear-gradient(96deg, var(--base-light), #ffb450 98%);
+  color: #181c23;
+  border: 0;
+  border-radius: 20px;
+  padding: 12px 28px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  box-shadow: 0 4px 13px 0 #91e6ff0d, 0 1px 4px 0 #ffd2a50c;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  outline: 0;
+  transition: 
+    box-shadow 0.26s cubic-bezier(.55,.19,.51,1.03),
+    background 0.22s cubic-bezier(.75,.05,.25,1),
+    transform 0.18s cubic-bezier(.31,.61,.56,1.1);
+  will-change: background, box-shadow, transform;
+  user-select: none;
 }
 
-.btn:hover {
-  background-color: #7691ff;
+.btn:hover, .btn-large:hover, .btn:focus {
+  background: linear-gradient(97deg, #74bffc 60%, #ffd19c 120%);
+  transform: scale(1.045) translateY(-1.5px);
+  box-shadow: 0 6px 24px 0 #88e3ff18, 0 2px 8px 0 #ffd2a536;
 }
 
+.btn:active {
+  background: linear-gradient(93deg, #8eedff 9%, #fad29f 71%);
+  filter: brightness(0.95);
+  transform: scale(0.99);
+}
+
+/* For get-started etc. slight upsize */
 .btn-large {
-  padding: 12px 24px;
-  font-size: 1.1rem;
+  padding: 14px 40px;
+  font-size: 1.14rem;
+}
+
+/* --- Card & Modal/Dialogue (Apple-like Soft Glass Minimalism) --- */
+.card, .modal, .glass-card {
+  background: var(--card-bg-curr, #fff);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  border: 0.5px solid var(--border-curr);
+  transition: box-shadow .23s cubic-bezier(.4,.17,.54,1), background 0.35s cubic-bezier(.18,.47,.4,1.11), border 0.22s;
+  padding: 1.4rem 1.6rem;
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .modal,
+[data-theme="dark"] .glass-card {
+  background: var(--card-bg-dark);
+  color: var(--text-color-dark);
+}
+
+/* modal/dialg extra effect */
+.modal, .glass-card {
+  backdrop-filter: blur(13px) saturate(1.06);
+  -webkit-backdrop-filter: blur(13px) saturate(1.06);
+  box-shadow: 0 6px 42px 0 #87d3ff17, 0 2px 16px 0 #16194711;
+  border-radius: 24px;
+  /* modal can get a little more elevated in drop shadow */
+}
+
+/* --- Custom Scrollbars (Webkit & Chrome/Edge, minimal) --- */
+::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(100deg,#aef6f9 0,#b7baf1 100%);
+  border-radius: 18px;
+  min-height: 60px;
+  border: 2px solid #ffffff0d;
+  box-shadow: 0 1px 2px #b5e6ff24;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(99deg, #4ca1fc 33%, #e6dbff 100%);
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox (minimal, elegant) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b2eaff #f7fafe;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(120deg, #424460 12%, #5d81c3 80%);
+  border: 2px solid #16202e51;
+}
+[data-theme="dark"] ::selection {
+  background: #4566e477;
+}
+[data-theme="dark"] * {
+  scrollbar-color: #5d81c3 #181c23;
+}
+
+/* Transitions for page fade, titles, hero, Apple-style */
+.page-fade-anim {
+  animation: pageFadeIn 0.7s cubic-bezier(.11,.56,.66,1.04) both;
+}
+@keyframes pageFadeIn {
+  0%   { opacity: 0; transform: translateY(36px) scale(.97);}
+  90%  { opacity: 1; }
+  100% { opacity: 1; transform: none;}
+}
+.smooth-in {
+  opacity: 0;
+  animation: smoothIn 1.13s cubic-bezier(.35,.59,.65,1.09) .55s both;
+}
+@keyframes smoothIn {
+  0%   { opacity: 0; filter: blur(6px);}
+  66%  { opacity: 0.98; filter: blur(1.5px);}
+  98%,100% { opacity: 1; filter: none;}
+}
+
+/* --- Remove old/unused, let Tailwind control base everywhere else --- */
+.hide {
+  display: none !important;
+}
+
+/* Extra spacing for luxury feel */
+.spacious {
+  letter-spacing: 0.004em;
+  word-spacing: 0.07em;
+  line-height: 1.63;
+  font-feature-settings: "ss01" on;
 }
