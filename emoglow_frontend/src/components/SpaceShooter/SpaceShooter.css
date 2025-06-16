@@ -87,9 +87,12 @@
   margin-top: 0.14em;
 }
 
-.spaceshooter-btn {
-  background: linear-gradient(93deg,#0cdfde 68%, #2d3d7a);
-  color: #fff;
+.spaceshooter-btn,
+.spaceshooter-btn-main,
+button.spaceshooter-btn,
+button.spaceshooter-btn-main {
+  background: #ff9800;
+  color: #1a253d;
   border: none;
   box-shadow: 0 2px 26px #2ae5e82e;
   border-radius: 11px;
@@ -98,18 +101,33 @@
   font-weight: 600;
   cursor: pointer;
   margin-top: 0.6em;
-  transition: background 0.21s, color 0.12s, transform 0.13s;
+  transition: background 0.21s, color 0.12s, transform 0.13s, border 0.12s;
 }
+
 .spaceshooter-btn-main {
-  background: linear-gradient(90deg,#20e5cd 65%,#77b7f9 99%);
+  background: #ff9800;
   color: #1a253d;
   box-shadow: 0 3px 25px #31f4ff47;
   font-size: 1.22rem;
 }
-.spaceshooter-btn:active { transform: scale(0.96);}
-.spaceshooter-btn:hover, .spaceshooter-btn:focus-visible {
-  color: #33ebfa;
-  background: linear-gradient(86deg,#1fe1f4 51%, #a0dcfb 100%);
+
+.spaceshooter-btn:active,
+.spaceshooter-btn-main:active {
+  transform: scale(0.96);
+}
+
+/* Solid darker orange on hover/focus - for consistent UX */
+.spaceshooter-btn:hover,
+.spaceshooter-btn:focus-visible,
+.spaceshooter-btn-main:hover,
+.spaceshooter-btn-main:focus-visible,
+button.spaceshooter-btn:hover,
+button.spaceshooter-btn:focus-visible,
+button.spaceshooter-btn-main:hover,
+button.spaceshooter-btn-main:focus-visible {
+  background: #de8600;
+  color: #fff;
+  border: 2px solid #de8600;
 }
 
 .spaceshooter-gamelabel {

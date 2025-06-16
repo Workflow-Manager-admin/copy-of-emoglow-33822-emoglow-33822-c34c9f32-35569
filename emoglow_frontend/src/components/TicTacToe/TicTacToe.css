@@ -219,7 +219,8 @@
 }
 .ttt-result-win {
   color: #32e8da;
-  background: linear-gradient(89deg,#eaffb3 41%,#27fff2 100%);
+  background: #191308;
+  border: 2px solid #ff9800;
   border-radius: 11px;
   padding: 0.7em 1.25em;
   font-weight: 700;
@@ -229,15 +230,18 @@
   align-items: center;
   gap: 0.44em;
 }
+
 .ttt-result-draw {
-  color: #685ddb;
-  background: linear-gradient(94deg,#bdeaff 67%,#dccfff 100%);
+  color: #ff9800;
+  background: #151515;
   border-radius: 12px;
+  border: 2px solid #ff9800;
   padding: 0.7em 1.2em;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
 }
+
 .ttt-result-turn {
   background: #162548e8;
   color: #4defe7;
@@ -259,9 +263,10 @@
 }
 
 /* Animated New Game button */
-.ttt-restart-btn {
-  background: linear-gradient(95deg, #0cdfde 68%, #2d3d7a);
-  color: #fff;
+.ttt-restart-btn,
+button.ttt-restart-btn {
+  background: #ff9800 !important;
+  color: #fff !important;
   border: none;
   box-shadow: 0 2px 20px #75c6fc20;
   border-radius: 13px;
@@ -272,7 +277,7 @@
   margin-top: 1.1em;
   margin-bottom: 0.4em;
   outline: none;
-  transition: background 0.18s, color 0.12s, transform 0.19s;
+  transition: background 0.18s, color 0.12s, border 0.13s, transform 0.19s;
   animation: ttt-restart-in 0.44s cubic-bezier(.31,1.15,.44,1.12);
   display: inline-flex;
   align-items: center;
@@ -285,9 +290,13 @@
   margin-right: 0.34em;
 }
 .ttt-restart-btn:active { transform: scale(0.97);}
-.ttt-restart-btn:hover, .ttt-restart-btn:focus-visible {
-  color: #33ebfa;
-  background: linear-gradient(86deg, #1fe1f4 51%, #c6fcb3 100%);
+.ttt-restart-btn:hover,
+.ttt-restart-btn:focus-visible,
+button.ttt-restart-btn:hover,
+button.ttt-restart-btn:focus-visible {
+  color: #fff !important;
+  background: #de8600 !important;
+  border: 2px solid #de8600 !important;
 }
 
 @keyframes ttt-restart-in {

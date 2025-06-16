@@ -166,27 +166,38 @@ a:focus-visible {
   letter-spacing: 0.01em;
 }
 .glow, .glow-text { color: var(--primary-orange); }
-.btn, .btn.btn-glow {
+.btn, .btn.btn-glow, button, a.button, .play-btn {
   border: none; outline: none;
   font-size: 1.085rem;
   font-family: var(--main-font); font-weight: 600;
   color: var(--primary-black);
-  background: var(--primary-orange);
+  background: #ff9800 !important;
   box-shadow: none;
   padding: 13px 33px;
   border-radius: 8px;
   cursor: pointer; margin-bottom: 10px;
-  transition: background var(--transition), color var(--transition), transform var(--transition);
+  transition: background var(--transition), color var(--transition), border var(--transition), transform var(--transition);
 }
+
 .btn:focus-visible,
-.btn.btn-glow:focus-visible {
+.btn.btn-glow:focus-visible,
+button:focus-visible,
+a.button:focus-visible,
+.play-btn:focus-visible {
   outline: 2px solid #fff;
-  background: #fff;
-  color: var(--primary-orange);
+  background: #ff9800 !important;
+  color: #fff !important;
+  border: 2px solid #ff9800;
 }
-.btn:hover, .btn.btn-glow:hover {
-  background: var(--primary-white);
-  color: var(--primary-orange);
+
+.btn:hover,
+.btn.btn-glow:hover,
+button:hover,
+a.button:hover,
+.play-btn:hover {
+  background: #de8600 !important;
+  color: #fff !important;
+  border: 2px solid #de8600;
   transform: translateY(-1.5px) scale(1.03);
 }
 .explore-emoji { font-size: 1.1em; }

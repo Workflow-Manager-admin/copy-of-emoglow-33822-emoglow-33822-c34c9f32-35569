@@ -217,8 +217,10 @@ body {
 .ttt-restart-btn,
 .spaceshooter-btn,
 .rps-reset-btn,
-.rps-move-btn {
-  background: var(--accent-orange);
+.rps-move-btn,
+button,
+a.button {
+  background: #ff9800; /* Consistent solid orange */
   color: var(--primary-black);
   border: none;
   border-radius: 8px;
@@ -233,36 +235,51 @@ body {
   transition:
     background 0.19s,
     color 0.13s,
+    border 0.12s,
     transform 0.12s,
     box-shadow 0.13s;
 }
+
 .btn-large {
   padding: 15px 32px;
   font-size: 1.11rem;
 }
+
+/* Consistent focus ring for all buttons */
 .btn:focus-visible,
 .ttt-restart-btn:focus-visible,
 .spaceshooter-btn:focus-visible,
 .rps-reset-btn:focus-visible,
-.rps-move-btn:focus-visible {
+.rps-move-btn:focus-visible,
+button:focus-visible,
+a.button:focus-visible {
   box-shadow: 0 3px 28px #ff980051, 0 0 0 3px var(--nav-focus);
 }
+
+/* Solid dark orange for hover (no gradients/no background-image) */
 .btn:hover,
 .ttt-restart-btn:hover,
 .spaceshooter-btn:hover,
 .rps-reset-btn:hover,
-.rps-move-btn:hover {
-  background: var(--primary-white);
-  color: var(--accent-orange);
-  border: 2px solid var(--accent-orange);
+.rps-move-btn:hover,
+button:hover,
+a.button:hover {
+  background: #de8600;
+  color: var(--primary-white);
+  border: 2px solid #de8600;
 }
+
 .btn:active,
 .ttt-restart-btn:active,
 .spaceshooter-btn:active,
 .rps-reset-btn:active,
-.rps-move-btn:active {
+.rps-move-btn:active,
+button:active,
+a.button:active {
   transform: scale(0.97);
 }
+
+/* Remove any prior or duplicate gradient/background-image rules (cleanup if leftovers in the file) */
 
 /* Headings & Typography */
 .subtitle {
