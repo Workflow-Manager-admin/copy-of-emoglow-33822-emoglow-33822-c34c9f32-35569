@@ -7,11 +7,11 @@ import TicTacToe from "./components/TicTacToe/TicTacToe";
 
 /**
  * Public/brand navigation links for all pages
+ * Space Shooter references and commented link have been fully removed.
  */
 const NAV_LINKS = [
   { to: "/", label: "Home", exact: true },
   { to: "/rock-paper-scissors", label: "Rock Paper Scissors" },
-  // Space Shooter link removed
   { to: "/tic-tac-toe", label: "Tic Tac Toe" },
 ];
 
