@@ -1,0 +1,17 @@
+.tictactoe-root {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.tictactoe-back-link {
+  display: inline-block;
+  margin-top: 1.3rem;
+  color: #33e4e4;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.tictactoe-back-link:hover {
+  color: #89f0f0;
+}

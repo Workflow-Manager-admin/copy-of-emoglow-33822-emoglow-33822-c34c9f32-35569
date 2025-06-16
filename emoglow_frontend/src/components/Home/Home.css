@@ -1,0 +1,46 @@
+.home-root {
+  margin-top: 88px;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 3rem;
+  margin: 1rem 0 0.25rem;
+}
+
+.home-subtitle {
+  color: #33e4e4;
+  margin-bottom: 2rem;
+}
+
+.home-tiles {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+.home-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2.2rem;
+  background: #052944;
+  color: white;
+  border-radius: 1rem;
+  text-decoration: none;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transition: transform 0.15s, background 0.2s;
+  min-width: 160px;
+}
+
+.home-tile span:first-child {
+  font-size: 2.5rem;
+}
+
+.home-tile:hover {
+  transform: translateY(-5px) scale(1.07);
+  background: #074e78;
+}
