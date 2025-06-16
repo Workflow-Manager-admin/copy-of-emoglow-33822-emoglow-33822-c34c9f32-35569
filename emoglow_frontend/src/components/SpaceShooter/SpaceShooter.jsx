@@ -1,143 +1,131 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./SpaceShooter.css";
 
-// PUBLIC_INTERFACE
 /**
- * SpaceShooter - A minimal dom/canvas hybrid Space Shooter game for React
- * - Keyboard controls: Arrow or WASD to move, Space/Touch to shoot
- * - Responsive (scalable canvas)
- * - Sound effects for shoot/explosion
- * - State: start screen, gameplay, game over, scoring
- * - Bullets, enemy spawn, movement, collision detection
- * - Animated feedback
+ * SpaceShooter: A minimal shooting game.
+ * - Ship at bottom: left/right keys/touch/buttons
+ * - Shoot bullets with SPACE/tap
+ * - Random falling enemies
+ * - Bullet/enemy collision
+ * - Ship/enemy collision (game over)
+ * - Score UI (top)
+ * - Only black, white, orange: #111, #fff, #ff9800
+ * - Fully responsive for desktop & mobile
  */
+// PUBLIC_INTERFACE
 function SpaceShooter() {
-  // Game states
+  // --- GAME STATE ---
   const [gameState, setGameState] = useState("start"); // start | playing | over
   const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(
-    () => Number(localStorage.getItem("ss_high_score")) || 0
+  const [highScore, setHighScore] = useState(() =>
+    Number(localStorage.getItem("ss_high_score")) || 0
   );
-  const [lives, setLives] = useState(3);
+  const [canvasDims, setCanvasDims] = useState({ width: 370, height: 560 });
 
-  // Gameplay data (ref for non-reactive obj, to avoid rerenders during animation loop)
-  const canvasRef = useRef(null);
+  // --- REFS (no rerender) ---
+  const canvasRef = useRef();
   const animationRef = useRef();
   const playerRef = useRef();
   const bulletsRef = useRef([]);
   const enemiesRef = useRef([]);
   const inputRef = useRef({ left: false, right: false, shoot: false });
   const lastShotRef = useRef(0);
-  const touchStartX = useRef(null);
 
-  // Sound refs
-  const shootAudioRef = useRef();
-  const explosionAudioRef = useRef();
+  // Touch controls
+  const touchStartRef = useRef(null);
+  const touchLeftRef = useRef(false);
+  const touchRightRef = useRef(false);
 
-  // Layout
-  const [canvasDims, setCanvasDims] = useState({ width: 350, height: 540 });
-
-  // Responsive resize
+  // --- RESPONSIVE CANVAS ---
   useEffect(() => {
-    function updateDims() {
-      let w = Math.min(window.innerWidth, 420);
-      let h = Math.max(390, Math.min(window.innerHeight - 140, 700));
+    function resize() {
+      const w = Math.min(420, window.innerWidth - 24);
+      const h = Math.max(350, Math.min(window.innerHeight - 160, 640));
       setCanvasDims({ width: w, height: h });
     }
-    updateDims();
-    window.addEventListener("resize", updateDims);
-    return () => window.removeEventListener("resize", updateDims);
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
-  // Init/reset game
+  // --- GAME INITIALIZATION & RESET ---
   function startGame() {
     setScore(0);
-    setLives(3);
     playerRef.current = {
       x: canvasDims.width / 2,
-      y: canvasDims.height - 54,
+      y: canvasDims.height - 46,
       w: 44,
-      h: 22,
-      speed: 5.8,
+      h: 20,
+      speed: 7,
     };
     bulletsRef.current = [];
     enemiesRef.current = [];
     inputRef.current = { left: false, right: false, shoot: false };
     setGameState("playing");
-    requestAnimationFrame(gameLoop);
+    animationRef.current = requestAnimationFrame(gameLoop);
   }
 
-  function endGame(finalScore) {
+  function gameOver(finalScore) {
     setGameState("over");
-    setHighScore((h) => {
-      if (finalScore > h) {
+    setHighScore((prev) => {
+      if (finalScore > prev) {
         localStorage.setItem("ss_high_score", String(finalScore));
         return finalScore;
       }
-      return h;
+      return prev;
     });
-    // Stop animation loop
-    if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current);
-    }
+    if (animationRef.current) cancelAnimationFrame(animationRef.current);
   }
 
-  // MAIN GAME LOOP
+  // --- MAIN GAME LOOP ---
   function gameLoop(ts) {
     if (gameState !== "playing") return;
     const ctx = canvasRef.current.getContext("2d");
     const { width, height } = canvasDims;
-
-    // Clear
+    // ========== LOGIC ==========
+    // clear
     ctx.clearRect(0, 0, width, height);
-    // Starfield bg (animated)
-    drawStarfield(ctx, width, height, ts);
+    drawBG(ctx, width, height);
 
-    // Move/Draw Player
+    // Player move input
     const player = playerRef.current;
     if (inputRef.current.left) player.x -= player.speed;
     if (inputRef.current.right) player.x += player.speed;
     player.x = Math.max(player.w / 2, Math.min(width - player.w / 2, player.x));
     drawPlayer(ctx, player);
 
-    // Handle shooting
+    // Bullets: shoot
     if (
       inputRef.current.shoot &&
-      ts - lastShotRef.current > 240 && // Shoot rate
-      bulletsRef.current.length < 7
+      ts - lastShotRef.current > 222 &&
+      bulletsRef.current.length < 8
     ) {
       bulletsRef.current.push({
         x: player.x,
         y: player.y - player.h / 2,
-        r: 5.5,
+        r: 6.5,
         vy: -9,
       });
-      if (shootAudioRef.current) {
-        shootAudioRef.current.currentTime = 0;
-        shootAudioRef.current.play();
-      }
       lastShotRef.current = ts;
     }
-
-    // Update/Draw Bullets
-    bulletsRef.current = bulletsRef.current.filter((b) => b.y > -12);
+    // Bullets: update, draw, filter
+    bulletsRef.current = bulletsRef.current.filter((b) => b.y > -13);
     for (let bullet of bulletsRef.current) {
       bullet.y += bullet.vy;
       drawBullet(ctx, bullet);
     }
 
-    // Spawn Enemies
+    // Enemies: spawn
     maybeSpawnEnemy(ts, width);
-
-    // Update/Draw Enemies
-    enemiesRef.current = enemiesRef.current.filter((e) => !e.dead && e.y < height + 28);
+    // Enemies: move, draw, filter
+    enemiesRef.current = enemiesRef.current.filter((e) => !e.dead && e.y < height + 30);
     for (let enemy of enemiesRef.current) {
       enemy.y += enemy.vy;
       enemy.x += enemy.vx;
       drawEnemy(ctx, enemy, ts);
 
-      // Player collision!
+      // Collision with ship: end game
       if (
         !enemy.dead &&
         rectsOverlap(
@@ -152,16 +140,12 @@ function SpaceShooter() {
         )
       ) {
         enemy.dead = true;
-        setLives((v) => {
-          const newLives = v - 1;
-          if (newLives <= 0) endGame(score);
-          else playExplosion();
-          return newLives;
-        });
+        setTimeout(() => gameOver(score), 80);
+        return;
       }
     }
 
-    // Bullet/Enemy collision
+    // Bullets collide with enemies
     for (let bullet of bulletsRef.current) {
       for (let enemy of enemiesRef.current) {
         if (
@@ -169,132 +153,99 @@ function SpaceShooter() {
           circlesOverlap(bullet.x, bullet.y, bullet.r, enemy.x, enemy.y, enemy.r)
         ) {
           enemy.dead = true;
-          bullet.y = -99; // Remove bullet off-screen efficiently
+          bullet.y = -91; // remove bullet
           setScore((s) => s + 1);
-          playExplosion();
         }
       }
     }
 
-    // Score + lives
-    drawUI(ctx, score, highScore, lives, width, height);
+    // Score UI
+    drawScoreUI(ctx, score, highScore, width);
 
-    // Animate next frame
+    // Next frame
     animationRef.current = requestAnimationFrame(gameLoop);
   }
 
-  // STARFIELD BACKGROUND
-  const STAR_COUNT = 58;
-  let starState = useRef([]);
-
-  function drawStarfield(ctx, w, h, ts) {
-    // (Initialize if needed)
-    if (starState.current.length !== STAR_COUNT) {
-      starState.current = [];
-      for (let i = 0; i < STAR_COUNT; i++)
-        starState.current.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          speed: Math.random() * 0.9 + 0.8,
-          r: Math.random() * 1.1 + 0.3,
-        });
-    }
+  // --- BACKGROUND, SHIP, BULLET, ENEMY, SCORE UI ---
+  function drawBG(ctx, w, h) {
     ctx.save();
-    ctx.globalAlpha = 0.7;
-    for (let s of starState.current) {
-      s.y += s.speed;
-      if (s.y > h) {
-        s.y = 0;
-        s.x = Math.random() * w;
-      }
+    ctx.fillStyle = "#111";
+    ctx.fillRect(0, 0, w, h);
+    // Sparse white/orange dots
+    for (let i = 0; i < 38; i++) {
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
-      ctx.fillStyle = "#b1eaff";
-      ctx.shadowColor = "#43fcf7";
-      ctx.shadowBlur = 10;
+      const col = i % 4 === 0 ? "#ff9800" : "#fff";
+      ctx.arc(
+        ((i * 41.36 + w / 3) % w) + (i % 2) * 12,
+        ((i * 97.8 + h / 7) % h),
+        Math.random() * (col === "#fff" ? 1.2 : 1.6) + 0.7,
+        0,
+        2 * Math.PI
+      );
+      ctx.globalAlpha = col === "#fff" ? 0.33 : 0.15 + Math.random() * 0.15;
+      ctx.fillStyle = col;
       ctx.fill();
-      ctx.shadowBlur = 0;
     }
+    ctx.globalAlpha = 1;
     ctx.restore();
   }
 
-  // PLAYER/SHIP RENDER
   function drawPlayer(ctx, player) {
     ctx.save();
     ctx.translate(player.x, player.y);
-    // Ship glow
+    // Body (white + orange outline)
     ctx.beginPath();
-    ctx.ellipse(0, 0, player.w / 2 + 11, player.h / 2 + 7, 0, 0, 2 * Math.PI);
-    ctx.fillStyle = "rgba(66,255,245,0.11)";
-    ctx.shadowColor = "#72fafe";
-    ctx.shadowBlur = 21;
-    ctx.fill();
-    ctx.shadowBlur = 0;
-
-    // Ship body
-    ctx.beginPath();
-    ctx.moveTo(0, -player.h / 2); // Nose
+    ctx.moveTo(0, -player.h / 2);
     ctx.lineTo(player.w / 2, player.h / 2);
-    ctx.lineTo(0, player.h / 4);
+    ctx.lineTo(0, player.h / 5);
     ctx.lineTo(-player.w / 2, player.h / 2);
     ctx.closePath();
-    ctx.fillStyle = "#33e4e4";
-    ctx.strokeStyle = "#f2adff";
-    ctx.lineWidth = 1.7;
+    ctx.fillStyle = "#fff";
+    ctx.strokeStyle = "#ff9800";
+    ctx.lineWidth = 3;
     ctx.fill();
     ctx.stroke();
-    // Cockpit
+    // Cabin highlight
     ctx.beginPath();
-    ctx.arc(0, 0, 7.5, 0, 2 * Math.PI);
-    ctx.fillStyle = "#e7e3fc";
-    ctx.globalAlpha = 0.7;
+    ctx.arc(0, 0, 6.6, 0, 2 * Math.PI);
+    ctx.fillStyle = "#ff9800";
+    ctx.globalAlpha = 0.46;
     ctx.fill();
     ctx.globalAlpha = 1;
     ctx.restore();
   }
 
-  // BULLET RENDER
   function drawBullet(ctx, bullet) {
     ctx.save();
     ctx.beginPath();
     ctx.arc(bullet.x, bullet.y, bullet.r, 0, 2 * Math.PI);
-    // Glow
-    ctx.shadowColor = "#b2fff9";
-    ctx.shadowBlur = 19;
-    ctx.fillStyle = "#37fcec";
+    ctx.fillStyle = "#ff9800";
+    ctx.shadowColor = "#fff";
+    ctx.shadowBlur = 7;
+    ctx.globalAlpha = 0.89;
     ctx.fill();
     ctx.shadowBlur = 0;
-
-    // Center
-    ctx.beginPath();
-    ctx.arc(bullet.x, bullet.y, bullet.r * 0.57, 0, 2 * Math.PI);
-    ctx.fillStyle = "#fff";
-    ctx.globalAlpha = 0.76;
-    ctx.fill();
     ctx.globalAlpha = 1;
     ctx.restore();
   }
 
-  // ENEMY LOGIC/RENDER
   function maybeSpawnEnemy(ts, width) {
-    // Spawn chance every ~900ms, avoid overcrowding
+    // Spawn one at a random interval, random speed
     if (
-      enemiesRef.current.length < 4 &&
-      ts % 900 < 15 &&
-      Math.random() > 0.43
+      enemiesRef.current.length < 5 &&
+      ts % 865 < 14 &&
+      Math.random() > 0.41
     ) {
-      let x = Math.random() * (width - 50) + 25;
-      let speed = Math.random() * 2.1 + 2.1;
-      let sway = (Math.random() - 0.5) * 1.4;
+      let x = Math.random() * (width - 42) + 21;
+      let speed = Math.random() * 1.7 + 2.5;
+      let sway = (Math.random() - 0.5) * 1.0;
       enemiesRef.current.push({
         x,
-        y: -28,
-        r: 18,
+        y: -30,
+        r: 20,
         vy: speed,
         vx: sway,
-        pulseSeed: Math.random() * Math.PI * 2,
         dead: false,
-        tsHit: 0,
       });
     }
   }
@@ -302,130 +253,96 @@ function SpaceShooter() {
   function drawEnemy(ctx, enemy, ts) {
     ctx.save();
     ctx.translate(enemy.x, enemy.y);
-
-    // Animate pulse if hit
-    let pulse =
-      enemy.dead && enemy.tsHit !== 0
-        ? 1 + Math.sin((ts - enemy.tsHit) / 50) * 0.13
-        : 1;
-    if (enemy.dead && enemy.tsHit === 0) enemy.tsHit = ts;
-
-    // Glow
+    // Outer (orange) glow if dead
+    if (enemy.dead) {
+      ctx.beginPath();
+      ctx.arc(0, 0, enemy.r * 1.2, 0, 2 * Math.PI);
+      ctx.globalAlpha = 0.25;
+      ctx.fillStyle = "#ff9800";
+      ctx.shadowColor = "#fff";
+      ctx.shadowBlur = 12;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+    }
+    // Enemy: white circle, orange ring
     ctx.beginPath();
-    ctx.arc(0, 0, enemy.r * 1.24 * pulse, 0, 2 * Math.PI);
-    ctx.fillStyle = enemy.dead ? "#eb77fa" : "#f6ff76";
-    ctx.globalAlpha = enemy.dead ? 0.44 : 0.46;
-    ctx.shadowColor = enemy.dead ? "#e192ff" : "#e9fc93";
-    ctx.shadowBlur = 16;
+    ctx.arc(0, 0, enemy.r, 0, 2 * Math.PI);
+    ctx.fillStyle = enemy.dead ? "#fff" : "#fff";
+    ctx.globalAlpha = enemy.dead ? 0.6 : 1;
     ctx.fill();
-    ctx.shadowBlur = 0;
     ctx.globalAlpha = 1;
-
-    // Body
-    ctx.beginPath();
-    ctx.arc(0, 0, enemy.r * pulse, 0, 2 * Math.PI);
-    ctx.fillStyle = enemy.dead ? "#eaa5fc" : "#f5d353";
-    ctx.strokeStyle = enemy.dead ? "#820360" : "#767221";
-    ctx.lineWidth = 3.3;
-    ctx.fill();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "#ff9800";
     ctx.stroke();
-
-    // Eyes
-    ctx.beginPath();
-    ctx.arc(-6.2, -3, 2.5, 0, 2 * Math.PI);
-    ctx.arc(6.2, -3, 2.5, 0, 2 * Math.PI);
-    ctx.fillStyle = enemy.dead ? "#fcfff8" : "#154836";
-    ctx.fill();
-    ctx.restore();
-  }
-
-  // UI/Overlay Render (score/lives)
-  function drawUI(ctx, score, highScore, lives, width, height) {
-    ctx.save();
-    ctx.font = "bold 18px 'Inter', Arial";
-    ctx.fillStyle = "#fff";
-    ctx.textAlign = "left";
-    ctx.globalAlpha = 0.97;
-    ctx.fillText(`Score: ${score}`, 18, 28);
-    ctx.font = "bold 16px 'Inter', Arial";
-    ctx.fillStyle = "#b2faff";
-    ctx.fillText(`High: ${highScore}`, 18, 50);
-
-    // Draw hearts for lives
-    for (let i = 0; i < lives; i++) {
-      drawHeart(ctx, width - 80 + i * 25, 24, 12, "#fb7474");
+    // Eyes: orange "angry" eyes when alive, closed when dead
+    ctx.strokeStyle = "#ff9800";
+    if (!enemy.dead) {
+      ctx.beginPath();
+      ctx.arc(-8, -4, 3, Math.PI * 1.12, Math.PI * 2 - 0.12);
+      ctx.arc(8, -4, 3, Math.PI * 1.12, Math.PI * 2 - 0.12);
+      ctx.lineWidth = 2.4;
+      ctx.strokeStyle = "#ff9800";
+      ctx.stroke();
+    } else {
+      // Dead: X eyes
+      ctx.save();
+      ctx.rotate(-0.13 + 0.08 * Math.sin(ts / 180));
+      for (let dx of [-7, 7]) {
+        ctx.beginPath();
+        ctx.moveTo(dx - 2, -6);
+        ctx.lineTo(dx + 2, -2);
+        ctx.moveTo(dx + 2, -6);
+        ctx.lineTo(dx - 2, -2);
+        ctx.lineWidth = 1.6;
+        ctx.strokeStyle = "#ff9800";
+        ctx.stroke();
+      }
+      ctx.restore();
     }
     ctx.restore();
   }
-  function drawHeart(ctx, x, y, s, color) {
+
+  function drawScoreUI(ctx, score, highScore, width) {
     ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.bezierCurveTo(x - s / 2, y - s / 2, x - s, y + s / 3, x, y + s);
-    ctx.bezierCurveTo(x + s, y + s / 3, x + s / 2, y - s / 2, x, y);
-    ctx.fillStyle = color;
-    ctx.globalAlpha = 0.87;
-    ctx.shadowColor = "#f9bfa3";
-    ctx.shadowBlur = 5;
-    ctx.fill();
-    ctx.shadowBlur = 0;
-    ctx.globalAlpha = 1;
+    ctx.font = "bold 18px Inter, Arial";
+    ctx.fillStyle = "#fff";
+    ctx.textAlign = "left";
+    ctx.globalAlpha = 0.95;
+    ctx.fillText(`Score: `, 19, 30);
+    ctx.fillStyle = "#ff9800";
+    ctx.fillText(String(score), 75, 30);
+    ctx.font = "bold 16px Inter, Arial";
+    ctx.fillStyle = "#fff";
+    ctx.fillText(`Best: ${highScore}`, width - 116, 30);
     ctx.restore();
   }
 
   // --- COLLISION HELPERS ---
   function rectsOverlap(ax, ay, aw, ah, bx, by, bw, bh) {
-    return (
-      ax < bx + bw &&
-      ax + aw > bx &&
-      ay < by + bh &&
-      ay + ah > by
-    );
+    return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
   }
   function circlesOverlap(ax, ay, ar, bx, by, br) {
-    const dx = ax - bx,
+    let dx = ax - bx,
       dy = ay - by;
     return dx * dx + dy * dy < (ar + br) * (ar + br);
   }
 
-  // SOUND/CUES
-  function playExplosion() {
-    if (explosionAudioRef.current) {
-      explosionAudioRef.current.currentTime = 0;
-      explosionAudioRef.current.play();
-    }
-  }
-
-  // KEYBOARD/CONTROL EVENTS
+  // --- KEYBOARD CONTROLS (LEFT/RIGHT/SPACE) ---
   useEffect(() => {
     if (gameState !== "playing") return;
+
     function down(e) {
-      if (
-        e.key === "ArrowLeft" ||
-        e.key === "a" ||
-        e.key === "A"
-      )
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A")
         inputRef.current.left = true;
-      if (
-        e.key === "ArrowRight" ||
-        e.key === "d" ||
-        e.key === "D"
-      )
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D")
         inputRef.current.right = true;
       if (e.key === " " || e.key === "Enter") inputRef.current.shoot = true;
     }
     function up(e) {
-      if (
-        e.key === "ArrowLeft" ||
-        e.key === "a" ||
-        e.key === "A"
-      )
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A")
         inputRef.current.left = false;
-      if (
-        e.key === "ArrowRight" ||
-        e.key === "d" ||
-        e.key === "D"
-      )
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D")
         inputRef.current.right = false;
       if (e.key === " " || e.key === "Enter") inputRef.current.shoot = false;
     }
@@ -438,7 +355,7 @@ function SpaceShooter() {
     // eslint-disable-next-line
   }, [gameState]);
 
-  // TOUCH CONTROLS
+  // --- TOUCH CONTROLS ---
   useEffect(() => {
     if (gameState !== "playing") return;
     function onTouchStart(e) {
@@ -449,7 +366,6 @@ function SpaceShooter() {
         if (x < canvasDims.width / 2) inputRef.current.left = true;
         else inputRef.current.right = true;
       }
-      touchStartX.current = e.touches[0].clientX;
       inputRef.current.shoot = true;
     }
     function onTouchEnd() {
@@ -468,12 +384,12 @@ function SpaceShooter() {
     // eslint-disable-next-line
   }, [gameState, canvasDims.width]);
 
-  // Prevent scroll bounce on mobile when pressing canvas
+  // --- Prevent passive scroll when playing on mobile ---
   useEffect(() => {
     function preventScroll(e) {
       if (
         e.target === canvasRef.current &&
-        ['touchmove', 'touchstart', 'touchend'].includes(e.type)
+        ["touchmove", "touchstart", "touchend"].includes(e.type)
       ) {
         e.preventDefault();
       }
@@ -483,7 +399,7 @@ function SpaceShooter() {
       window.removeEventListener("touchmove", preventScroll, { passive: false });
   }, []);
 
-  // Game start on space/tap if on start/over screen
+  // --- Space, Enter, tap = start/restart, if not playing ---
   useEffect(() => {
     function handler(e) {
       if (
@@ -498,66 +414,212 @@ function SpaceShooter() {
     // eslint-disable-next-line
   }, [gameState, canvasDims.width, canvasDims.height]);
 
-  // Click the canvas/tap to start/restart
+  // --- Canvas tap/click to begin ---
   function handleCanvasClick() {
     if (gameState === "start" || gameState === "over") {
       startGame();
     }
   }
 
-  // CSS glow/animations for game state overlays
-  function TitleGlow({ children }) {
-    return <div className="spaceshooter-title-glow">{children}</div>;
-  }
-  function GameButton({ children, onClick, primary }) {
+  // --- ON-SCREEN BUTTONS (for mobile/small) ---
+  function OnScreenButtons() {
+    // Show only for mobile or very small screens (width < 500)
+    if (window.innerWidth > 600) return null;
     return (
-      <button
-        className={
-          "spaceshooter-btn" + (primary ? " spaceshooter-btn-main" : "")
-        }
-        onClick={onClick}
+      <div
+        style={{
+          display: "flex",
+          gap: 18,
+          justifyContent: "center",
+          marginTop: 10,
+        }}
+        aria-label="Mobile controls"
       >
-        {children}
-      </button>
+        <button
+          className="spaceshooter-btn"
+          style={{
+            fontSize: 22,
+            background: "#111",
+            color: "#fff",
+            border: "2px solid #ff9800",
+            width: 53,
+          }}
+          tabIndex={gameState === "playing" ? 0 : -1}
+          aria-label="Move Left"
+          onPointerDown={() => (inputRef.current.left = true)}
+          onPointerUp={() => (inputRef.current.left = false)}
+          onPointerLeave={() => (inputRef.current.left = false)}
+        >
+          ←
+        </button>
+        <button
+          className="spaceshooter-btn"
+          style={{
+            fontSize: 22,
+            background: "#ff9800",
+            color: "#111",
+            width: 53,
+            border: "2px solid #ff9800",
+            fontWeight: "bold",
+          }}
+          tabIndex={gameState === "playing" ? 0 : -1}
+          aria-label="Shoot"
+          onPointerDown={() => (inputRef.current.shoot = true)}
+          onPointerUp={() => (inputRef.current.shoot = false)}
+          onPointerLeave={() => (inputRef.current.shoot = false)}
+        >
+          ⦿
+        </button>
+        <button
+          className="spaceshooter-btn"
+          style={{
+            fontSize: 22,
+            background: "#111",
+            color: "#fff",
+            border: "2px solid #ff9800",
+            width: 53,
+          }}
+          tabIndex={gameState === "playing" ? 0 : -1}
+          aria-label="Move Right"
+          onPointerDown={() => (inputRef.current.right = true)}
+          onPointerUp={() => (inputRef.current.right = false)}
+          onPointerLeave={() => (inputRef.current.right = false)}
+        >
+          →
+        </button>
+      </div>
     );
   }
 
-  // MAIN RENDER
+  // --- MAIN RENDER ---
   return (
-    <div className="spaceshooter-root" style={{ maxWidth: 480, margin: "0 auto", paddingBottom: 40 }}>
-      {/* Overlays */}
+    <div
+      className="spaceshooter-root"
+      style={{
+        maxWidth: 500,
+        margin: "0 auto",
+        paddingBottom: 40,
+        background: "#111",
+        color: "#fff",
+      }}
+    >
+      {/* Overlay for start/game over */}
       {(gameState === "start" || gameState === "over") && (
-        <div className="spaceshooter-overlay">
-          <TitleGlow>
-            <h2>🚀 Space Shooter</h2>
-          </TitleGlow>
+        <div className="spaceshooter-overlay" style={{ background: "#111" }}>
+          <div
+            style={{
+              fontWeight: 700,
+              color: "#ff9800",
+              fontSize: 32,
+              marginBottom: 4,
+            }}
+          >
+            🚀 Space Shooter
+          </div>
           {gameState === "start" && (
             <>
-              <div className="spaceshooter-tip">
-                <kbd>←</kbd>/<kbd>→</kbd> or <kbd>A</kbd>/<kbd>D</kbd> to move<br />
-                <kbd>Space</kbd> to shoot<br />
-                <span className="spaceshooter-mobile-tip">
-                  (Tap left/right to move &amp; shoot)
+              <div
+                style={{
+                  color: "#fff",
+                  marginBottom: 24,
+                  fontSize: "1.13rem",
+                  lineHeight: 1.41,
+                }}
+              >
+                <kbd
+                  style={{
+                    background: "#ff9800",
+                    color: "#111",
+                    borderRadius: 6,
+                    border: "1.2px solid #ff9800",
+                    padding: "0 7px",
+                    fontWeight: 600,
+                  }}
+                >
+                  ←
+                </kbd>
+                /
+                <kbd
+                  style={{
+                    background: "#ff9800",
+                    color: "#111",
+                    borderRadius: 6,
+                    border: "1.2px solid #ff9800",
+                    padding: "0 7px",
+                    fontWeight: 600,
+                  }}
+                >
+                  →
+                </kbd>{" "}
+                to move <br />
+                <kbd
+                  style={{
+                    background: "none",
+                    color: "#ff9800",
+                    border: "1.1px solid #ff9800",
+                    padding: "0 9px",
+                    borderRadius: 6,
+                  }}
+                >
+                  SPACE
+                </kbd>{" "}
+                to shoot <br />
+                <span style={{ color: "#ff9800", fontSize: 15 }}>
+                  (Tap or use buttons on mobile)
                 </span>
               </div>
-              <GameButton onClick={startGame} primary>
+              <button
+                className="spaceshooter-btn spaceshooter-btn-main"
+                style={{
+                  background: "#ff9800",
+                  color: "#111",
+                  border: "none",
+                  fontWeight: 700,
+                }}
+                onClick={startGame}
+                autoFocus
+              >
                 Start Game
-              </GameButton>
+              </button>
             </>
           )}
           {gameState === "over" && (
             <>
-              <div className="spaceshooter-gamelabel">Game Over!</div>
-              <div className="spaceshooter-finalscore">
-                <span>Score: </span>
-                <strong>{score}</strong>
-                <span style={{ marginLeft: 12, color: "#77ffeb" }}>
-                  High: {highScore}
+              <div
+                style={{
+                  fontSize: 23,
+                  color: "#fff",
+                  fontWeight: 700,
+                  marginBottom: 16,
+                }}
+              >
+                GAME OVER!
+              </div>
+              <div
+                style={{
+                  marginBottom: 19,
+                  color: "#ff9800",
+                  fontSize: "1.13rem",
+                  fontWeight: 500,
+                }}
+              >
+                Score: <b style={{ color: "#fff" }}>{score}</b>
+                <span style={{ marginLeft: 16, color: "#fff" }}>
+                  Best: {highScore}
                 </span>
               </div>
-              <GameButton onClick={startGame} primary>
+              <button
+                className="spaceshooter-btn spaceshooter-btn-main"
+                style={{
+                  background: "#ff9800",
+                  color: "#111",
+                  border: "none",
+                  fontWeight: 700,
+                }}
+                onClick={startGame}
+              >
                 Play Again
-              </GameButton>
+              </button>
             </>
           )}
         </div>
@@ -567,34 +629,37 @@ function SpaceShooter() {
         ref={canvasRef}
         width={canvasDims.width}
         height={canvasDims.height}
-        className={`spaceshooter-canvas${
-          gameState !== "playing" ? " spaceshooter-canvas-blur" : ""
-        }`}
+        className={`spaceshooter-canvas${gameState !== "playing" ? " spaceshooter-canvas-blur" : ""}`}
         style={{
-          width: "100%",
-          maxWidth: 480,
-          height: "auto",
-          boxShadow: "0 4px 35px #52e4fa22, 0 1.5px 22px 0 #33f8e214",
-          borderRadius: 20,
+          width: "92vw",
+          maxWidth: 420,
+          height: canvasDims.height,
+          boxShadow: "0 4px 18px #ff980024, 0 1.5px 11px 0 #fff2",
+          borderRadius: 16,
           outline: "none",
+          border: "2px solid #ff9800",
+          background: "#111",
+          display: "block",
         }}
         onClick={handleCanvasClick}
         aria-label="Space Shooter Game Area"
       />
-      <audio
-        ref={shootAudioRef}
-        src="/assets/sounds/laser.wav"
-        preload="auto"
-        style={{ display: "none" }}
-      />
-      <audio
-        ref={explosionAudioRef}
-        src="/assets/sounds/explosion.wav"
-        preload="auto"
-        style={{ display: "none" }}
-      />
+      {gameState === "playing" && (
+        <OnScreenButtons />
+      )}
       <div>
-        <Link className="spaceshooter-back-link" to="/" tabIndex={gameState === "playing" ? -1 : 0}>
+        <Link
+          className="spaceshooter-back-link"
+          style={{
+            color: "#ff9800",
+            background: "none",
+            fontWeight: 600,
+            fontSize: "1.09em",
+            borderRadius: 7,
+          }}
+          to="/"
+          tabIndex={gameState === "playing" ? -1 : 0}
+        >
           ← Back to Home
         </Link>
       </div>
