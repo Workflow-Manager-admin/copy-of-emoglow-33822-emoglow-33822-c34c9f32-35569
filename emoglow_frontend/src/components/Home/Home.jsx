@@ -6,22 +6,42 @@ import "./Home.css";
 function Home() {
   return (
     <div className="home-root">
-      <h1 className="home-title">Goofy Creations</h1>
-      <p className="home-subtitle">Choose your game adventure!</p>
-      <div className="home-tiles">
+      <section className="home-header">
+        <div className="home-logo">
+          <span role="img" aria-label="gaming emoji" className="home-logo-emoji">
+            🎲
+          </span>
+          <span className="home-site-title">Goofy Creations</span>
+        </div>
+        <div className="home-subtitle-box">
+          <p className="home-subtitle">
+            Mini-games for every mood! <span className="home-sparkle">✨</span>
+          </p>
+          <p className="home-site-desc">
+            Play quick &amp; fun games—challenge yourself or just take a break!
+          </p>
+        </div>
+      </section>
+      <nav className="home-tiles" aria-label="Main site navigation">
         <Link className="home-tile" to="/rock-paper-scissors">
-          <span role="img" aria-label="rock-paper-scissors">✊✋✌️</span>
-          <span>Rock Paper Scissors</span>
+          <span role="img" aria-label="rock-paper-scissors" className="home-tile-emoji">✊✋✌️</span>
+          <span className="home-tile-label">Rock Paper Scissors</span>
+          <span className="home-tile-desc">Outsmart the bot!</span>
         </Link>
         <Link className="home-tile" to="/space-shooter">
-          <span role="img" aria-label="space shooter">🚀</span>
-          <span>Space Shooter</span>
+          <span role="img" aria-label="space shooter" className="home-tile-emoji">🚀</span>
+          <span className="home-tile-label">Space Shooter</span>
+          <span className="home-tile-desc">Dodge and blast in space</span>
         </Link>
         <Link className="home-tile" to="/tic-tac-toe">
-          <span role="img" aria-label="tic tac toe">❌⭕</span>
-          <span>Tic Tac Toe</span>
+          <span role="img" aria-label="tic tac toe" className="home-tile-emoji">❌⭕</span>
+          <span className="home-tile-label">Tic Tac Toe</span>
+          <span className="home-tile-desc">Classic duel!</span>
         </Link>
-      </div>
+      </nav>
+      <footer className="home-footer">
+        <span>Made with <span role="img" aria-label="lightning">⚡</span> for fun. &copy; {new Date().getFullYear()}</span>
+      </footer>
     </div>
   );
 }
