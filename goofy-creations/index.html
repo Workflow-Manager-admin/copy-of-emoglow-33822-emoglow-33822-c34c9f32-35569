@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Goofy Creations - Play Netflix for Games!</title>
+  <!-- Poppins, Orbitron, Roboto Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:600,700,900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:700,900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:500,700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/logo-placeholder.png" type="image/png">
+</head>
+<body>
+  <nav class="navbar" aria-label="Site navigation">
+    <div class="navbar-inner">
+      <a class="navbar-logo" href="#" aria-label="Goofy Creations Home">
+        <img src="assets/logo-placeholder.png" alt="Goofy Creations Logo" class="logo-img" height="36" width="36"/>
+        <span class="logo-title">Goofy Creations</span>
+      </a>
+      <button class="navbar-burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navbar-menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar-menu" id="navbar-menu" role="menubar">
+        <li role="none"><a href="#" class="navbar-link active" role="menuitem" tabindex="0">Home</a></li>
+        <li role="none"><a href="#trending-row" class="navbar-link" role="menuitem" tabindex="0">Trending Now</a></li>
+        <li role="none"><a href="#classic-row" class="navbar-link" role="menuitem" tabindex="0">Classic Arcade</a></li>
+        <li role="none"><a href="#pvb-row" class="navbar-link" role="menuitem" tabindex="0">PvB Originals</a></li>
+        <li role="none"><a href="#footer" class="navbar-link" role="menuitem" tabindex="0">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main>
+    <section class="hero-banner" aria-label="Featured games hero banner">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="glow">🎮 Goofy Creations</span>
+        </h1>
+        <p class="hero-tagline">Arcade fun, nostalgia, <span class="glow-text">neon energy</span>—all in one place.</p>
+        <a href="#explore-section" class="btn btn-glow" role="button" id="explore-link">
+          <span class="explore-emoji" aria-hidden="true">👇</span> Explore Games
+        </a>
+      </div>
+      <div class="hero-overlay"></div>
+    </section>
+    <section class="carousel-section" id="explore-section" aria-label="Game Carousels">
+      <h2 class="section-heading">Trending Now</h2>
+      <div class="carousel-row" id="trending-row" data-row="Trending Now" tabindex="0" aria-label="Trending Games Carousel"></div>
+
+      <h2 class="section-heading">Classic Arcade</h2>
+      <div class="carousel-row" id="classic-row" data-row="Classic Arcade" tabindex="0" aria-label="Classic Arcade Carousel"></div>
+
+      <h2 class="section-heading">PvB Originals</h2>
+      <div class="carousel-row" id="pvb-row" data-row="PvB Originals" tabindex="0" aria-label="PvB Originals Carousel"></div>
+    </section>
+  </main>
+  <footer class="site-footer" id="footer" aria-label="Footer">
+    <div class="footer-content">
+      <span>Made by Goofy Creations 🚀 | <a href="#" aria-label="Twitter" class="footer-link">🐦 Twitter</a> <a href="#" aria-label="Instagram" class="footer-link">📷 Instagram</a></span>
+      <small>Sample images & sounds are placeholders. &copy; <span id="year"></span></small>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
