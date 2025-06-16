@@ -1,17 +1,152 @@
 .spaceshooter-root {
-  margin-top: 100px;
+  margin-top: 92px;
+  min-height: 83vh;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  animation: fadein 1.2s ease;
+}
+
+@keyframes fadein {
+  0% { opacity: 0; transform: translateY(28px);}
+  100% { opacity: 1; transform: none;}
+}
+
+.spaceshooter-canvas {
+  margin: 0 auto;
+  margin-top: 18px;
+  background: radial-gradient(circle at 55% 33%, #101428 75%, #1c1850 100%);
+  border: 2px solid #23e3fe55;
+  display: block;
+  transition: filter 0.36s cubic-bezier(.21,.8,.5,1.1);
+}
+
+.spaceshooter-canvas-blur {
+  filter: blur(1.5px) brightness(0.92) grayscale(0.34) saturate(1.39);
+}
+
+.spaceshooter-overlay {
+  position: absolute;
+  left: 50%;
+  top: 18vh;
+  transform: translateX(-50%);
+  min-width: 250px;
+  min-height: 250px;
+  width: 93vw;
+  max-width: 380px;
+  background: rgba(19,31,61,0.98);
+  border-radius: 16px;
+  box-shadow: 0 8px 34px #28ebff0e;
+  z-index: 3;
+  animation: fadeup 0.7s cubic-bezier(.37,1.6,.5,0.96);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.2rem 0.8rem 2.5rem 0.8rem;
+  gap: 1.2rem;
+}
+
+@keyframes fadeup {
+  0% { opacity: 0; transform: translate(-50%,40px);}
+  100% { opacity: 1; transform: translate(-50%,0);}
+}
+
+.spaceshooter-title-glow {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #7bfefd;
+  text-shadow:
+    0 7px 32px #28ebe760,
+    0 2px 8px #7bfffd85;
+  margin-bottom: 8px;
+}
+
+.spaceshooter-tip {
+  color: #c1f3ff;
+  font-size: 1.07rem;
+  margin-bottom: 1.2rem;
+}
+.spaceshooter-tip kbd {
+  font-family: inherit;
+  background: #13213e;
+  color: #31fcfc;
+  border-radius: 7px;
+  border: 1.35px solid #37f8f3;
+  padding: 1px 7px;
+  font-weight: 700;
+  font-size: 1.14em;
+  margin: 0 3px;
+}
+.spaceshooter-mobile-tip {
+  display: inline-block;
+  color: #dce7f4;
+  font-size: 0.99em;
+  opacity: 0.7;
+  margin-top: 0.14em;
+}
+
+.spaceshooter-btn {
+  background: linear-gradient(93deg,#0cdfde 68%, #2d3d7a);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 26px #2ae5e82e;
+  border-radius: 11px;
+  font-size: 1.17rem;
+  padding: 11px 38px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.6em;
+  transition: background 0.21s, color 0.12s, transform 0.13s;
+}
+.spaceshooter-btn-main {
+  background: linear-gradient(90deg,#20e5cd 65%,#77b7f9 99%);
+  color: #1a253d;
+  box-shadow: 0 3px 25px #31f4ff47;
+  font-size: 1.22rem;
+}
+.spaceshooter-btn:active { transform: scale(0.96);}
+.spaceshooter-btn:hover, .spaceshooter-btn:focus-visible {
+  color: #33ebfa;
+  background: linear-gradient(86deg,#1fe1f4 51%, #a0dcfb 100%);
+}
+
+.spaceshooter-gamelabel {
+  font-size: 1.34rem;
+  color: #fffbe7;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 18px #f63ad911;
+}
+
+.spaceshooter-finalscore {
+  color: #b7edff;
+  margin-bottom: 1.1rem;
+  font-size: 1.18rem;
+  font-weight: 500;
 }
 
 .spaceshooter-back-link {
   display: inline-block;
-  margin-top: 1.3rem;
+  margin-top: 1.7rem;
   color: #33e4e4;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.15s;
+  font-weight: 600;
+  font-size: 1.12rem;
+  letter-spacing: 0.01em;
+  transition: color 0.19s;
+}
+.spaceshooter-back-link:hover, .spaceshooter-back-link:focus-visible {
+  color: #c6f6ff;
+  text-decoration: underline;
 }
 
-.spaceshooter-back-link:hover {
-  color: #89f0f0;
+/* Responsive */
+@media (max-width: 430px) {
+  .spaceshooter-root { margin-top: 31px;}
+  .spaceshooter-canvas { border-radius: 9px; }
+  .spaceshooter-overlay { top: 7vh; padding: 1.6rem 0.22rem 1.8rem 0.22rem;}
+  .spaceshooter-title-glow { font-size: 1.28rem;}
 }
