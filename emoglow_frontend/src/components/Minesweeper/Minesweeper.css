@@ -1,0 +1,278 @@
+.minesweeper-root {
+  margin-top: 84px;
+  color: #fff;
+  min-height: 84vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadein 0.82s cubic-bezier(.37,1.08,.44,.95);
+  background: #151515;
+  border-radius: 13px;
+  padding-bottom: 2.5rem;
+}
+@keyframes fadein { 0%{opacity:0;transform:translateY(40px);} 100%{opacity:1;transform:none;} }
+
+.ms-title {
+  color: var(--accent-orange, #ff9800);
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin: 1rem 0 0.31rem 0;
+  text-shadow: 0 7.5px 21px #ff980045;
+}
+
+.ms-preset {
+  margin: 0.7rem 0 1.7rem 0;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.ms-preset-label {
+  font-size: 1.02em; color: #fff; font-weight: 500; margin-right: 5px;
+}
+.ms-preset-select {
+  font-size: 1em;
+  padding: 5px 19px;
+  border-radius: 9px;
+  border: 2px solid #ff9800;
+  background: #181818;
+  color: #ff9800;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  margin-left: 0.26em;
+  transition: border 0.12s, background 0.11s, color 0.13s;
+}
+.ms-preset-select:focus, .ms-preset-select:hover {
+  border-color: #fff;
+  background: #151515;
+  color: #fff;
+}
+.ms-preset-select:disabled {
+  opacity: 0.6; pointer-events: none;
+}
+.ms-game-area {
+  background: #181818;
+  min-width: 260px;
+  max-width: 98vw;
+  margin: 0 auto 0.4rem auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 31px #ef910017;
+  padding: 2.1rem 2.2rem 1.7rem 2.2rem;
+  display: inline-block;
+}
+.ms-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.9em;
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 1.22rem;
+  user-select: none;
+}
+.ms-head-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: #222;
+  color: #ff9800;
+  border-radius: 9px;
+  padding: 8px 14px 5px 14px;
+  font-family: var(--font-main, 'Inter', Arial, sans-serif);
+  font-weight: 700;
+}
+.ms-head-label { font-size: 0.93em; color: #ff9800; font-weight: 600; }
+.ms-head-value { font-size: 1.16em; color: #fff; font-weight: 700; }
+.ms-face {
+  margin: 0 31px;
+  font-size: 2.1em;
+  border: 3px solid #ff9800;
+  background: #fff;
+  color: #ff9800;
+  border-radius: 999px;
+  width: 46px;
+  height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 3px 22px #ff980035;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.16s, border 0.15s, color 0.15s;
+}
+.ms-face:focus-visible, .ms-face:hover {
+  background: #ff9800;
+  color: #fff;
+  border: 3px solid #fff;
+}
+.ms-board {
+  display: grid;
+  gap: 4px;
+  background: #1a1a1a;
+  border-radius: 14px;
+  margin: 0 auto;
+  user-select: none;
+  box-shadow: 0 1.5px 13px #ff980025;
+  padding: 6px;
+  width: auto;
+  overflow-x: auto;
+}
+.ms-cell {
+  width: 34.5px;
+  height: 34.5px;
+  max-width: 7vw;
+  max-height: 7vw;
+  min-width: 25px;
+  min-height: 25px;
+  aspect-ratio: 1/1;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-title,'Inter',Arial,sans-serif);
+  font-size: 1.21em;
+  border-radius: 7px;
+  border: none;
+  margin: 0; padding: 0;
+  background: #fff;
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 1.2px 8px #ff980019;
+  transition: background 0.13s, color 0.13s, box-shadow 0.13s, border 0.12s, transform 0.14s;
+  user-select: none;
+  position: relative;
+}
+.ms-cell-covered {
+  background: #1a1a1a;
+  color: #fff;
+  border: 2.1px solid #262626;
+  box-shadow: none;
+}
+.ms-cell-flagged {
+  background: #230707;
+  color: #ff9800;
+  border: 2.1px solid #ff9800;
+}
+.ms-cell-revealed {
+  background: #fff;
+  color: #111;
+  border: 2.1px solid #ddd;
+  cursor: default;
+}
+.ms-cell-mine {
+  background: #fff9ed;
+  color: #ff9800;
+  border: 2.1px solid #ff9800;
+}
+.ms-cell-exploded {
+  background: #ff437336;
+  color: #fff;
+  border: 3.1px solid #ff4373;
+  animation: ms-explode 0.38s cubic-bezier(.42,2.0,.58,.99);
+}
+@keyframes ms-explode {
+  0% { background: #fff9ed; }
+  40% { background: #ff9800; color: #fff; }
+  100% { background: #ff4373; }
+}
+.ms-num {
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  font-size: 1.15em;
+  letter-spacing: 0;
+}
+.ms-num-1 { color: #1e7fff; }
+.ms-num-2 { color: #19891c; }
+.ms-num-3 { color: #ff4422; }
+.ms-num-4 { color: #021c8d; }
+.ms-num-5 { color: #7f1906; }
+.ms-num-6 { color: #249489; }
+.ms-num-7 { color: #000; }
+.ms-num-8 { color: #636363; }
+.ms-mine { font-size: 1em; }
+.ms-flag { font-size: 1em; filter: drop-shadow(0 0 7px #ff980089); }
+.ms-cell[disabled] { opacity: 0.69; cursor: default; }
+.ms-cell:focus-visible {
+  border: 2.7px solid #ff9800;
+  box-shadow: 0 0 0 3px #ff9800;
+  z-index: 8;
+}
+.ms-cell:active:not([disabled]) { transform: scale(0.96); }
+.ms-result {
+  margin: 1em 0 0 0;
+  padding: 0.8em;
+  font-size: 1.29em;
+  font-weight: bold;
+  border-radius: 12px;
+  display: inline-block;
+  min-width: 130px;
+}
+.ms-win {
+  color: #fff;
+  background: linear-gradient(91deg, #ff9800 81%, #ffe9a2 99%);
+  border: 2.2px solid #ff9800;
+  box-shadow: 0 2px 23px #ff980029;
+}
+.ms-lose {
+  color: #fff;
+  background: #ff437387;
+  border: 2.2px solid #ff4373;
+}
+.ms-result-emoji {
+  font-size: 1.35em;
+  margin-right: 0.38em;
+  filter: drop-shadow(0 1.5px 9px #ff980029);
+}
+.ms-instructions {
+  margin: 1.35em 0 0.35em 0;
+  color: #ff9800;
+  font-size: 1.01rem;
+  background: #181818;
+  border-radius: 10px;
+  padding: 1em 1.9em 1.2em 1.9em;
+  max-width: 430px;
+  width: 96vw;
+  box-shadow: 0 1.3px 9px #ff980015;
+  line-height: 1.6;
+}
+.ms-back-link {
+  display: inline-block;
+  margin-top: 1.2rem;
+  color: #ff9800;
+  background: none;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  padding: 7px 18px;
+  outline: none;
+  transition: color 0.13s, background 0.11s;
+}
+.ms-back-link:focus-visible,
+.ms-back-link:hover {
+  background: #ff9800;
+  color: #fff;
+  box-shadow: 0 0 0 3px #ff9800;
+  outline: none;
+}
+@media (max-width: 600px) {
+  .minesweeper-root { margin-top: 45px; padding-left: 7px; padding-right: 7px;}
+  .ms-game-area { padding: 1em 0.3em 1em 0.3em; }
+  .ms-head { gap: 1.3em;}
+  .ms-board { gap: 2.3px; padding: 2px;}
+  .ms-cell { font-size: 0.95em; width: 23px; height: 23px; }
+  .ms-title { font-size: 1.18rem;}
+  .ms-preset { font-size: 0.97rem; }
+}
+@media (max-width: 390px) {
+  .ms-game-area { min-width: 0; }
+}
+kbd {
+  background: #252525;
+  color: #fff;
+  border-radius: 5px;
+  padding: 2px 5px;
+  font-size: 0.94em;
+  font-weight: 600;
+  box-shadow: 0 0 3px #262626;
+  margin: 0 3px;
+}

@@ -23,6 +23,11 @@ function Home() {
         </div>
       </section>
       <nav className="home-tiles" aria-label="Main site navigation">
+        <Link className="home-tile" to="/minesweeper">
+          <span role="img" aria-label="minesweeper" className="home-tile-emoji">💣</span>
+          <span className="home-tile-label">Minesweeper</span>
+          <span className="home-tile-desc">Find mines, not trouble!</span>
+        </Link>
         <Link className="home-tile" to="/rock-paper-scissors">
           <span role="img" aria-label="rock-paper-scissors" className="home-tile-emoji">✊✋✌️</span>
           <span className="home-tile-label">Rock Paper Scissors</span>

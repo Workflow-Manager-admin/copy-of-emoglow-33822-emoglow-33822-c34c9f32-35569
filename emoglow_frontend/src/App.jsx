@@ -4,13 +4,14 @@ import "./App.css";
 import Home from "./components/Home/Home";
 import RockPaperScissors from "./components/RockPaperScissors/RockPaperScissors";
 import TicTacToe from "./components/TicTacToe/TicTacToe";
+import Minesweeper from "./components/Minesweeper/Minesweeper";
 
 /**
  * Public/brand navigation links for all pages
- * Space Shooter references and commented link have been fully removed.
  */
 const NAV_LINKS = [
   { to: "/", label: "Home", exact: true },
+  { to: "/minesweeper", label: "Minesweeper" },
   { to: "/rock-paper-scissors", label: "Rock Paper Scissors" },
   { to: "/tic-tac-toe", label: "Tic Tac Toe" },
 ];
@@ -70,8 +71,8 @@ const App = () => {
           <div className="container page-content">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/minesweeper" element={<Minesweeper />} />
               <Route path="/rock-paper-scissors" element={<RockPaperScissors />} />
-              {/* <Route path="/space-shooter" element={<SpaceShooter />} /> */}
               <Route path="/tic-tac-toe" element={<TicTacToe />} />
             </Routes>
           </div>
