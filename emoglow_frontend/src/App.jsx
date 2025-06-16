@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-rou
 import "./App.css";
 import Home from "./components/Home/Home";
 import RockPaperScissors from "./components/RockPaperScissors/RockPaperScissors";
-import SpaceShooter from "./components/SpaceShooter/SpaceShooter";
 import TicTacToe from "./components/TicTacToe/TicTacToe";
 
 /**
@@ -12,7 +11,7 @@ import TicTacToe from "./components/TicTacToe/TicTacToe";
 const NAV_LINKS = [
   { to: "/", label: "Home", exact: true },
   { to: "/rock-paper-scissors", label: "Rock Paper Scissors" },
-  { to: "/space-shooter", label: "Space Shooter" },
+  // Space Shooter link removed
   { to: "/tic-tac-toe", label: "Tic Tac Toe" },
 ];
 
@@ -72,7 +71,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/rock-paper-scissors" element={<RockPaperScissors />} />
-              <Route path="/space-shooter" element={<SpaceShooter />} />
+              {/* <Route path="/space-shooter" element={<SpaceShooter />} /> */}
               <Route path="/tic-tac-toe" element={<TicTacToe />} />
             </Routes>
           </div>

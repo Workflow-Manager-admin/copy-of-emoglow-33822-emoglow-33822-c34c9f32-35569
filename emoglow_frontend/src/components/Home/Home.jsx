@@ -28,11 +28,7 @@ function Home() {
           <span className="home-tile-label">Rock Paper Scissors</span>
           <span className="home-tile-desc">Outsmart the bot!</span>
         </Link>
-        <Link className="home-tile" to="/space-shooter">
-          <span role="img" aria-label="space shooter" className="home-tile-emoji">🚀</span>
-          <span className="home-tile-label">Space Shooter</span>
-          <span className="home-tile-desc">Dodge and blast in space</span>
-        </Link>
+        {/* Space Shooter tile removed */}
         <Link className="home-tile" to="/tic-tac-toe">
           <span role="img" aria-label="tic tac toe" className="home-tile-emoji">❌⭕</span>
           <span className="home-tile-label">Tic Tac Toe</span>

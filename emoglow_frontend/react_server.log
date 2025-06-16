@@ -13,7 +13,7 @@ runtime modules 28.7 KiB 15 modules
 cacheable modules 1.65 MiB
   modules by path ./node_modules/ 1.54 MiB 34 modules
   modules by path ./src/ 100 KiB
-    modules by path ./src/components/ 81.7 KiB 12 modules
+    modules by path ./src/components/ 82.2 KiB 12 modules
     modules by path ./src/*.css 12.5 KiB 4 modules
     ./src/index.js 534 bytes [built] [code generated]
     ./src/App.jsx 5.23 KiB [built] [code generated]
@@ -23,34 +23,34 @@ cacheable modules 1.65 MiB
       ./.ve/EditorOverlay.css 2.25 KiB [built] [code generated]
       ./node_modules/css-loader/dist/cjs.js!./.ve/EditorOverlay.css 697 bytes [built] [code generated]
     ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 1547 ms
+webpack 5.99.9 compiled successfully in 1582 ms
 assets by status 1.11 KiB [cached] 1 asset
-assets by path *.js 1.87 MiB
-  asset bundle.js 1.86 MiB [emitted] (name: main)
-  asset main.be974d0ed892d2dc7f8a.hot-update.js 12.3 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.be974d0ed892d2dc7f8a.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.87 MiB = bundle.js 1.86 MiB main.be974d0ed892d2dc7f8a.hot-update.js 12.3 KiB
-cached modules 1.64 MiB [cached] 56 modules
+assets by path *.js 1.83 MiB
+  asset bundle.js 1.82 MiB [emitted] (name: main)
+  asset main.321f6e2d5db70dbe1597.hot-update.js 9.74 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.321f6e2d5db70dbe1597.hot-update.json 212 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.83 MiB = bundle.js 1.82 MiB main.321f6e2d5db70dbe1597.hot-update.js 9.74 KiB
+cached modules 1.62 MiB [cached] 53 modules
 runtime modules 28.7 KiB 15 modules
-./node_modules/css-loader/dist/cjs.js!./src/components/TicTacToe/TicTacToe.css 9.46 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 81 ms
+./src/App.jsx 5.14 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 127 ms
 assets by status 1.11 KiB [cached] 1 asset
-assets by path *.js 1.87 MiB
-  asset bundle.js 1.86 MiB [emitted] (name: main)
-  asset main.13b8b5c059880fb73b18.hot-update.js 12.1 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.13b8b5c059880fb73b18.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.87 MiB = bundle.js 1.86 MiB main.13b8b5c059880fb73b18.hot-update.js 12.1 KiB
-cached modules 1.64 MiB [cached] 56 modules
+assets by path *.js 1.83 MiB
+  asset bundle.js 1.82 MiB [emitted] (name: main)
+  asset main.b265238c126458e53829.hot-update.js 9.32 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.b265238c126458e53829.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.83 MiB = bundle.js 1.82 MiB main.b265238c126458e53829.hot-update.js 9.32 KiB
+cached modules 1.62 MiB [cached] 53 modules
 runtime modules 28.7 KiB 15 modules
-./node_modules/css-loader/dist/cjs.js!./src/components/TicTacToe/TicTacToe.css 9.25 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 51 ms
+./src/App.jsx 4.88 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 67 ms
 assets by status 1.11 KiB [cached] 1 asset
-assets by path *.js 1.87 MiB
-  asset bundle.js 1.86 MiB [emitted] (name: main)
-  asset main.9eff856e2c6b57c7c34b.hot-update.js 12.8 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.9eff856e2c6b57c7c34b.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.87 MiB = bundle.js 1.86 MiB main.9eff856e2c6b57c7c34b.hot-update.js 12.8 KiB
-cached modules 1.64 MiB [cached] 56 modules
+assets by path *.js 1.83 MiB
+  asset bundle.js 1.82 MiB [emitted] (name: main)
+  asset main.fb6a33cfe5f57f941ab4.hot-update.js 7.51 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.fb6a33cfe5f57f941ab4.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.83 MiB = bundle.js 1.82 MiB main.fb6a33cfe5f57f941ab4.hot-update.js 7.51 KiB
+cached modules 1.62 MiB [cached] 53 modules
 runtime modules 28.7 KiB 15 modules
-./node_modules/css-loader/dist/cjs.js!./src/components/TicTacToe/TicTacToe.css 9.97 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 55 ms
+./src/components/Home/Home.jsx 4.06 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 56 ms
