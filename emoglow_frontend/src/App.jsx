@@ -31,8 +31,8 @@ const App = () => {
         <nav className="navbar" role="navigation" aria-label="Main">
           <div className="container navbar-content">
             <Link to="/" className="logo" tabIndex={0} aria-label="Goofy Creations Home">
-              <span className="logo-symbol" aria-hidden="true">🎮</span>
-              <span className="logo-title">Goofy Creations</span>
+              <span className="logo-symbol" aria-hidden="true" style={{ color: "#ff9800" }}>💣</span>
+              <span className="logo-title" style={{ color: "#ff9800" }}>Goofy Creations</span>
             </Link>
             <button
               className="navbar-burger"

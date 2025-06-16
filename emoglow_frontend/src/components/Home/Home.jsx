@@ -23,17 +23,35 @@ function Home() {
         </div>
       </section>
       <nav className="home-tiles" aria-label="Main site navigation">
-        <Link className="home-tile" to="/minesweeper">
+        {/* Minesweeper Tile */}
+        <Link
+          className="home-tile"
+          to="/minesweeper"
+          tabIndex={0}
+          aria-label="Minesweeper mini-game"
+        >
           <span role="img" aria-label="minesweeper" className="home-tile-emoji">💣</span>
           <span className="home-tile-label">Minesweeper</span>
-          <span className="home-tile-desc">Find mines, not trouble!</span>
+          <span className="home-tile-desc">Find all safe spots—avoid the orange mines!</span>
         </Link>
-        <Link className="home-tile" to="/rock-paper-scissors">
+        {/* Rock Paper Scissors Tile */}
+        <Link
+          className="home-tile"
+          to="/rock-paper-scissors"
+          tabIndex={0}
+          aria-label="Rock Paper Scissors mini-game"
+        >
           <span role="img" aria-label="rock-paper-scissors" className="home-tile-emoji">✊✋✌️</span>
           <span className="home-tile-label">Rock Paper Scissors</span>
           <span className="home-tile-desc">Outsmart the bot!</span>
         </Link>
-        <Link className="home-tile" to="/tic-tac-toe">
+        {/* Tic Tac Toe Tile */}
+        <Link
+          className="home-tile"
+          to="/tic-tac-toe"
+          tabIndex={0}
+          aria-label="Tic Tac Toe mini-game"
+        >
           <span role="img" aria-label="tic tac toe" className="home-tile-emoji">❌⭕</span>
           <span className="home-tile-label">Tic Tac Toe</span>
           <span className="home-tile-desc">Classic duel!</span>
