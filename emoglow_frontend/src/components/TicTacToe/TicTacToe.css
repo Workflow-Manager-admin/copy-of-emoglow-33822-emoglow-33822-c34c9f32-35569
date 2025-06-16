@@ -90,6 +90,11 @@
     box-shadow 0.18s;
   position: relative;
   z-index: 2;
+
+  /* For extra centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .ttt-cell:active:not(:disabled) {
   transform: scale(0.96);
@@ -103,14 +108,24 @@
   opacity: 0.81;
 }
 
+/* X/O Symbol: Centering, sizing, containment */
 .ttt-cell-val {
-  display: block;
-  font-size: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88%;
+  width: 88%;
+  font-size: 2.35em;
   line-height: 1;
   animation: ttt-cell-in 0.23s cubic-bezier(.41,1.15,.54,.98);
   user-select: none;
   filter: drop-shadow(0 6px 24px #7bfffd19);
   font-weight: 800;
+  box-sizing: border-box;
+  /* Prevent symbol overflow at all sizes */
+  overflow: hidden;
+  cursor: default;
+  margin: auto;
 }
 @keyframes ttt-cell-in { 0% {opacity: 0; transform: scale(0.7) rotate(-9deg);} 100% { opacity: 1; transform: none;} }
 
@@ -300,6 +315,21 @@
 @media (max-width: 420px) {
   .ttt-board-wrap { max-width: 95vw; height: 62vw;}
   .ttt-board { width: 92vw; height: 92vw; min-width: 0;}
-  .ttt-cell { font-size: 1.6rem; width: 30vw; max-width: 110px;}
+  .ttt-cell { font-size: 1.6rem; width: 30vw; max-width: 110px;
+    min-width: 60px; min-height: 60px;
+  }
+  .ttt-cell-val {
+    font-size: 2em !important;
+    min-height: 82%;
+    min-width: 82%;
+    padding: 0;
+    margin: auto;
+  }
   .tictactoe-root { margin-top: 32px; }
+}
+
+@media (max-width: 350px) {
+  .ttt-cell-val {
+    font-size: 1.4em !important;
+  }
 }
