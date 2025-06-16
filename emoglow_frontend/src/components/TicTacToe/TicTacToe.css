@@ -275,15 +275,24 @@
 .tictactoe-back-link {
   display: inline-block;
   margin-top: 1.3rem;
-  color: #33e4e4;
+  color: var(--brand-primary, #33e4e4);
   text-decoration: none;
   font-weight: 600;
   font-size: 1.09em;
   letter-spacing: 0.01em;
-  transition: color 0.15s;
+  border-radius: 8px;
+  padding: 6px 14px;
+  outline: none;
+  transition: color 0.14s, background 0.13s;
 }
-.tictactoe-back-link:hover {
+.tictactoe-back-link:focus-visible {
+  background: #234e849c;
+  color: var(--brand-secondary, #132c55);
+  box-shadow: 0 0 0 3px var(--brand-primary, #24ffd6)99;
+}
+.tictactoe-back-link:hover, .tictactoe-back-link:active {
   color: #89f0f0;
+  background: #20354dbb;
   text-decoration: underline;
 }
 

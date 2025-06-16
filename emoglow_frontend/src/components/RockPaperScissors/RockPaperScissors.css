@@ -294,15 +294,25 @@
 .rps-back-link {
   display: inline-block;
   margin-top: 0.5rem;
-  color: #31fafe;
+  color: var(--brand-primary, #31fafe);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.97rem;
   letter-spacing: 0.01em;
-  transition: color 0.15s;
+  border-radius: 8px;
+  padding: 4px 10px;
+  outline: none;
+  transition: color 0.13s, background 0.13s;
 }
-.rps-back-link:hover {
+.rps-back-link:focus-visible {
+  color: var(--brand-secondary, #132c55);
+  background: #bbe0ffe8;
+  box-shadow: 0 0 0 3px var(--brand-primary, #33e4e4)99;
+}
+.rps-back-link:hover,
+.rps-back-link:active {
   color: #ffde57;
+  background: #12276533;
   text-decoration: underline;
 }
 

@@ -131,15 +131,24 @@
 .spaceshooter-back-link {
   display: inline-block;
   margin-top: 1.7rem;
-  color: #33e4e4;
+  color: var(--brand-primary, #33e4e4);
   text-decoration: none;
   font-weight: 600;
   font-size: 1.12rem;
   letter-spacing: 0.01em;
-  transition: color 0.19s;
+  border-radius: 8px;
+  padding: 6px 14px;
+  outline: none;
+  transition: color 0.13s, background 0.13s;
 }
-.spaceshooter-back-link:hover, .spaceshooter-back-link:focus-visible {
+.spaceshooter-back-link:focus-visible {
+  background: #234e845c;
+  color: var(--brand-secondary, #132c55);
+  box-shadow: 0 0 0 3px var(--brand-primary, #24ffd6)aa;
+}
+.spaceshooter-back-link:hover, .spaceshooter-back-link:active {
   color: #c6f6ff;
+  background: #143c51bb;
   text-decoration: underline;
 }
 

@@ -1,24 +1,74 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import RockPaperScissors from "./components/RockPaperScissors/RockPaperScissors";
 import SpaceShooter from "./components/SpaceShooter/SpaceShooter";
 import TicTacToe from "./components/TicTacToe/TicTacToe";
 
+/**
+ * Public/brand navigation links for all pages
+ */
+const NAV_LINKS = [
+  { to: "/", label: "Home", exact: true },
+  { to: "/rock-paper-scissors", label: "Rock Paper Scissors" },
+  { to: "/space-shooter", label: "Space Shooter" },
+  { to: "/tic-tac-toe", label: "Tic Tac Toe" },
+];
+
 const App = () => {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+  // Toggle mobile menu
+  const toggleMobileNav = () => setMobileNavOpen((o) => !o);
+
+  // Close menu after nav
+  const closeMobileNav = () => setMobileNavOpen(false);
+
   return (
     <Router>
-      <div className="app">
-        <nav className="navbar">
-          <div className="container">
-            <div className="logo">
-              <span className="logo-symbol">🎮</span> Goofy Creations
-            </div>
+      <div className="app" tabIndex={-1}>
+        <nav className="navbar" role="navigation" aria-label="Main">
+          <div className="container navbar-content">
+            <Link to="/" className="logo" tabIndex={0} aria-label="Goofy Creations Home">
+              <span className="logo-symbol" aria-hidden="true">🎮</span>
+              <span className="logo-title">Goofy Creations</span>
+            </Link>
+            <button
+              className="navbar-burger"
+              aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileNavOpen}
+              aria-controls="navbar-menu"
+              onClick={toggleMobileNav}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+            <ul
+              id="navbar-menu"
+              className={`navbar-menu${mobileNavOpen ? " open" : ""}`}
+              role="menubar"
+            >
+              {NAV_LINKS.map((link) => (
+                <li key={link.to} role="none">
+                  <NavLink
+                    to={link.to}
+                    end={!!link.exact}
+                    className={({ isActive }) => "navbar-link" + (isActive ? " active" : "")}
+                    tabIndex={mobileNavOpen || window.innerWidth > 900 ? 0 : -1}
+                    onClick={closeMobileNav}
+                    role="menuitem"
+                  >
+                    {link.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
           </div>
         </nav>
-        <main>
-          <div className="container">
+        <main className="main-content" aria-label="App main content">
+          <div className="container page-content">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/rock-paper-scissors" element={<RockPaperScissors />} />
