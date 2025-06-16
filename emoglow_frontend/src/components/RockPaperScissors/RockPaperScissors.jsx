@@ -1,16 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./RockPaperScissors.css";
-
-/**
- * Sound effects for the game.
- * Use plain root-relative paths for assets (compatible with Create React App public/ directory).
- */
-const SOUNDS = {
-  win: "/assets/sounds/win.wav",
-  lose: "/assets/sounds/loss.wav",
-  draw: "/assets/sounds/draw.wav",
-};
 
 // Unicode/emoji for game buttons
 const ICONS = {
@@ -66,13 +56,6 @@ function RockPaperScissors() {
   const [gameHistory, setGameHistory] = useState([]); // [{round, player, opponent, result}]
   const [isAnimating, setIsAnimating] = useState(false); // To prevent input spam during animation
 
-  // Sound effects refs
-  const audioRef = useRef({
-    win: null,
-    lose: null,
-    draw: null,
-  });
-
   // PUBLIC_INTERFACE
   function computeResult(p, o) {
     if (p === o) return "draw";
@@ -122,7 +105,6 @@ function RockPaperScissors() {
         },
       ]);
       setPlayerHistory((h) => [...h, move]);
-      playSound(r);
       setIsAnimating(false);
     }, 1050);
 
@@ -131,16 +113,6 @@ function RockPaperScissors() {
       setFeedbackClass("");
     }, 1200);
   };
-
-  // Play win/loss/draw sound
-  // PUBLIC_INTERFACE
-  function playSound(res) {
-    if (audioRef.current[res]) {
-      audioRef.current[res].pause(); // If still playing, reset
-      audioRef.current[res].currentTime = 0;
-      audioRef.current[res].play();
-    }
-  }
 
   // Reset game
   const handleReset = () => {
@@ -282,23 +254,6 @@ function RockPaperScissors() {
           ← Back to Home
         </Link>
       </div>
-
-      {/* Audio assets */}
-      <audio
-        ref={(el) => (audioRef.current.win = el)}
-        src={SOUNDS.win}
-        preload="auto"
-      />
-      <audio
-        ref={(el) => (audioRef.current.lose = el)}
-        src={SOUNDS.lose}
-        preload="auto"
-      />
-      <audio
-        ref={(el) => (audioRef.current.draw = el)}
-        src={SOUNDS.draw}
-        preload="auto"
-      />
     </div>
   );
 }

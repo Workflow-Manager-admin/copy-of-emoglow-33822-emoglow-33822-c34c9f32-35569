@@ -34,3 +34,43 @@ cached modules 1.64 MiB [cached] 56 modules
 runtime modules 28.7 KiB 15 modules
 ./src/components/RockPaperScissors/RockPaperScissors.jsx 12.5 KiB [built] [code generated]
 webpack 5.99.9 compiled successfully in 162 ms
+assets by status 1.11 KiB [cached] 1 asset
+assets by path *.js 1.87 MiB
+  asset bundle.js 1.86 MiB [emitted] (name: main)
+  asset main.9dcd5bd6c319b3f36b47.hot-update.js 17.3 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.9dcd5bd6c319b3f36b47.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.87 MiB = bundle.js 1.86 MiB main.9dcd5bd6c319b3f36b47.hot-update.js 17.3 KiB
+cached modules 1.64 MiB [cached] 56 modules
+runtime modules 28.7 KiB 15 modules
+./src/components/RockPaperScissors/RockPaperScissors.jsx 12.2 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 120 ms
+assets by status 1.11 KiB [cached] 1 asset
+assets by path *.js 1.87 MiB
+  asset bundle.js 1.86 MiB [emitted] (name: main)
+  asset main.cbe0e7fb445e9505e645.hot-update.js 17.2 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.cbe0e7fb445e9505e645.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.87 MiB = bundle.js 1.86 MiB main.cbe0e7fb445e9505e645.hot-update.js 17.2 KiB
+cached modules 1.64 MiB [cached] 56 modules
+runtime modules 28.7 KiB 15 modules
+./src/components/RockPaperScissors/RockPaperScissors.jsx 12.1 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 76 ms
+assets by status 1.11 KiB [cached] 1 asset
+assets by path *.js 1.87 MiB
+  asset bundle.js 1.86 MiB [emitted] (name: main)
+  asset main.fe66086f6ccb4699148c.hot-update.js 16.9 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.fe66086f6ccb4699148c.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.87 MiB = bundle.js 1.86 MiB main.fe66086f6ccb4699148c.hot-update.js 16.9 KiB
+cached modules 1.64 MiB [cached] 56 modules
+runtime modules 28.7 KiB 15 modules
+./src/components/RockPaperScissors/RockPaperScissors.jsx 11.9 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 77 ms
+assets by status 1.11 KiB [cached] 1 asset
+assets by path *.js 1.87 MiB
+  asset bundle.js 1.85 MiB [emitted] (name: main)
+  asset main.fe0c09d51a2620f0ae64.hot-update.js 16 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.fe0c09d51a2620f0ae64.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.87 MiB = bundle.js 1.85 MiB main.fe0c09d51a2620f0ae64.hot-update.js 16 KiB
+cached modules 1.64 MiB [cached] 56 modules
+runtime modules 28.7 KiB 15 modules
+./src/components/RockPaperScissors/RockPaperScissors.jsx 11.2 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 71 ms
