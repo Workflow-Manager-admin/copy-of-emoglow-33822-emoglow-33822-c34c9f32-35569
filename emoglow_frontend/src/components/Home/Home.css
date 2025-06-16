@@ -6,6 +6,7 @@
   flex-direction: column;
   align-items: center;
   animation: fadein 1.2s ease;
+  background: none;
 }
 
 @keyframes fadein {
@@ -13,7 +14,6 @@
   100% { opacity: 1; transform: none;}
 }
 
-/* Header and logo area */
 .home-header {
   margin-bottom: 10px;
 }
@@ -31,7 +31,7 @@
 .home-site-title {
   font-size: 2.35rem;
   font-weight: 700;
-  color: #33e4e4;
+  color: #ff9800;
   letter-spacing: -0.5px;
 }
 .home-subtitle-box {
@@ -39,13 +39,14 @@
 }
 .home-subtitle {
   font-size: 1.21rem;
-  color: #33e4e4;
+  color: #ff9800;
   font-weight: 500;
   margin-bottom: 0.25rem;
 }
 .home-site-desc {
   font-size: 1.01rem;
-  color: #dbeafa;
+  color: #fff;
+  opacity: 0.75;
   margin-bottom: 1.4rem;
 }
 .home-sparkle {
@@ -68,65 +69,67 @@
   flex-direction: column;
   align-items: center;
   padding: 2.1rem 1.4rem 1.2rem 1.4rem;
-  background: var(--brand-gradient, linear-gradient(145deg, #092a47 70%, #154d69 100%));
-  color: var(--text-color, white);
+  background: #191919;
+  color: #fff;
   border-radius: 1.1rem;
   text-decoration: none;
   font-size: 1.12rem;
   position: relative;
-  box-shadow: 0 2px 14px 0 rgba(0,20,64,0.16), 0 1.5px 22px 0 rgba(30,150,220,0.046);
+  box-shadow: 0 2px 14px 0 #0003;
   transition: 
     transform 0.13s cubic-bezier(.5,.89,.56,1.22),
     background 0.17s,
     box-shadow 0.13s;
   min-width: 0;
   cursor: pointer;
-  border: 1.5px solid var(--nav-border, #18477210);
+  border: 2.5px solid transparent;
   outline: none;
 }
 
 .home-tile-emoji {
   font-size: 2.8rem;
   margin-bottom: 0.45rem;
-  filter: drop-shadow(0 2px 6px #167d9a21);
+  filter: none;
   letter-spacing: 0.02em;
 }
+
 .home-tile-label {
   font-size: 1.18rem;
   font-weight: 600;
   margin-bottom: 0.17em;
-  color: #f6faff;
-  text-shadow: 0 1px 10px #18497218;
+  color: #fff;
+  text-shadow: none;
 }
 .home-tile-desc {
-  color: #33e4e4;
+  color: #ff9800;
   font-size: 0.92rem;
   margin-top: 0.26em;
   font-weight: 400;
 }
 
-.home-tile:hover, .home-tile:focus-visible {
+.home-tile:hover,
+.home-tile:focus-visible {
   transform: translateY(-8px) scale(1.055);
-  background: linear-gradient(141deg, #14b7c7 55%, #33e4e4 95%);
-  color: var(--brand-secondary, #102f3a);
-  box-shadow: 0 4px 32px #1c6da48a;
-  border-color: var(--brand-primary, #33e4e4);
+  background: #232323;
+  color: #ff9800;
+  box-shadow: 0 4px 32px #ff980032;
+  border-color: #ff9800;
   outline: none;
 }
 .home-tile:active {
   transform: scale(0.99);
-  background: linear-gradient(96deg, #052547 65%, #154d69 100%);
+  background: #171717;
 }
 
 .home-tile:focus-visible {
-  box-shadow: 0 0 0 3px var(--nav-focus, #ffff53), 0 2px 21px var(--brand-primary, #33e4e4)55;
+  box-shadow: 0 0 0 3px #ff9800, 0 2px 21px #ff980058;
 }
 
 .home-footer {
   margin-top: 3.5rem;
   font-size: 0.97rem;
-  color: #47c4cc;
-  opacity: 0.70;
+  color: #ff9800;
+  opacity: 0.85;
 }
 
 @media (max-width: 900px) {

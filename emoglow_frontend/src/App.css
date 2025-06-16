@@ -1,28 +1,27 @@
 :root {
-  --brand-primary: #33e4e4;
-  --brand-secondary: #112741;
-  --brand-gradient: linear-gradient(95deg, #33e4e4 70%, #154d69 100%);
-  --accent: #fecd6f;
+  --primary-black: #111111;
+  --primary-white: #ffffff;
+  --primary-orange: #ff9800;
+  --accent-orange: #ff9800;
   --error: #ff4373;
-  --text-color: #f5f8ff;
-  --text-secondary: rgba(220,255,255,0.7);
-  --navbar-bg: #122544f2;
-  --nav-border: #236bb333;
-  --nav-active: #24ffd6;
-  --nav-focus: #ffff53;
-  --border-color: rgba(255,255,255,0.11);
-  --focus-ring: 0 0 0 3px #33e4e466;
+  --text-color: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.77);
+  --border-color: #262626;
+  --navbar-bg: #181818;
+  --nav-border: #242424;
+  --nav-active: #ff9800;
+  --nav-focus: #ff9800;
+  --focus-ring: 0 0 0 3px #ff980066;
 
   --font-main: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
   --font-title: 'Inter', 'Segoe UI', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
 }
 
-
 body {
   margin: 0;
   font-family: var(--font-main);
-  background-color: var(--brand-secondary);
+  background-color: var(--primary-black);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -40,7 +39,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(133deg, #120d1a 80%, #17455a 100%);
+  background: var(--primary-black);
 }
 
 .navbar {
@@ -61,6 +60,7 @@ body {
   padding: 7px 0;
 }
 
+/* Logo styles */
 .logo {
   display: flex;
   align-items: center;
@@ -68,24 +68,21 @@ body {
   font-family: var(--font-title);
   font-weight: 600;
   font-size: 1.31rem;
-  color: var(--brand-primary);
+  color: var(--accent-orange);
   text-decoration: none;
   background: none;
   border: none;
   transition: color 0.2s;
 }
-
 .logo-symbol {
-  color: var(--brand-primary);
+  color: var(--accent-orange);
   font-size: 1.41em;
-  text-shadow: 0 2px 14px #21e8ef14;
+  text-shadow: 0 2px 8px #ff980022;
 }
-
 .logo-title {
-  color: var(--brand-primary);
+  color: var(--primary-white);
   letter-spacing: -0.5px;
 }
-
 .navbar-burger {
   display: none;
   flex-direction: column;
@@ -97,11 +94,10 @@ body {
   cursor: pointer;
   z-index: 150;
 }
-
 .navbar-burger span {
   width: 26px;
   height: 3.6px;
-  background: var(--brand-primary);
+  background: var(--accent-orange);
   border-radius: 2.7px;
   display: block;
   transition: all 0.23s;
@@ -118,10 +114,11 @@ body {
   position: relative;
 }
 
+/* NAV links */
 .navbar-link {
   display: block;
   font-family: var(--font-main);
-  color: var(--text-color);
+  color: var(--primary-white);
   text-decoration: none;
   font-size: 1.09rem;
   font-weight: 500;
@@ -138,19 +135,19 @@ body {
 }
 .navbar-link.active,
 .navbar-link:focus-visible {
-  color: var(--brand-primary);
-  background: #13253a;
+  color: var(--accent-orange);
+  background: #191919;
   font-weight: 600;
-  box-shadow: 0 1.5px 11px var(--brand-primary)22;
+  box-shadow: 0 1.5px 11px #ff980020;
 }
-
 .navbar-link:hover,
 .navbar-link:active {
-  color: var(--nav-active);
-  background: #0e1d34;
+  color: var(--primary-black);
+  background: var(--accent-orange);
   text-decoration: none;
 }
 
+/* Responsive styles for navbar */
 @media (max-width: 900px) {
   .navbar-burger {
     display: flex;
@@ -160,7 +157,7 @@ body {
     align-items: flex-end;
     background: var(--navbar-bg);
     border-radius: 0 0 15px 15px;
-    box-shadow: 0 7px 22px #33e4e466;
+    box-shadow: 0 7px 22px #ff980040;
     position: absolute;
     top: 58px;
     right: 4px;
@@ -179,7 +176,7 @@ body {
     pointer-events: auto;
     transform: translateY(0) scale(1);
     visibility: visible;
-    box-shadow: 0 6px 22px #29ffee50;
+    box-shadow: 0 6px 22px #ff980088;
   }
   .navbar-content {
     flex-wrap: wrap;
@@ -195,8 +192,7 @@ body {
   }
 }
 
-
-/* --- General Container --- */
+/* General Container */
 .container {
   max-width: 950px;
   margin: 0 auto;
@@ -216,10 +212,14 @@ body {
   min-height: 70vh;
 }
 
-/* --- Buttons --- */
-.btn, .ttt-restart-btn, .spaceshooter-btn, .rps-reset-btn, .rps-move-btn {
-  background: var(--brand-gradient);
-  color: var(--brand-secondary);
+/* Buttons */
+.btn,
+.ttt-restart-btn,
+.spaceshooter-btn,
+.rps-reset-btn,
+.rps-move-btn {
+  background: var(--accent-orange);
+  color: var(--primary-black);
   border: none;
   border-radius: 8px;
   font-size: 1em;
@@ -229,7 +229,7 @@ body {
   cursor: pointer;
   margin: 8px 0;
   outline: none;
-  box-shadow: 0 2px 8px #23fff917;
+  box-shadow: 0 2px 8px #ff980021;
   transition:
     background 0.19s,
     color 0.13s,
@@ -245,18 +245,17 @@ body {
 .spaceshooter-btn:focus-visible,
 .rps-reset-btn:focus-visible,
 .rps-move-btn:focus-visible {
-  box-shadow: 0 3px 28px #49f8e361, 0 0 0 3px var(--nav-focus);
+  box-shadow: 0 3px 28px #ff980051, 0 0 0 3px var(--nav-focus);
 }
-
 .btn:hover,
 .ttt-restart-btn:hover,
 .spaceshooter-btn:hover,
 .rps-reset-btn:hover,
 .rps-move-btn:hover {
-  background: linear-gradient(133deg, #1fe1f4 51%, #c6fcb3 100%);
-  color: #1e334f;
+  background: var(--primary-white);
+  color: var(--accent-orange);
+  border: 2px solid var(--accent-orange);
 }
-
 .btn:active,
 .ttt-restart-btn:active,
 .spaceshooter-btn:active,
@@ -265,9 +264,9 @@ body {
   transform: scale(0.97);
 }
 
-/* --- Headings & Typography --- */
+/* Headings & Typography */
 .subtitle {
-  color: var(--brand-primary);
+  color: var(--accent-orange);
   font-weight: 500;
   font-size: 1.18rem;
 }
@@ -285,7 +284,6 @@ body {
   max-width: 600px;
   margin-bottom: 16px;
 }
-
 .hero {
   padding-top: 88px;
   padding-bottom: 44px;
@@ -296,7 +294,7 @@ body {
   gap: 22px;
 }
 
-/* --- Utility Classes (for a11y, ARIA, visually hidden) --- */
+/* Utility Classes */
 .visually-hidden {
   border: 0 !important;
   clip: rect(1px,1px,1px,1px);
@@ -305,92 +303,19 @@ body {
   height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; white-space: nowrap;
 }
 
-/* --- Responsive Font scaling & Spacing --- */
+/* Responsive font and spacing */
 @media (max-width: 960px) {
   .container { max-width: 97vw; }
   .main-content { margin-top: 62px;}
 }
-
 @media (max-width: 700px) {
   .container { padding: 0 8px; }
   .title { font-size: 1.83rem; }
 }
-
 @media (max-width: 460px) {
   .main-content { margin-top: 46px; }
   .title { font-size: 1.13rem; }
   .navbar-link { font-size: 0.96rem; padding: 7px 8px; }
 }
 
-
-.logo {
-  font-size: 1.25rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logo-symbol {
-  color: var(--base-light);
-}
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 24px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.hero {
-  padding-top: 120px;
-  padding-bottom: 64px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.subtitle {
-  color: var(--base-light);
-  font-weight: 500;
-  font-size: 1.1rem;
-}
-
-.title {
-  font-size: 3.5rem;
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.description {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin-bottom: 16px;
-}
-
-.btn {
-  background-color: var(--base-light);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.btn:hover {
-  background-color: #7691ff;
-}
-
-.btn-large {
-  padding: 12px 24px;
-  font-size: 1.1rem;
-}
+/* Duplicates removed to avoid style ambiguity */
