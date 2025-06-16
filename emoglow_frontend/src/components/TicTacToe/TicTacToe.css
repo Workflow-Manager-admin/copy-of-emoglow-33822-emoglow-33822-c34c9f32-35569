@@ -101,7 +101,9 @@
     box-shadow 0.18s;
   position: relative;
   z-index: 2;
+  padding: 0;
 }
+
 .ttt-cell:active:not(:disabled) {
   transform: scale(0.96);
 }
@@ -119,24 +121,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
   width: 100%;
-  font-size: 1em;
-  line-height: 1;
+  height: 100%;
+  font-size: 1em !important;
+  line-height: 1 !important;
   animation: ttt-cell-in 0.23s cubic-bezier(.41,1.15,.54,.98);
   user-select: none;
-  filter: drop-shadow(0 6px 24px #7bfffd19);
+  filter: drop-shadow(0 7px 24px #7bfffd10);
   font-family: 'Poppins', 'Inter', 'Roboto Mono', 'Menlo', 'Consolas', monospace, sans-serif;
-  font-weight: 900;
+  font-weight: 900 !important;
   font-variation-settings: "wght" 900;
   letter-spacing: -0.05em;
   box-sizing: border-box;
   max-width: 100%;
   max-height: 100%;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
   cursor: default;
-  margin: auto;
+  margin: 0 !important;
+  padding: 0 !important;
 }
+
 @keyframes ttt-cell-in { 0% {opacity: 0; transform: scale(0.7) rotate(-9deg);} 100% { opacity: 1; transform: none;} }
 
 .ttt-cell-val-X { color: #33e4e4; text-shadow: 0 1.5px 11px #41eded19; }
@@ -152,49 +158,27 @@
   100% { filter: brightness(1.07);}
 }
 
-/* Strike-through animated line for win */
-.ttt-strike {
+/* SVG Strike line: overlays board for any win direction */
+.ttt-strike-svg {
   position: absolute;
-  z-index: 5;
   left: 0; top: 0;
   width: 100%; height: 100%;
   pointer-events: none;
+  z-index: 7;
+  display: block;
 }
-.ttt-strike::after {
-  content: "";
-  position: absolute;
-  background: linear-gradient(95deg,#2af7d9 61%, #fdfd89 100%);
-  border-radius: 8px;
-  box-shadow: 0 4px 13px #54ffe422, 0 0px 12px #ffe66f40;
-  transition: all 0.15s cubic-bezier(0.61,0,0.63,1.4);
-  animation: ttt-strike-in 0.59s cubic-bezier(.42,.85,.38,1.13);
-}
-@keyframes ttt-strike-in {
-  0% { width: 0; opacity: 0; }
-  80%{ opacity: 0.85;}
-  100% { width: 100%; opacity: 1;}
-}
-/* A row: left to right, 3 different y */
-.strike-row-0::after { top: 16.6%; left: 5%; width: 90%; height: 9px; }
-.strike-row-1::after { top: 48.5%; left: 5%; width: 90%; height: 9px; }
-.strike-row-2::after { top: 80.8%; left: 5%; width: 90%; height: 9px; }
-/* Columns: top to bottom, 3 different x */
-.strike-col-0::after { left: 16.5%; top: 6%; height: 90%; width: 9px; }
-.strike-col-1::after { left: 48.8%; top: 6%; height: 90%; width: 9px; }
-.strike-col-2::after { left: 81%; top: 6%; height: 90%; width: 9px; }
-/* Diagonal (main \) */
-.strike-diag-main::after {
-  left: 6%; top: 9%;
-  width: 90%; height: 9px;
-  transform: rotate(45deg);
-}
-/* Diagonal (anti /) */
-.strike-diag-anti::after {
-  left: 6%; bottom: 7%;
-  width: 90%; height: 9px;
-  transform: rotate(-45deg);
+.ttt-strike-svg line {
+  stroke: #ff9800;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0px 4px 16px #ff980020);
+  transition: all 0.33s cubic-bezier(.41,1.01,.51,.97);
+  /* Orange glow */
 }
 
+/* Remove legacy .ttt-strike and strike-* CSS,
+   and ensure win-line is always sharp and crisp. */
 /* Result / Messaging */
 .ttt-result-area {
   display: flex;
