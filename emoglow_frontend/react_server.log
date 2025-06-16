@@ -7,13 +7,13 @@
 <i> [webpack-dev-server] On Your Network (IPv4): http://172.17.0.2:3000/
 <i> [webpack-dev-server] Content not from webpack is served from './public' directory
 Injecting EditorRootWrapper import: ../.ve/EditorRootWrapper
-asset bundle.js 1.81 MiB [emitted] (name: main)
+asset bundle.js 1.83 MiB [emitted] (name: main)
 asset index.html 1.11 KiB [emitted]
 runtime modules 28.7 KiB 15 modules
-cacheable modules 1.6 MiB
+cacheable modules 1.63 MiB
   modules by path ./node_modules/ 1.54 MiB 34 modules
-  modules by path ./src/ 51.3 KiB
-    modules by path ./src/components/ 40.7 KiB 12 modules
+  modules by path ./src/ 72.9 KiB
+    modules by path ./src/components/ 62.3 KiB 12 modules
     modules by path ./src/*.css 7.49 KiB 4 modules
     ./src/index.js 534 bytes [built] [code generated]
     ./src/App.jsx 2.63 KiB [built] [code generated]
@@ -23,24 +23,24 @@ cacheable modules 1.6 MiB
       ./.ve/EditorOverlay.css 2.25 KiB [built] [code generated]
       ./node_modules/css-loader/dist/cjs.js!./.ve/EditorOverlay.css 697 bytes [built] [code generated]
     ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 1635 ms
+webpack 5.99.9 compiled successfully in 1667 ms
 assets by status 1.11 KiB [cached] 1 asset
 assets by path *.js 1.85 MiB
-  asset bundle.js 1.83 MiB [emitted] (name: main)
-  asset main.3f6b929c8a7f9ec1d86c.hot-update.js 24.8 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.3f6b929c8a7f9ec1d86c.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.85 MiB = bundle.js 1.83 MiB main.3f6b929c8a7f9ec1d86c.hot-update.js 24.8 KiB
-cached modules 1.6 MiB [cached] 56 modules
-runtime modules 28.7 KiB 15 modules
-./src/components/SpaceShooter/SpaceShooter.jsx 19.4 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 225 ms
-assets by status 1.11 KiB [cached] 1 asset
-assets by path *.js 1.84 MiB
-  asset bundle.js 1.83 MiB [emitted] (name: main)
-  asset main.b1347eaca8f5b62e27d0.hot-update.js 6.48 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.b1347eaca8f5b62e27d0.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.84 MiB = bundle.js 1.83 MiB main.b1347eaca8f5b62e27d0.hot-update.js 6.48 KiB
+  asset bundle.js 1.84 MiB [emitted] (name: main)
+  asset main.a48e0890232ac325ee3b.hot-update.js 9.76 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.a48e0890232ac325ee3b.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.85 MiB = bundle.js 1.84 MiB main.a48e0890232ac325ee3b.hot-update.js 9.76 KiB
 cached modules 1.62 MiB [cached] 56 modules
 runtime modules 28.7 KiB 15 modules
-./node_modules/css-loader/dist/cjs.js!./src/components/SpaceShooter/SpaceShooter.css 3.82 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 87 ms
+./src/components/TicTacToe/TicTacToe.jsx 6.3 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 131 ms
+assets by status 1.11 KiB [cached] 1 asset
+assets by path *.js 1.85 MiB
+  asset bundle.js 1.84 MiB [emitted] (name: main)
+  asset main.b7289a7ede4a0deb0f67.hot-update.js 10.6 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.b7289a7ede4a0deb0f67.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.85 MiB = bundle.js 1.84 MiB main.b7289a7ede4a0deb0f67.hot-update.js 10.6 KiB
+cached modules 1.63 MiB [cached] 56 modules
+runtime modules 28.7 KiB 15 modules
+./node_modules/css-loader/dist/cjs.js!./src/components/TicTacToe/TicTacToe.css 7.8 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 85 ms
