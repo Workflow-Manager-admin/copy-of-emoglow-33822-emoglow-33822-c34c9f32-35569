@@ -2,15 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Minesweeper.css";
 import { Link } from "react-router-dom";
 
-// Color palette (black/white/orange) is handled via CSS variables
-
+// --- Game Config Presets (Easy, Medium, Hard) ---
 const PRESETS = [
   { label: "Easy", rows: 8, cols: 8, mines: 10 },
   { label: "Medium", rows: 12, cols: 18, mines: 36 },
   { label: "Hard", rows: 16, cols: 30, mines: 99 }
 ];
 
-// Emoji for smile (^_^) and shocked/lose faces
+// Emojis for face button states
 const FACE = {
   normal: "🙂",
   pressed: "😮",
@@ -19,11 +18,10 @@ const FACE = {
 };
 
 /**
- * Initialize a game grid.
- * @returns {Array<Array<Object>>} 2D array of cell objects.
+ * Initialize a new grid.
  */
 function initGrid(rows, cols, mines, firstClick) {
-  // Place mines after the first click, to avoid dropping a mine at that location or any adjacent cell.
+  // Prepare grid (remains entirely covered for now)
   const grid = Array.from({ length: rows }, (_, r) =>
     Array.from({ length: cols }, (_, c) => ({
       r,
@@ -35,11 +33,11 @@ function initGrid(rows, cols, mines, firstClick) {
       exploded: false,
     }))
   );
-  // Mine placement
+  // Place mines
   let placed = 0;
   const forbidden = new Set();
   if (firstClick) {
-    // First click safety: no mine at first cell or neighbors
+    // First click protection area (no mine at first cell or its neighbors)
     for (let dr = -1; dr <= 1; dr++)
       for (let dc = -1; dc <= 1; dc++) {
         const nr = firstClick.r + dr, nc = firstClick.c + dc;
@@ -55,7 +53,7 @@ function initGrid(rows, cols, mines, firstClick) {
       placed++;
     }
   }
-  // Compute adjacent counts
+  // Calculate adjacent mine counts
   for (let r = 0; r < rows; r++)
     for (let c = 0; c < cols; c++) {
       if (grid[r][c].isMine) continue;
@@ -79,19 +77,18 @@ function initGrid(rows, cols, mines, firstClick) {
 }
 
 /**
- * Return a deep clone of a game grid (so state is never mutated).
+ * Deep clones a grid.
  */
 function cloneGrid(grid) {
   return grid.map((row) => row.map((cell) => ({ ...cell })));
 }
 
 /**
- * Flood-fill for blank cell revealing. Returns updated grid.
+ * Reveals a cell (and floods out adjacent empties).
  */
 function revealGrid(grid, row, col) {
   const rows = grid.length, cols = grid[0].length;
   const queue = [[row, col]];
-  // don't mutate existing grid! (always clone grid externally before calling)
   const seen = Array.from({ length: rows }, () => Array(cols).fill(false));
   while (queue.length) {
     const [r, c] = queue.pop();
@@ -108,16 +105,17 @@ function revealGrid(grid, row, col) {
     grid[r][c].revealed = true;
     seen[r][c] = true;
     if (grid[r][c].adjacent === 0 && !grid[r][c].isMine) {
-      // Reveal neighbors
       for (let dr = -1; dr <= 1; dr++)
-        for (let dc = -1; dc <= 1; dc++) {
+        for (let dc = -1; dc <= 1; dc++)
           if (dr || dc) queue.push([r + dr, c + dc]);
-        }
     }
   }
   return grid;
 }
 
+/**
+ * Format time as m:ss
+ */
 function formatTime(secs) {
   if (secs === 0) return "0:00";
   const m = Math.floor(secs / 60);
@@ -127,7 +125,7 @@ function formatTime(secs) {
 
 // PUBLIC_INTERFACE
 function Minesweeper() {
-  // Game state
+  // Core state
   const [presetIdx, setPresetIdx] = useState(0);
   const { rows, cols, mines } = PRESETS[presetIdx];
   const [grid, setGrid] = useState(() => initGrid(rows, cols, mines));
@@ -138,10 +136,10 @@ function Minesweeper() {
   const [timer, setTimer] = useState(0);
   const timerRef = useRef(null);
 
-  // Focus on game for accessibility
+  // Accessibility: which cell is focused (for keyboard navigation)
   const gridRef = useRef(null);
 
-  // Timer effect
+  // Start & stop timer
   useEffect(() => {
     if (!firstClick || gameStatus !== "playing") {
       clearInterval(timerRef.current);
@@ -151,7 +149,7 @@ function Minesweeper() {
     return () => clearInterval(timerRef.current);
   }, [firstClick, gameStatus]);
 
-  // Reset on preset change
+  // Reset when difficulty changes
   useEffect(() => {
     setGrid(initGrid(rows, cols, mines));
     setMineCount(mines);
@@ -162,7 +160,7 @@ function Minesweeper() {
     clearInterval(timerRef.current);
   }, [presetIdx]);
 
-  // Keyboard navigation (arrows/space/enter for accessibility)
+  // Keyboard navigation
   useEffect(() => {
     const keyDown = (e) => {
       if (
@@ -171,7 +169,8 @@ function Minesweeper() {
         gameStatus === "playing"
       ) {
         let { r, c } = gridRef.current.dataset;
-        r = Number(r); c = Number(c);
+        r = Number(r);
+        c = Number(c);
         if (["ArrowUp", "w", "W"].includes(e.key) && r > 0) gridRef.current = focusCell(r - 1, c);
         else if (["ArrowDown", "s", "S"].includes(e.key) && r < rows - 1) gridRef.current = focusCell(r + 1, c);
         else if (["ArrowLeft", "a", "A"].includes(e.key) && c > 0) gridRef.current = focusCell(r, c - 1);
@@ -192,13 +191,12 @@ function Minesweeper() {
   }
 
   /**
-   * Handle user click. On first click, mines are generated.
+   * Handle left click. If first, make sure mine never at this cell or neighbors.
    */
   function handleCellClick(row, col) {
     if (gameStatus !== "playing") return;
     setFace(FACE.pressed);
     if (!firstClick) {
-      // Generate grid, guaranteeing the first cell is never a mine nor adjacent to a mine (forgiveness).
       const newGrid = initGrid(rows, cols, mines, { r: row, c: col });
       const afterReveal = cloneGrid(newGrid);
       revealGrid(afterReveal, row, col);
@@ -211,7 +209,7 @@ function Minesweeper() {
     if (cell.revealed || cell.flagged) return;
     const newGrid = cloneGrid(grid);
 
-    // If mine: lose!
+    // Hit mine: lose!
     if (cell.isMine) {
       newGrid[row][col].revealed = true;
       newGrid[row][col].exploded = true;
@@ -224,10 +222,10 @@ function Minesweeper() {
       clearInterval(timerRef.current);
       return;
     }
-    // Reveal cell/flood
+    // Reveal normal cell (flood – auto-blank region)
     revealGrid(newGrid, row, col);
 
-    // Win check: all non-mine cells revealed
+    // Check win
     let win = false;
     if (
       newGrid.flat().filter((c) => !c.isMine && c.revealed).length ===
@@ -248,7 +246,7 @@ function Minesweeper() {
   }
 
   /**
-   * Handle right-click (flag/unflag).
+   * Handle right click (flag/unflag).
    */
   function handleRightClick(row, col, e) {
     if (e) e.preventDefault();
@@ -263,7 +261,7 @@ function Minesweeper() {
     setGrid(newGrid);
   }
 
-  // Face button for quick restart
+  // Face button/restart
   function restartGame() {
     setGrid(initGrid(rows, cols, mines));
     setMineCount(mines);
@@ -275,14 +273,14 @@ function Minesweeper() {
     if (gridRef.current) gridRef.current.blur();
   }
 
-  // Keyboard tab trap focus
+  // Track focused cell for accessibility
   function handleFocus(e, r, c) {
     gridRef.current = e.target;
     e.target.dataset.r = r;
     e.target.dataset.c = c;
   }
 
-  // Accessibility label helper
+  // Accessibility: Labels for screen readers
   function cellLabel(cell) {
     if (cell.revealed && cell.isMine)
       return cell.exploded
@@ -296,7 +294,7 @@ function Minesweeper() {
     return "Hidden";
   }
 
-  // Build grid UI
+  // Render the board grid
   function renderBoard() {
     return (
       <div
@@ -375,7 +373,7 @@ function Minesweeper() {
     );
   }
 
-  // Header scoreboard area and controls
+  // Scoreboard, face button, timer
   function renderHeader() {
     return (
       <div className="ms-head">
@@ -408,7 +406,7 @@ function Minesweeper() {
     );
   }
 
-  // Mode/preset dropdown
+  // Difficulty mode dropdown
   function renderPresetSelect() {
     return (
       <div className="ms-preset">
@@ -432,7 +430,7 @@ function Minesweeper() {
     );
   }
 
-  // Result banner
+  // Result banner for win/lose
   function renderResult() {
     if (gameStatus === "win")
       return (
