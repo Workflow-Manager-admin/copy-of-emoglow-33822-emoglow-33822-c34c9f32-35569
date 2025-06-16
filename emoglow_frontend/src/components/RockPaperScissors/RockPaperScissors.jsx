@@ -8,8 +8,8 @@ import "./RockPaperScissors.css";
  */
 const SOUNDS = {
   win: "/assets/sounds/win.wav",
-  lose: "/assets/sounds/lost.mp3",
-  draw: "/assets/sounds/draw.mp3",
+  lose: "/assets/sounds/loss.wav",
+  draw: "/assets/sounds/draw.wav",
 };
 
 // Unicode/emoji for game buttons
