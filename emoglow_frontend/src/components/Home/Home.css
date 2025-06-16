@@ -1,3 +1,5 @@
+/* THEME: Black, white, orange only */
+
 .home-root {
   margin-top: 100px;
   text-align: center;
@@ -6,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   animation: fadein 1.2s ease;
-  background: none;
+  background: #111;
 }
 
 @keyframes fadein {
@@ -46,7 +48,7 @@
 .home-site-desc {
   font-size: 1.01rem;
   color: #fff;
-  opacity: 0.75;
+  opacity: 0.85;
   margin-bottom: 1.4rem;
 }
 .home-sparkle {
@@ -75,14 +77,16 @@
   text-decoration: none;
   font-size: 1.12rem;
   position: relative;
-  box-shadow: 0 2px 14px 0 #0003;
+  box-shadow: 0 2px 14px 0 #1114;
   transition: 
     transform 0.13s cubic-bezier(.5,.89,.56,1.22),
     background 0.17s,
+    color 0.16s,
+    border 0.16s,
     box-shadow 0.13s;
   min-width: 0;
   cursor: pointer;
-  border: 2.5px solid transparent;
+  border: 2px solid #222;
   outline: none;
 }
 
@@ -102,7 +106,7 @@
 }
 .home-tile-desc {
   color: #ff9800;
-  font-size: 0.92rem;
+  font-size: 0.93rem;
   margin-top: 0.26em;
   font-weight: 400;
 }
@@ -110,7 +114,7 @@
 .home-tile:hover,
 .home-tile:focus-visible {
   transform: translateY(-8px) scale(1.055);
-  background: #232323;
+  background: #131313;
   color: #ff9800;
   box-shadow: 0 4px 32px #ff980032;
   border-color: #ff9800;
@@ -118,7 +122,7 @@
 }
 .home-tile:active {
   transform: scale(0.99);
-  background: #171717;
+  background: #0e0e0e;
 }
 
 .home-tile:focus-visible {
@@ -129,9 +133,11 @@
   margin-top: 3.5rem;
   font-size: 0.97rem;
   color: #ff9800;
-  opacity: 0.85;
+  opacity: 0.97;
+  letter-spacing: 0.01em;
 }
 
+/* Responsive */
 @media (max-width: 900px) {
   .home-root { min-height: 0; margin-top: 66px; }
   .home-tiles { max-width: 95vw; gap: 1.3rem; }

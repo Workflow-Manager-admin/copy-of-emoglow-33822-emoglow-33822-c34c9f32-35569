@@ -1,11 +1,7 @@
 :root {
-  --gray-50:   #f9fafb;
-  --gray-100:  #e5e7eb;
-  --gray-600:  #4b5563;
-  --gray-800:  #1f2937;
-  --blue-600:  #2563eb;
-  --blue-700:  #1d4ed8;
-  --green-win: #10b981;
+  --primary-black: #111111;
+  --primary-white: #ffffff;
+  --primary-orange: #ff9800;
   --main-font: 'Inter', 'Poppins', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   --radius: 14px;
   --transition: 0.15s cubic-bezier(.4,.92,.67,1.02);
@@ -13,12 +9,12 @@
   --card-maxwidth: 260px;
 }
 
-/* --- CSS RESET --- */
 html, body {
-  margin: 0; padding: 0;
+  margin: 0;
+  padding: 0;
   font-family: var(--main-font);
-  color: var(--gray-800);
-  background: var(--gray-50);
+  color: var(--primary-white);
+  background: var(--primary-black);
   font-size: 1rem;
   line-height: 1.57;
   min-height: 100%;
@@ -26,30 +22,31 @@ html, body {
   letter-spacing: 0.01em;
 }
 
+/* --- Links --- */
 a {
-  color: var(--blue-600);
+  color: var(--primary-orange);
   text-decoration: none;
   transition: color var(--transition);
 }
 a:focus-visible {
-  outline: 2px solid var(--blue-600);
+  outline: 2px solid var(--primary-orange);
   outline-offset: 2px;
 }
 
 ::-webkit-scrollbar { height: 12px; }
 ::-webkit-scrollbar-thumb {
-  background: var(--gray-100);
+  background: #222;
   border-radius: 6px;
 }
-::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-track { background: #181818; }
 
 /* ===== NAVBAR ===== */
 .navbar {
-  background: var(--gray-800);
+  background: #191919;
   position: sticky;
   top: 0; z-index: 100;
   width: 100%;
-  border-bottom: 1.5px solid var(--gray-100);
+  border-bottom: 1.5px solid #333;
   box-shadow: none;
 }
 .navbar-inner {
@@ -62,15 +59,15 @@ a:focus-visible {
   display: flex; align-items: center; gap: 0.6em;
   font-family: var(--main-font);
   font-size: 1.25rem; font-weight: 700;
-  color: var(--blue-600);
+  color: var(--primary-orange);
 }
 .logo-img {
   height: 37px; width: 37px;
   border-radius: 7.5px;
-  background: var(--gray-50);
+  background: #222;
 }
 .logo-title {
-  color: var(--blue-600);
+  color: var(--primary-orange);
   font-family: var(--main-font);
   font-weight: 700; letter-spacing: -0.5px;
 }
@@ -83,7 +80,7 @@ a:focus-visible {
 .navbar-burger span {
   display: block; width: 24px; height: 3.5px;
   border-radius: 2px;
-  background: var(--blue-600);
+  background: var(--primary-orange);
   transition: background var(--transition);
 }
 
@@ -94,7 +91,7 @@ a:focus-visible {
   background: none; position: relative;
 }
 .navbar-link {
-  color: var(--gray-50);
+  color: var(--primary-white);
   font-size: 1.04rem;
   font-family: var(--main-font);
   font-weight: 600;
@@ -106,14 +103,14 @@ a:focus-visible {
 }
 .navbar-link.active,
 .navbar-link:focus-visible {
-  color: var(--blue-600);
-  background: var(--gray-100);
+  color: var(--primary-orange);
+  background: #191919;
   font-weight: 700;
 }
 .navbar-link:hover,
 .navbar-link:active {
-  color: var(--blue-700);
-  background: var(--gray-100);
+  color: var(--primary-black);
+  background: var(--primary-orange);
 }
 @media (max-width: 800px) {
   .navbar-inner { padding: 0.35rem 0.2rem; }
@@ -124,9 +121,9 @@ a:focus-visible {
     position: absolute;
     top: 56px; right: 4px;
     min-width: 135px;
-    background: var(--gray-800);
+    background: #191919;
     border-radius: 0 0 11px 11px;
-    box-shadow: 0 7px 24px #1f29370e;
+    box-shadow: 0 7px 24px #ff980022;
     opacity: 0; pointer-events: none;
     padding: 0.65rem 0.4rem 0.95rem 0;
     gap: 0.45rem;
@@ -137,14 +134,14 @@ a:focus-visible {
   .navbar-menu.open {
     opacity: 1; pointer-events: auto;
     transform: none; visibility: visible;
-    box-shadow: 0 6px 16px #2563eb22;
+    box-shadow: 0 6px 16px #ff980033;
   }
 }
 
 /* ===== HERO BANNER ===== */
 .hero-banner {
   position: relative;
-  background: var(--gray-100);
+  background: #191919;
   min-height: 58vh; max-height: 420px;
   display: flex; align-items: center; justify-content: center;
 }
@@ -161,20 +158,20 @@ a:focus-visible {
   font-family: var(--main-font);
   font-size: 2.3rem; font-weight: 800;
   letter-spacing: -1px; margin-bottom: 1.05em;
-  color: var(--blue-600);
+  color: var(--primary-orange);
 }
 .hero-tagline {
   font-size: 1.15rem; font-weight: 500;
-  color: var(--gray-600); margin-bottom: 1.5em;
+  color: #fff; margin-bottom: 1.5em;
   letter-spacing: 0.01em;
 }
-.glow, .glow-text { color: var(--blue-600); }
+.glow, .glow-text { color: var(--primary-orange); }
 .btn, .btn.btn-glow {
   border: none; outline: none;
   font-size: 1.085rem;
   font-family: var(--main-font); font-weight: 600;
-  color: var(--gray-50);
-  background: var(--blue-600);
+  color: var(--primary-black);
+  background: var(--primary-orange);
   box-shadow: none;
   padding: 13px 33px;
   border-radius: 8px;
@@ -183,20 +180,20 @@ a:focus-visible {
 }
 .btn:focus-visible,
 .btn.btn-glow:focus-visible {
-  outline: 2px solid var(--blue-700);
-  background: var(--blue-700);
-  color: var(--gray-50);
+  outline: 2px solid #fff;
+  background: #fff;
+  color: var(--primary-orange);
 }
 .btn:hover, .btn.btn-glow:hover {
-  background: var(--blue-700);
-  color: var(--gray-100);
+  background: var(--primary-white);
+  color: var(--primary-orange);
   transform: translateY(-1.5px) scale(1.03);
 }
 .explore-emoji { font-size: 1.1em; }
 
 /* ===== SECTION & CAROUSELS ===== */
 .carousel-section {
-  background: var(--gray-50);
+  background: #111;
   padding: 0 0 24px 0;
   min-height: 48vh;
   position: relative; z-index: 4;
@@ -204,7 +201,7 @@ a:focus-visible {
 .section-heading {
   font-family: var(--main-font);
   font-size: 1.18rem;
-  color: var(--blue-600);
+  color: var(--primary-orange);
   margin: 1.4em 0 0.5em 1.7vw;
 }
 .carousel-row {
@@ -217,18 +214,18 @@ a:focus-visible {
   outline: none;
 }
 .carousel-row:focus {
-  box-shadow: 0 0 0 3px var(--blue-600);
+  box-shadow: 0 0 0 3px var(--primary-orange);
 }
-.carousel-row::-webkit-scrollbar-thumb { background: var(--blue-600); }
-.carousel-row::-webkit-scrollbar-track { background: var(--gray-100); }
+.carousel-row::-webkit-scrollbar-thumb { background: var(--primary-orange); }
+.carousel-row::-webkit-scrollbar-track { background: #191919; }
 
 /* ====== GAME CARD ====== */
 .game-card {
-  background: var(--gray-100);
+  background: #181818;
   min-width: var(--card-minwidth); max-width: var(--card-maxwidth);
   aspect-ratio: 13/17;
   border-radius: var(--radius);
-  border: 1.5px solid var(--gray-100);
+  border: 2px solid #222;
   position: relative; overflow: hidden;
   flex: 0 0 auto; cursor: pointer;
   transition: transform var(--transition),
@@ -236,8 +233,8 @@ a:focus-visible {
   outline: none; box-shadow: none;
 }
 .game-card:focus-visible {
-  border-color: var(--blue-600);
-  box-shadow: 0 0 0 3px var(--blue-600)40;
+  border-color: var(--primary-orange);
+  box-shadow: 0 0 0 3px #ff980099;
   z-index: 6;
 }
 .game-card img.card-img {
@@ -248,7 +245,7 @@ a:focus-visible {
   filter: none;
   transition: filter var(--transition);
 }
-.game-card:hover { transform: translateY(-7px) scale(1.038); border-color: var(--blue-600); box-shadow: 0 3px 9px #1d4ed820; z-index: 7; }
+.game-card:hover { transform: translateY(-7px) scale(1.038); border-color: var(--primary-orange); box-shadow: 0 3px 9px #ff980023; z-index: 7; }
 .game-card:active   { transform: scale(0.98); }
 .game-card:hover img.card-img, .game-card:focus img.card-img {
   filter: brightness(1.025) saturate(1.03);
@@ -259,27 +256,27 @@ a:focus-visible {
   padding: 15px 12px 13px 15px;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
-  background: rgba(255,255,255,0.93);
-  color: var(--gray-800);
+  background: rgba(20,20,20,0.93);
+  color: var(--primary-white);
   display: flex; flex-direction: column; align-items: flex-start;
   z-index: 3; min-height: 72px;
   transition: background var(--transition);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px);
 }
 .card-title {
   font-family: var(--main-font);
   font-size: 1.04rem; font-weight: 700;
-  margin-bottom: 7px; color: var(--blue-600);
+  margin-bottom: 7px; color: var(--primary-orange);
   letter-spacing: 0.02em;
 }
 .card-desc {
   font-size: 0.98rem;
   font-family: var(--main-font);
-  font-weight: 400; color: var(--gray-800);
-  opacity: 0.71; margin-bottom: 3.5px;
+  font-weight: 400; color: var(--primary-white);
+  opacity: 0.81; margin-bottom: 3.5px;
 }
 .play-btn {
-  background: var(--blue-600); color: var(--gray-50);
+  background: var(--primary-orange); color: var(--primary-black);
   font-family: var(--main-font); font-weight: 600;
   font-size: 1rem; border: none; border-radius: 50px;
   box-shadow: none; padding: 8px 21px;
@@ -288,13 +285,13 @@ a:focus-visible {
   cursor: pointer;
 }
 .play-btn:hover, .play-btn:focus-visible {
-  background: var(--blue-700); color: var(--gray-50);
+  background: var(--primary-white); color: var(--primary-orange);
   transform: translateY(-2px) scale(1.05);
 }
 
 /* Cards: winner highlight for banners/game-winning states */
 .card-win, .winner-banner {
-  background: var(--green-win) !important;
+  background: var(--primary-orange) !important;
   color: #fff !important;
   font-weight: 700;
 }
@@ -302,7 +299,7 @@ a:focus-visible {
 /* ===== WINNER BANNER ===== */
 .winner-banner {
   display: inline-block;
-  background: var(--green-win);
+  background: var(--primary-orange);
   color: #fff;
   padding: 1em 2.4em;
   border-radius: var(--radius);
@@ -321,8 +318,8 @@ a:focus-visible {
 
 /* ====== FOOTER ====== */
 .site-footer {
-  background: var(--gray-100);
-  color: var(--gray-600);
+  background: #191919;
+  color: #fff;
   text-align: center;
   padding: 1.6rem 0 0.8rem 0;
   width: 100vw; font-size: 1em; box-shadow: none;
@@ -331,7 +328,7 @@ a:focus-visible {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.18em 0;
 }
 .footer-link {
-  color: var(--blue-600);
+  color: var(--primary-orange);
   margin: 0 6px;
   font-size: 1em;
   border-radius: 5px;
@@ -339,7 +336,7 @@ a:focus-visible {
   transition: background var(--transition), color var(--transition);
 }
 .footer-link:focus-visible, .footer-link:hover {
-  background: var(--gray-800); color: var(--gray-50);
+  background: var(--primary-white); color: var(--primary-black);
   outline: none;
 }
 
@@ -377,7 +374,7 @@ a:focus-visible {
 
 /* --- Focus Ring for accessibility --- */
 :focus-visible {
-  outline: 2px solid var(--blue-600);
+  outline: 2px solid var(--primary-orange);
   outline-offset: 2px;
   z-index: 5;
 }

@@ -5,9 +5,9 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  background: #181818;
+  background: #161616;
   border-radius: 14px;
-  box-shadow: 0 4px 40px 0 #0005;
+  box-shadow: 0 4px 28px 0 #111a;
   padding: 2.5rem 1.3rem 2.2rem 1.3rem;
   animation: fadein 1s cubic-bezier(.42, 0.0, 0.58, 1.0);
   position: relative;

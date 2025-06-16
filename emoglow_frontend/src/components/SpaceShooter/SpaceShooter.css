@@ -17,8 +17,8 @@
 .spaceshooter-canvas {
   margin: 0 auto;
   margin-top: 18px;
-  background: radial-gradient(circle at 55% 33%, #101428 75%, #1c1850 100%);
-  border: 2px solid #23e3fe55;
+  background: #101010;
+  border: 2px solid #ff9800;
   display: block;
   transition: filter 0.36s cubic-bezier(.21,.8,.5,1.1);
 }
