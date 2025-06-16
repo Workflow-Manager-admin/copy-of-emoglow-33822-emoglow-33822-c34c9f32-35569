@@ -14,33 +14,33 @@ const WIN_LINES = [
   [2, 4, 6],
 ];
 
-// For compatibility: index (0–7) matches WIN_LINES
 /**
- * Calculate the win line's SVG parameters (x1, y1, x2, y2) to overlay on the board.
- * @param {number} strikeIdx - index into WIN_LINES
- * @returns {{x1:number, y1:number, x2:number, y2:number}}
+ * Calculate the win line SVG points (x1, y1, x2, y2) for the board (viewBox 0 0 100 100) for any win type.
+ * Always computes pixel-aligned midpoints for crisp, sharp rendering.
  */
 function getStrikeSVGCoords(strikeIdx) {
-  // Board is 3x3 grid, SVG is 100x100% (viewBox 0 0 100 100)
-  // Each cell: size = 33.333... units
-  const cell = (n) => 16.6667 + 33.3333 * n; // Center of cell n (0,1,2)
+  // Padding so line does not touch edges, and always centered in cell.
+  // SVG is 0..100 in both axes.
+  // Each cell is about 33.33 wide/high; line is centered in each cell.
+  const pad = 12;
+  const cellPos = (n) => 16.67 + 33.33 * n; // center of 0,1,2
   switch (strikeIdx) {
-    case 0: // Top row
-      return { x1: 7, y1: cell(0), x2: 93, y2: cell(0) };
-    case 1: // Middle row
-      return { x1: 7, y1: cell(1), x2: 93, y2: cell(1) };
-    case 2: // Bottom row
-      return { x1: 7, y1: cell(2), x2: 93, y2: cell(2) };
-    case 3: // Left col
-      return { x1: cell(0), y1: 7, x2: cell(0), y2: 93 };
-    case 4: // Middle col
-      return { x1: cell(1), y1: 7, x2: cell(1), y2: 93 };
-    case 5: // Right col
-      return { x1: cell(2), y1: 7, x2: cell(2), y2: 93 };
-    case 6: // Main diagonal "\"
-      return { x1: 10, y1: 10, x2: 90, y2: 90 };
-    case 7: // Anti-diagonal "/"
-      return { x1: 90, y1: 10, x2: 10, y2: 90 };
+    case 0: // Row 1
+      return { x1: pad, y1: cellPos(0), x2: 100 - pad, y2: cellPos(0) };
+    case 1: // Row 2
+      return { x1: pad, y1: cellPos(1), x2: 100 - pad, y2: cellPos(1) };
+    case 2: // Row 3
+      return { x1: pad, y1: cellPos(2), x2: 100 - pad, y2: cellPos(2) };
+    case 3: // Col 1
+      return { x1: cellPos(0), y1: pad, x2: cellPos(0), y2: 100 - pad };
+    case 4: // Col 2
+      return { x1: cellPos(1), y1: pad, x2: cellPos(1), y2: 100 - pad };
+    case 5: // Col 3
+      return { x1: cellPos(2), y1: pad, x2: cellPos(2), y2: 100 - pad };
+    case 6: // Diagonal "\"
+      return { x1: pad, y1: pad, x2: 100 - pad, y2: 100 - pad };
+    case 7: // Diagonal "/"
+      return { x1: 100 - pad, y1: pad, x2: pad, y2: 100 - pad };
     default:
       return null;
   }
@@ -48,6 +48,8 @@ function getStrikeSVGCoords(strikeIdx) {
 
 // Square (cell) presentation
 function Cell({ value, onClick, isWinning, isDisabled, idx }) {
+  // PUBLIC_INTERFACE
+  // X/O always bold, centered, and never clipped
   return (
     <button
       className={`ttt-cell${isWinning ? " ttt-cell-win" : ""}`}
@@ -58,54 +60,81 @@ function Cell({ value, onClick, isWinning, isDisabled, idx }) {
       style={{
         padding: 0,
         margin: 0,
+        // font-size handled via clamp in CSS for true responsiveness/clipping, but fallback here also
+        fontSize: "clamp(2rem,8vw,5rem)",
+        fontFamily:
+          "'Orbitron', 'Poppins', 'Inter', 'Roboto Mono', 'Menlo', 'Consolas', monospace, sans-serif",
+        fontWeight: 900,
+        letterSpacing: "-0.04em",
+        lineHeight: 1,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+        width: "100%",
+        height: "100%",
+        // Prevent any possible shrinking bug
+        minWidth: 0,
+        minHeight: 0,
       }}
     >
       {value && (
-        <span className={`ttt-cell-val ttt-cell-val-${value}`}>
-          {/* Render a BOLD EMOJI styled perfectly centered */}
-          <span
-            style={{
-              fontSize: "1em",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-              height: "100%",
-              fontWeight: 900,
-              textShadow:
-                value === "X"
-                  ? "0 1.5px 11px #41eded29"
-                  : "0 1.5px 11px #ffe66f77",
-              lineHeight: 1,
-              filter:
-                value === "X"
-                  ? "drop-shadow(0 3px 12px #33e4e41d)"
-                  : "drop-shadow(0 4px 16px #ff980025)",
-              letterSpacing: "-0.04em",
-              margin: 0,
-              padding: 0,
-              // Prevent overflow
-              overflow: "hidden",
-              userSelect: "none",
-              // Maximize bold/crisp
-              WebkitFontSmoothing: "antialiased",
-              MozOsxFontSmoothing: "grayscale",
-            }}
-          >
-            {value === "X" ? (
-              <span style={{ color: "#33e4e4" }}>❌</span>
-            ) : (
-              <span
-                style={{
-                  color: "#ff9800",
-                  WebkitTextStroke: "1.5px #fff900",
-                  fontWeight: 900,
-                }}
-              >
-                ⭕
-              </span>
-            )}
-          </span>
+        <span
+          className={`ttt-cell-val ttt-cell-val-${value}`}
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontFamily:
+              "'Orbitron', 'Poppins', 'Inter', 'Roboto Mono', 'Menlo', 'Consolas', monospace, sans-serif",
+            fontWeight: 900,
+            fontSize: "1em", // inherits from cell
+            lineHeight: 1,
+            margin: "auto",
+            padding: 0,
+            boxSizing: "border-box",
+            userSelect: "none",
+            overflow: "hidden",
+            WebkitFontSmoothing: "antialiased",
+            MozOsxFontSmoothing: "grayscale",
+            letterSpacing: "-0.04em",
+          }}
+        >
+          {value === "X" ? (
+            <span
+              aria-label="X"
+              style={{
+                color: "#fff",
+                fontFamily: "'Orbitron', 'Poppins', 'Inter', 'Menlo', 'Consolas', monospace",
+                fontWeight: 900,
+                fontSize: "1em",
+                lineHeight: 1,
+                filter: "none",
+                textShadow: "0 1.5px 6px #ff9800cc",
+                WebkitTextStroke: "2px #33e4e4",
+              }}
+            >
+              X
+            </span>
+          ) : (
+            <span
+              aria-label="O"
+              style={{
+                color: "#ff9800",
+                fontFamily: "'Orbitron', 'Poppins', 'Inter', 'Menlo', 'Consolas', monospace",
+                fontWeight: 900,
+                fontSize: "1em",
+                lineHeight: 1,
+                filter: "none",
+                textShadow: "0 1.5px 6px #fff90077",
+                WebkitTextStroke: "2.5px #fff",
+              }}
+            >
+              O
+            </span>
+          )}
         </span>
       )}
     </button>
@@ -216,7 +245,7 @@ function TicTacToe() {
         className={`ttt-board-wrap${restarting ? " ttt-board-restart" : ""}${strikeInfo.winner ? " ttt-board-finished" : ""}`}
         style={{ position: "relative", overflow: "visible" }}
       >
-        {/* SVG Strike line: overlays whole board, perfectly centered */}
+        {/* SVG Strike-through win line: overlays board, perfectly centered and always sharp */}
         {strikeInfo.winner &&
           typeof strikeInfo.strikeIdx === "number" &&
           (() => {
@@ -233,8 +262,9 @@ function TicTacToe() {
                   top: 0,
                   width: "100%",
                   height: "100%",
-                  zIndex: 7,
+                  zIndex: 8,
                   overflow: "visible",
+                  // No background, fully transparent
                 }}
                 aria-hidden="true"
                 focusable="false"
@@ -249,9 +279,10 @@ function TicTacToe() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   style={{
-                    filter: "drop-shadow(0px 3px 16px #ff980042)",
-                    opacity: 0.92,
-                    transition: "all 0.41s cubic-bezier(.22,1.11,.53,1)",
+                    filter: "none",
+                    opacity: 1,
+                    // No blurred shadow, only solid
+                    transition: "all 0.21s cubic-bezier(.41,1.01,.51,.97)",
                   }}
                 />
               </svg>
