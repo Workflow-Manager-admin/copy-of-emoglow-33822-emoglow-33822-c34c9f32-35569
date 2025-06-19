@@ -1,0 +1,4 @@
+{
+    "command": "npm install && npx tsc --noEmit && npm test -- --ci",
+    "working_directory": "/home/kavia/workspace/code-generation/copy-of-emoglow-33822-emoglow-33822-c34c9f32-35569/emoglow_frontend"
+}
